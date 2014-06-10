@@ -1,0 +1,38 @@
+<h1>Listing Committee Evaluations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <h5>Committee Evaluation</h5>
+      <h5>Committee</h5>
+      <h5>Committee Department</h5>
+      <h5>Committee Department College</h5>
+      <h5>Review</h5>
+      <h5>Review Candidate Profile</h5>
+      <h5></h5>
+      <h5></h5>
+      <h5></h5>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @committee_evaluations.each do |committee_evaluation| %>
+      <tr>
+        <td><%= committee_evaluation.committee_evaluation_id %></td>
+        <td><%= committee_evaluation.committee_id %></td>
+        <td><%= committee_evaluation.committee_department_id %></td>
+        <td><%= committee_evaluation.committee_department_college_id %></td>
+        <td><%= committee_evaluation.review_id %></td>
+        <td><%= committee_evaluation.review_candidate_profile_id %></td>
+        <td><%= link_to 'Show', committee_evaluation %></td>
+        <td><%= link_to 'Edit', edit_committee_evaluation_path(committee_evaluation) %></td>
+        <td><%= link_to 'Destroy', committee_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Committee evaluation', new_committee_evaluation_path %></br>
+<%= link_to 'Home Page', homes_path %>

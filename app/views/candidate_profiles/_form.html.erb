@@ -1,0 +1,49 @@
+<%= form_for(@candidate_profile) do |f| %>
+  <% if @candidate_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidate_profile.errors.count, "error") %> prohibited this candidate_profile from being saved:</h2>
+
+      <ul>
+      <% @candidate_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :candidate_profile_id %><br>
+    <%= f.number_field :candidate_profile_id %>
+  </div>
+  <div class="field">
+    <%= f.label :Curriculum_Vitae %><br>
+    <%= f.text_area :Curriculum_Vitae %>
+  </div>
+  <div class="field">
+    <%= f.label :Teaching_Statement %><br>
+    <%= f.text_area :Teaching_Statement %>
+  </div>
+  <div class="field">
+    <%= f.label :Research_Statement %><br>
+    <%= f.text_area :Research_Statement %>
+  </div>
+  <div class="field">
+    <%= f.label :Service_statement_in %><br>
+    <%= f.text_area :Service_statement_in %>
+  </div>
+  <div class="field">
+    <%= f.label :Additional_Materials %><br>
+    <%= f.text_area :Additional_Materials %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :User_department_id %><br>
+    <%= f.number_field :User_department_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<h1>Listing users</h1></center>
+
+<table>
+  <thead>
+    <tr>
+      <h5>User</h5>
+      <h5>Acces level</h5>
+      <h5>Department</h5>
+      <h5>Is faculty</h5>
+      <h5>First name</h5>
+      <h5>Last name</h5>
+      <h5>Email</h5>
+      <h5>Committee</h5>
+      <h5>Department college</h5>
+      <h5></h5>
+      <h5></h5>
+      <h5></h5>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.user_id %></td>
+        <td><%= user.acces_level %></td>
+        <td><%= user.Department_id %></td>
+        <td><%= user.is_faculty %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.Committee_id %></td>
+        <td><%= user.Department_College_id %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %></br>
+<%= link_to 'Home Page', homes_path %>

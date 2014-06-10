@@ -1,0 +1,44 @@
+<h1>Listing Reviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <h5>Review</h5>
+      <h5>Candidate profile</h5>
+      <h5>Commitee</h5>
+      <h5>Begin</h5>
+      <h5>End</h5>
+      <h5>College type</h5>
+      <h5>Committee</h5>
+      <h5>Committee department</h5>
+      <h5>Committee department college</h5>
+      <h5></h5>
+      <h5></h5>
+      <h5></h5>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.review_id %></td>
+        <td><%= review.candidate_profile_id %></td>
+        <td><%= review.commitee_id %></td>
+        <td><%= review.begin %></td>
+        <td><%= review.end %></td>
+        <td><%= review.college_type %></td>
+        <td><%= review.committee_id %></td>
+        <td><%= review.committee_department_id %></td>
+        <td><%= review.committee_department_college_id %></td>
+        <td><%= link_to 'Show', review %></td>
+        <td><%= link_to 'Edit', edit_review_path(review) %></td>
+        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Review', new_review_path %></br>
+<%= link_to 'Home Page', homes_path %>

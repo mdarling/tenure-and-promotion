@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vote_id: 1
+  Review_id: 1
+  Review_Candidate_Profile_id: 1
+  user_id: 1
+
+two:
+  vote_id: 1
+  Review_id: 1
+  Review_Candidate_Profile_id: 1
+  user_id: 1

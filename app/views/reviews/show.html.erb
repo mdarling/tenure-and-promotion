@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @review.review_id %>
+</p>
+
+<p>
+  <strong>Candidate profile:</strong>
+  <%= @review.candidate_profile_id %>
+</p>
+
+<p>
+  <strong>Commitee:</strong>
+  <%= @review.commitee_id %>
+</p>
+
+<p>
+  <strong>Begin:</strong>
+  <%= @review.begin %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @review.end %>
+</p>
+
+<p>
+  <strong>College type:</strong>
+  <%= @review.college_type %>
+</p>
+
+<p>
+  <strong>Committee:</strong>
+  <%= @review.committee_id %>
+</p>
+
+<p>
+  <strong>Committee department:</strong>
+  <%= @review.committee_department_id %>
+</p>
+
+<p>
+  <strong>Committee department college:</strong>
+  <%= @review.committee_department_college_id %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

@@ -1,0 +1,1 @@
+json.extract! @candidate_profile, :id, :candidate_profile_id, :Curriculum_Vitae, :Teaching_Statement, :Research_Statement, :Service_statement_in, :Additional_Materials, :user_id, :User_department_id, :created_at, :updated_at

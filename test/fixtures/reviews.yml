@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  review_id: 1
+  candidate_profile_id: 1
+  commitee_id: 1
+  begin: 2014-06-09 08:44:58
+  end: 2014-06-09 08:44:58
+  college_type: MyString
+  committee_id: 1
+  committee_department_id: 1
+  committee_department_college_id: 1
+
+two:
+  review_id: 1
+  candidate_profile_id: 1
+  commitee_id: 1
+  begin: 2014-06-09 08:44:58
+  end: 2014-06-09 08:44:58
+  college_type: MyString
+  committee_id: 1
+  committee_department_id: 1
+  committee_department_college_id: 1

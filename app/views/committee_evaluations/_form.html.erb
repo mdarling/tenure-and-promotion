@@ -1,0 +1,41 @@
+<%= form_for(@committee_evaluation) do |f| %>
+  <% if @committee_evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@committee_evaluation.errors.count, "error") %> prohibited this committee_evaluation from being saved:</h2>
+
+      <ul>
+      <% @committee_evaluation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :committee_evaluation_id %><br>
+    <%= f.number_field :committee_evaluation_id %>
+  </div>
+  <div class="field">
+    <%= f.label :committee_id %><br>
+    <%= f.number_field :committee_id %>
+  </div>
+  <div class="field">
+    <%= f.label :committee_department_id %><br>
+    <%= f.number_field :committee_department_id %>
+  </div>
+  <div class="field">
+    <%= f.label :committee_department_college_id %><br>
+    <%= f.number_field :committee_department_college_id %>
+  </div>
+  <div class="field">
+    <%= f.label :review_id %><br>
+    <%= f.number_field :review_id %>
+  </div>
+  <div class="field">
+    <%= f.label :review_candidate_profile_id %><br>
+    <%= f.number_field :review_candidate_profile_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

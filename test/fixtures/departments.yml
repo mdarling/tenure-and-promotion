@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  department_id: 1
+  name: MyString
+  College_id: 1
+
+two:
+  department_id: 1
+  name: MyString
+  College_id: 1

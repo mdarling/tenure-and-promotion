@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Committee evaluation:</strong>
+  <%= @committee_evaluation.committee_evaluation_id %>
+</p>
+
+<p>
+  <strong>Committee:</strong>
+  <%= @committee_evaluation.committee_id %>
+</p>
+
+<p>
+  <strong>Committee department:</strong>
+  <%= @committee_evaluation.committee_department_id %>
+</p>
+
+<p>
+  <strong>Committee department college:</strong>
+  <%= @committee_evaluation.committee_department_college_id %>
+</p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @committee_evaluation.review_id %>
+</p>
+
+<p>
+  <strong>Review candidate profile:</strong>
+  <%= @committee_evaluation.review_candidate_profile_id %>
+</p>
+
+<%= link_to 'Edit', edit_committee_evaluation_path(@committee_evaluation) %> |
+<%= link_to 'Back', committee_evaluations_path %>

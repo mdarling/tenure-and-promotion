@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  candidate_profile_id: 1
+  Curriculum_Vitae: MyText
+  Teaching_Statement: MyText
+  Research_Statement: MyText
+  Service_statement_in: MyText
+  Additional_Materials: MyText
+  user_id: 1
+  User_department_id: 1
+
+two:
+  candidate_profile_id: 1
+  Curriculum_Vitae: MyText
+  Teaching_Statement: MyText
+  Research_Statement: MyText
+  Service_statement_in: MyText
+  Additional_Materials: MyText
+  user_id: 1
+  User_department_id: 1

@@ -1,0 +1,33 @@
+<h1>UNM Tenure & Promotion Home Page!</h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @homes.each do |home| %>
+      <tr>
+        <td><%= link_to 'Show', home %></td>
+        <td><%= link_to 'Edit', edit_home_path(home) %></td>
+        <td><%= link_to 'Destroy', home, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Candidate Profile', candidate_profiles_path %></br>
+<%= link_to 'College', colleges_path %></br>
+<%= link_to 'Committee Evaluations', committee_evaluations_path %></br>
+<%= link_to 'Committees', committees_path %></br>
+<%= link_to 'Departments', departments_path %></br>
+<%= link_to 'Reviews', reviews_path %></br>
+<%= link_to 'Users', users_path %></br>
+<%= link_to 'Votes', votes_path %>

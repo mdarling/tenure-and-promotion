@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  committee_evaluation_id: 1
+  committee_id: 1
+  committee_department_id: 1
+  committee_department_college_id: 1
+  review_id: 1
+  review_candidate_profile_id: 1
+
+two:
+  committee_evaluation_id: 1
+  committee_id: 1
+  committee_department_id: 1
+  committee_department_college_id: 1
+  review_id: 1
+  review_candidate_profile_id: 1

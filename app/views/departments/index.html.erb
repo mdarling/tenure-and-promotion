@@ -1,0 +1,32 @@
+<h1>Listing Departments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <h5>Department</h5>
+      <h5>Name</h5>
+      <h5>College</h5>
+      <h5></h5>
+      <h5></h5>
+      <h5></h5>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr>
+        <td><%= department.department_id %></td>
+        <td><%= department.name %></td>
+        <td><%= department.College_id %></td>
+        <td><%= link_to 'Show', department %></td>
+        <td><%= link_to 'Edit', edit_department_path(department) %></td>
+        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Department', new_department_path %></br>
+<%= link_to 'Home Page', homes_path %>
