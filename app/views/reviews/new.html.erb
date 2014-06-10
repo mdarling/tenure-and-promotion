@@ -1,5 +1,51 @@
 <h1>New review</h1>
 
+<form action="http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi"
+enctype="multipart/form-data" method="post">
+<p>
+Upload a new Review:<br>
+</p>
+<p>
+Please specify a file, or a set of files:<br>
+<input type="file" name="datafile" size="40">
+</p>
+<div>
+<input type="submit" value="Send">
+</div>
+</form>
+
+
+<script type="text/javascript" language="JavaScript">
+function check() {
+  var ext = document.f.pic.value;
+  ext = ext.substring(ext.length-3,ext.length);
+  ext = ext.toLowerCase();
+  if(ext != 'jpg') {
+    alert('You selected a .'+ext+
+          ' file; please select a .jpg file instead!');
+    return false; }
+  else
+    return true; }
+</script>
+
+<form method="post" name=f
+enctype="multipart/form-data"
+onsubmit="return check();"
+action="http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi">
+<p>
+Please select a JPEG (.jpg) file to be sent:
+<br>
+<input type="file" name="pic" size="40"
+accept="image/jpeg">
+<p>
+Please include a short explanation:<br>
+<textarea name="expl" rows="3" cols="40"
+onfocus="check();">
+</textarea>
+<p>
+<input type="submit" value="Send">
+</form>
+
 <%= render 'form' %>
 
 <%= link_to 'Back', reviews_path %>

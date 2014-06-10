@@ -1,5 +1,30 @@
 <h1>New Candidate Profile</h1>
 
+<form action="http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi"
+enctype="multipart/form-data" method="post">
+<p>
+Upload your 
+• curriculum vitae
+
+• teaching statement
+
+• research statement 
+
+• service statement:<br>
+</p>
+<p>
+Please specify a file, or a set of files:<br>
+<input type="file" name="datafile" size="40">
+<input type="file" name="datafile" size="40">
+<input type="file" name="datafile" size="40">
+<input type="file" name="datafile" size="40">
+
+</p>
+<div>
+<input type="submit" value="Send">
+</div>
+</form>
+
 <%= render 'form' %>
 
 <%= link_to 'Back', candidate_profiles_path %>
