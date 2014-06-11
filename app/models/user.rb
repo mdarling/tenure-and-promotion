@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-	validates_presence_of :user_id
 	validates_presence_of :acces_level
 	validates_presence_of :Committee_id
 	validates_presence_of :Department_College_id
