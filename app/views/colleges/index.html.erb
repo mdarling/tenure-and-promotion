@@ -14,7 +14,6 @@
   <tbody>
     <% @colleges.each do |college| %>
       <tr>
-        <td><%= college.college_id %></td>
         <td><%= college.name %></td>
         <td><%= link_to 'Show', college %></td>
         <td><%= link_to 'Edit', edit_college_path(college) %></td>
