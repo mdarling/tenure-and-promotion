@@ -43,3 +43,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#Rails CAS Client
+gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rails.git"
