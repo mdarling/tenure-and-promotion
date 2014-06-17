@@ -1,35 +1,10 @@
-<h1>Listing Candidate Profiles</h1>
+<h1>Listing Candidate Profiles</h1></br>
 
-<table>
-      <h5>Candidate Profile</h5>
-      <h5>Curriculum Vitae</h5>
-      <h5>Teaching Statement</h5>
-      <h5>Research Statement</h5>
-      <h5>Service Statement In</h5>
-      <h5>Additional Materials</h5>
-      <h5>User</h5>
-      <h5>User Department</h5>
-   
 
-  <tbody>
-    <% @candidate_profiles.each do |candidate_profile| %>
-      <tr>
-        <td><%= candidate_profile.Curriculum_Vitae %></td>
-        <td><%= candidate_profile.Teaching_Statement %></td>
-        <td><%= candidate_profile.Research_Statement %></td>
-        <td><%= candidate_profile.Service_statement_in %></td>
-        <td><%= candidate_profile.Additional_Materials %></td>
-        <td><%= candidate_profile.user_id %></td>
-        <td><%= candidate_profile.User_department_id %></td>
-        <td><%= link_to 'Show', candidate_profile %></td>
-        <td><%= link_to 'Edit', edit_candidate_profile_path(candidate_profile) %></td>
-        <td><%= link_to 'Destroy', candidate_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Candidate profile', new_candidate_profile_path %></br>
+<% @candidate_profiles.each do |candidate_profile| %>
+<div>
+  <%= link_to candidate_profile.user.full_name, candidate_profile %>
+</div>
+<% end %>
+</br></br>
 <%= link_to 'Home Page', homes_path %>
