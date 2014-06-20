@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
       has_one :candidate_profile, dependent: :destroy
   def full_name
-      "#{self.first_name} #{self.last_name}" 
+      "#{self.last_name}, #{self.first_name} " 
     end
 
 	#validates_presence_of :acces_level
