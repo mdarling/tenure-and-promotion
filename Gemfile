@@ -47,9 +47,6 @@ end
 #Rails CAS Client
 gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rails.git"
 
-#JQuery
-gem "jquery-rails"
-
 #Metro Styling
 gem 'therubyracer'
 gem 'metro-ui-rails'
