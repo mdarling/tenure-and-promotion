@@ -1,39 +1,24 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Curriculum vitae:</strong>
-  <%= @candidate_profile.Curriculum_Vitae %>
+</br></br>
+<h5> Candidate's Dossier </h5>
+<button type="button">Download Files</button></br>
+<h5> Letter of Recomendation </h5>
+<input type="file" name="datafile" size="40"></br>
 </p>
-
+<div>
+<input type="submit" value="Send">
+</div>
+</form>
 <p>
-  <strong>Teaching statement:</strong>
-  <%= @candidate_profile.Teaching_Statement %>
-</p>
-
-<p>
-  <strong>Research statement:</strong>
-  <%= @candidate_profile.Research_Statement %>
-</p>
-
-<p>
-  <strong>Service statement in:</strong>
-  <%= @candidate_profile.Service_statement_in %>
-</p>
-
-<p>
-  <strong>Additional materials:</strong>
+  <h5>Additional Materials:</h5>
   <%= @candidate_profile.Additional_Materials %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @candidate_profile.user_id %>
-</p>
+<h5>Should this person be given tenure </h5>
+<form action="">
 
-<p>
-  <strong>User department:</strong>
-  <%= @candidate_profile.User_department_id %>
-</p>
+<INPUT id="Yes" type="radio" value="1" name="Yes" >Yes
+<INPUT id="Yes" type="radio" value="2" name="Yes">No</br></br>
 
 <%= link_to 'Edit', edit_candidate_profile_path(@candidate_profile) %> |
 <%= link_to 'Back', candidate_profiles_path %>
