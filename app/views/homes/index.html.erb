@@ -23,12 +23,29 @@
 </table>
 
 <br>
-<%= link_to 'Candidate Profile', candidate_profiles_path, :class => "tile" %><br>
-<%= link_to 'College', colleges_path %></br>
-<%= link_to 'Committee Evaluations', committee_evaluations_path %></br>
-<%= link_to 'Committees', committees_path %></br>
-<%= link_to 'Departments', departments_path %></br>
-<%= link_to 'Reviews', reviews_path %></br>
-<%= link_to 'Users', users_path %></br>
-<%= link_to 'Votes', votes_path %><br>
-<%= raw session[:cas_user] %>
+<div class="container">
+            <div class="grid fluid">
+                <div class="row">
+			<%= link_to 'Candidate Profile', candidate_profiles_path, :class => "tile bg-color-blue" %>
+			<%= link_to 'College', colleges_path, :class => "tile bg-color-redLight" %>
+			<%= link_to 'Committee Evaluations', committee_evaluations_path, :class => "tile bg-color-blueDark" %>
+		</div>
+	    </div>
+</div>
+<div class="container">
+            <div class="grid fluid">
+                <div class="row">
+			<%= link_to 'Committees', committees_path, :class => "tile bg-color-magenta" %>
+			<%= link_to 'Departments', departments_path, :class => "tile bg-color-greenLight" %>
+			<%= link_to 'Reviews', reviews_path, :class => "tile bg-color-purple" %>
+		</div>
+	    </div>
+</div>
+<div class="container">
+            <div class="grid fluid">
+                <div class="row">
+<%= link_to 'Users', users_path, :class => "tile bg-color-red" %>
+<%= link_to 'Votes', votes_path, :class => "tile bg-color-pink" %>
+		</div>
+	    </div>
+</div>
