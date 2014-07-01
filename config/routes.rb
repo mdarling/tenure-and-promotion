@@ -1,4 +1,6 @@
 NewDatabase1::Application.routes.draw do
+  get "tenure_review_guidlines", to: "tenure_review_guidlines#index"
+  get "candidate_view", to: "candidate_view#index"
   resources :sends
 
   resources :creates
