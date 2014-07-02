@@ -1,4 +1,5 @@
 NewDatabase1::Application.routes.draw do
+  get "fdisk", to: "fdisk#index"
   resources :sends
 
   resources :creates

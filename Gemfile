@@ -50,3 +50,6 @@ gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rai
 #Metro Styling
 gem 'therubyracer'
 gem 'metro-ui-rails'
+
+#Mandrill
+gem 'mandrill-rails'

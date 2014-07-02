@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610165602) do
+ActiveRecord::Schema.define(version: 20140702173255) do
 
   create_table "candidate_profiles", force: true do |t|
     t.text     "Curriculum_Vitae"
@@ -104,6 +104,14 @@ ActiveRecord::Schema.define(version: 20140610165602) do
   end
 
   create_table "sign_ins", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user2s", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "login"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
