@@ -42,7 +42,7 @@ class CandidateProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @candidate_profile.update(candidate_profile_params)
-        format.html { redirect_to @candidate_profile, notice: 'Candidate profile was successfully updated.' }
+        format.html { redirect_to users_path, notice: 'Candidate profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
