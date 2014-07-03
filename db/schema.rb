@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140610165602) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "candidate_profiles", force: true do |t|
     t.text     "Curriculum_Vitae"
     t.text     "Teaching_Statement"
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140610165602) do
     t.datetime "updated_at"
   end
 
-  add_index "candidate_profiles", ["User_department_id"], name: "index_candidate_profiles_on_User_department_id"
-  add_index "candidate_profiles", ["user_id"], name: "index_candidate_profiles_on_user_id"
+  add_index "candidate_profiles", ["User_department_id"], name: "index_candidate_profiles_on_User_department_id", using: :btree
+  add_index "candidate_profiles", ["user_id"], name: "index_candidate_profiles_on_user_id", using: :btree
 
   create_table "colleges", force: true do |t|
     t.string   "name"
@@ -44,11 +47,11 @@ ActiveRecord::Schema.define(version: 20140610165602) do
     t.datetime "updated_at"
   end
 
-  add_index "committee_evaluations", ["committee_department_college_id"], name: "index_committee_evaluations_on_committee_department_college_id"
-  add_index "committee_evaluations", ["committee_department_id"], name: "index_committee_evaluations_on_committee_department_id"
-  add_index "committee_evaluations", ["committee_id"], name: "index_committee_evaluations_on_committee_id"
-  add_index "committee_evaluations", ["review_candidate_profile_id"], name: "index_committee_evaluations_on_review_candidate_profile_id"
-  add_index "committee_evaluations", ["review_id"], name: "index_committee_evaluations_on_review_id"
+  add_index "committee_evaluations", ["committee_department_college_id"], name: "index_committee_evaluations_on_committee_department_college_id", using: :btree
+  add_index "committee_evaluations", ["committee_department_id"], name: "index_committee_evaluations_on_committee_department_id", using: :btree
+  add_index "committee_evaluations", ["committee_id"], name: "index_committee_evaluations_on_committee_id", using: :btree
+  add_index "committee_evaluations", ["review_candidate_profile_id"], name: "index_committee_evaluations_on_review_candidate_profile_id", using: :btree
+  add_index "committee_evaluations", ["review_id"], name: "index_committee_evaluations_on_review_id", using: :btree
 
   create_table "committees", force: true do |t|
     t.integer  "committee_id"
@@ -59,8 +62,8 @@ ActiveRecord::Schema.define(version: 20140610165602) do
     t.datetime "updated_at"
   end
 
-  add_index "committees", ["department_college_id"], name: "index_committees_on_department_college_id"
-  add_index "committees", ["department_id"], name: "index_committees_on_department_id"
+  add_index "committees", ["department_college_id"], name: "index_committees_on_department_college_id", using: :btree
+  add_index "committees", ["department_id"], name: "index_committees_on_department_id", using: :btree
 
   create_table "creates", force: true do |t|
     t.datetime "created_at"
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 20140610165602) do
     t.datetime "updated_at"
   end
 
-  add_index "departments", ["College_id"], name: "index_departments_on_college_id"
+  add_index "departments", ["College_id"], name: "index_departments_on_college_id", using: :btree
 
   create_table "homes", force: true do |t|
     t.datetime "created_at"
@@ -93,10 +96,10 @@ ActiveRecord::Schema.define(version: 20140610165602) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["candidate_profile_id"], name: "index_reviews_on_candidate_profile_id"
-  add_index "reviews", ["committee_department_college_id"], name: "index_reviews_on_committee_department_college_id"
-  add_index "reviews", ["committee_department_id"], name: "index_reviews_on_committee_department_id"
-  add_index "reviews", ["committee_id"], name: "index_reviews_on_committee_id"
+  add_index "reviews", ["candidate_profile_id"], name: "index_reviews_on_candidate_profile_id", using: :btree
+  add_index "reviews", ["committee_department_college_id"], name: "index_reviews_on_committee_department_college_id", using: :btree
+  add_index "reviews", ["committee_department_id"], name: "index_reviews_on_committee_department_id", using: :btree
+  add_index "reviews", ["committee_id"], name: "index_reviews_on_committee_id", using: :btree
 
   create_table "sends", force: true do |t|
     t.datetime "created_at"
@@ -121,9 +124,9 @@ ActiveRecord::Schema.define(version: 20140610165602) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["Committee_id"], name: "index_users_on_Committee_id"
-  add_index "users", ["Department_College_id"], name: "index_users_on_Department_College_id"
-  add_index "users", ["Department_id"], name: "index_users_on_Department_id"
+  add_index "users", ["Committee_id"], name: "index_users_on_Committee_id", using: :btree
+  add_index "users", ["Department_College_id"], name: "index_users_on_Department_College_id", using: :btree
+  add_index "users", ["Department_id"], name: "index_users_on_Department_id", using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "vote_id"
@@ -134,8 +137,8 @@ ActiveRecord::Schema.define(version: 20140610165602) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["Review_Candidate_Profile_id"], name: "index_votes_on_Review_Candidate_Profile_id"
-  add_index "votes", ["Review_id"], name: "index_votes_on_Review_id"
-  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+  add_index "votes", ["Review_Candidate_Profile_id"], name: "index_votes_on_Review_Candidate_Profile_id", using: :btree
+  add_index "votes", ["Review_id"], name: "index_votes_on_Review_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
 end
