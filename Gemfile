@@ -49,7 +49,7 @@ gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rai
 
 #Metro Styling
 gem 'therubyracer'
-gem 'metro-ui-rails'
+gem 'metro-ui-rails', :git => "git://github.com/rickpr/metroui.git"
 
 #Mandrill
 gem 'mandrill-rails'

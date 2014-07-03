@@ -1,14 +1,16 @@
-<h1 align="center" style="position: absolute; left: 450px; top: 0px;">Welcome, Shrek <br /> </br> to the UNM T&P app</h1>
-
-<div style="position: absolute; left: 240px; top: 300px;"> 
-    <img src="http://i.imgur.com/x0YWahS.png?1" width="260" height="130" onclick="location.href='http://localhost:3000/tenure_review_guidlines#index'" />
-    <div style="margin-left:45px; margin-top:600px; ">
-    </div>
+<div style="top left no-repeat; background-size: cover; height: 250px;">
+            <div class="container" style="padding: 50px 20px">
+                <h1>Welcome, <%= session[:cas_user] %></h1>
+                <h2>
+                    To the UNM Tenure & Promotion App
+                </h2>
+            </div>
+        </div>
+<div class ="container"> 
+<div class="grid fluid">
+<div class="row">
+<%= link_to raw('<h2 class="fg-color-white">Tenure Review Guidelines</h2>'), tenure_review_guidlines_path, :class => "span4 padding20 text-center bg-color-red" %>
+<%= link_to raw('<h2 class="fg-color-white">Dossier Wizard<br>&#160;</h2>'), initial_path, :class => "span4 padding20 text-center bg-color-red" %>
 </div>
-
-
-<div style="position: absolute; right: 240px; top: 300px;"> 
-    <img src="http://i.imgur.com/FWvFla5.png?1" width="260" height="130" onclick="location.href='http://localhost:3000/initial'" />
-    <div style="margin-left:45px; margin-top:600px; ">
-    </div>
+</div>
 </div>

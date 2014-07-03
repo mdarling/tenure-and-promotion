@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/rickpr/metroui.git
+  revision: 82c493419302ae176d5f2f31e121c1dc81effbc7
+  specs:
+    metro-ui-rails (0.15.8.15)
+      less-rails (> 2.2.3)
+
+GIT
   remote: git://github.com/rubycas/rubycas-client-rails.git
   revision: b97de6edc7871bc43ca1c9572f4d9188a210b341
   specs:
@@ -65,8 +72,6 @@ GEM
       treetop (~> 1.4.8)
     mandrill-rails (1.0.2)
       activesupport (>= 3.0.3)
-    metro-ui-rails (0.15.8.15)
-      less-rails (> 2.2.3)
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
@@ -136,7 +141,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mandrill-rails
-  metro-ui-rails
+  metro-ui-rails!
   rails (= 4.0.0)
   rubycas-client-rails!
   sass-rails (~> 4.0.0)
