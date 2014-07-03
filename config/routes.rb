@@ -1,4 +1,12 @@
-NewDatabase1::Application.routes.draw do
+NewDatabase1::Application.routes.draw do 
+  get "publish", to: "publish#index"
+  get "compiling", to: "compiling#index"
+  get "additional_materials", to: "additional_materials#index"
+  get "servicestatement", to: "servicestatement#index"
+  get "researchstatement", to: "researchstatement#index"
+  get "teaching_statement", to: "teaching_statement#index"
+  get "curriculum_vitae", to: "curriculum_vitae#index"
+  get "initial", to: "initial#index"
   get "fdisk", to: "fdisk#index"
   get "tenure_review_guidlines", to: "tenure_review_guidlines#index"
   get "candidate_view", to: "candidate_view#index"
