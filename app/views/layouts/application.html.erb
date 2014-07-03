@@ -35,12 +35,11 @@
     <!-- Size should be 32 x 32 pixels -->
 
 
-  <body class="metrouicss" style="overflow: scroll;">
+  <body class="metrouicss" style="overflow: fixed;">
     <div class="page">
       <div class="nav-bar bg-color-red">
         <div class="nav-bar-inner padding10">
           <span class="pull-menu"></span>
-
           <a href="/">
             <span class="element brand">
               <span class="metro-ui-logo place-left"></span>
@@ -58,7 +57,14 @@
                 <li><%= link_to "Candidate Profiles", "/candidate_profiles" %></li>
               </ul>
             </li>
-	    <li>Welcome, <%= raw session[:cas_user] %>. Not you? </li>
+	    <li>Welcome, <%= raw session[:cas_user]%></li>
+       <li style="margin-left: 600px" data-role="dropdown">
+              <a href="#">Account</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Sign Out", "https://129.24.24.151:8443/logout" %></li>
+                <li><%= link_to "Switch Accounts", "https://129.24.24.151:8443/" %></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
