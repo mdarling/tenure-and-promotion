@@ -20,5 +20,14 @@ module NewDatabase1
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.rubycas.cas_base_url = 'https://129.24.24.151:8443/'
+    config.action_mailer.smtp_settings = {
+      :address   => "smtp.mandrillapp.com",
+      :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
+      :enable_starttls_auto => true, # detects and uses STARTTLS
+      :user_name => "fdisk@fdisk.co",
+      :password  => "X0ihFVMYdA_K4xgw32Q21Q", # SMTP password is any valid API key
+      :authentication => 'login', # Mandrill supports 'plain' or 'login'
+      :domain => 'fdisk.co', # your domain to identify your server when connecting
+    }
   end
 end

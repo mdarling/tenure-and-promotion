@@ -1,0 +1,2 @@
+module CandidateViewHelper
+end

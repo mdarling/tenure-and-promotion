@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="shortcut icon" href="favicon.ico" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,15 +33,13 @@
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'images/favicon.ico', :rel => 'shortcut icon' %>
-  </head>
 
-  <body class="metrouicss">
+
+  <body class="metrouicss" style="overflow: fixed;">
     <div class="page">
       <div class="nav-bar bg-color-red">
         <div class="nav-bar-inner padding10">
           <span class="pull-menu"></span>
-
           <a href="/">
             <span class="element brand">
               <span class="metro-ui-logo place-left"></span>
@@ -54,13 +53,18 @@
             <li data-role="dropdown">
               <a href="#">Menu</a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Link1", "/path1" %></li>
-                <li><%= link_to "Link2", "/path2" %></li>
-                <li class="divider"></li>
-                <li><%= link_to "Link3", "/path3" %></li>
+                <li><%= link_to "Users", "/users" %></li>
+                <li><%= link_to "Candidate Profiles", "/candidate_profiles" %></li>
               </ul>
             </li>
-	    <li>Welcome, <%= raw session[:cas_user] %></li>
+	    <li>Welcome, <%= raw session[:cas_user]%></li>
+       <li style="margin-left: 600px" data-role="dropdown">
+              <a href="#">Account</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Sign Out", "https://129.24.24.151:8443/logout" %></li>
+                <li><%= link_to "Switch Accounts", "https://129.24.24.151:8443/" %></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

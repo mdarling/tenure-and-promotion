@@ -1,4 +1,10 @@
 NewDatabase1::Application.routes.draw do
+<<<<<<< HEAD
+  get "fdisk", to: "fdisk#index"
+=======
+  get "tenure_review_guidlines", to: "tenure_review_guidlines#index"
+  get "candidate_view", to: "candidate_view#index"
+>>>>>>> bae0728b7a32fbda1b1c9a48bd47dee337ea7e70
   resources :sends
 
   resources :creates

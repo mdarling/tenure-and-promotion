@@ -63,6 +63,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-rails (1.0.2)
+      activesupport (>= 3.0.3)
     metro-ui-rails (0.15.8.15)
       less-rails (> 2.2.3)
     mime-types (1.25.1)
@@ -133,6 +135,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
+  mandrill-rails
   metro-ui-rails
   rails (= 4.0.0)
   rubycas-client-rails!
