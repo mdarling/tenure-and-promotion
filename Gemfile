@@ -48,8 +48,8 @@ end
 gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rails.git"
 
 #Metro Styling
-gem 'therubyracer'
 gem 'metro-ui-rails', :git => "git://github.com/rickpr/metroui.git"
 
 #Mandrill
+gem 'therubyracer'
 gem 'mandrill-rails'
