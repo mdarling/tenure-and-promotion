@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "UNM Tenure & Promotion" %></title>
+    <%= csrf_meta_tags %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+
+
+  <body class="metrouicss" style="overflow: fixed;">
+    <div class="page">
+      <div class="nav-bar bg-color-red">
+        <div class="nav-bar-inner padding10">
+          <span class="pull-menu"></span>
+          <a href="/">
+            <span class="element brand">
+              <span class="metro-ui-logo place-left"></span>
+              <span class="name">UNM Tenure &amp; Promotion</span>
+            </span>
+          </a>
+
+          <ul class="menu">
+            <li><%= link_to "Home", "/" %></li>
+
+            <li data-role="dropdown">
+              <a href="#">Menu</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Users", "/users" %></li>
+                <li><%= link_to "Candidate Profiles", "/candidate_profiles" %></li>
+              </ul>
+            </li>
+	    <li>Welcome, <%= raw session[:cas_user]%></li>
+       <li style="margin-left: 600px" data-role="dropdown">
+              <a href="#">Account</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Sign Out", "https://129.24.24.151:8443/logout" %></li>
+                <li><%= link_to "Switch Accounts", "https://129.24.24.151:8443/" %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page-region">
+        <div class="page-region-content">
+          <div class="grid">
+            <div class="row">
+		<div style="background: url(images/b1.jpg) top left no-repeat; background-size: cover; height: 200px;">
+	            <div class="container" style="padding: 50px 20px">
+	                <h1><%=  @pagename %></h1>
+		<h2>
+		Browse for your <%= @pagename %> on your computer.<br>Accepted formats are Microsoft Word, Microsoft Powerpoint, and 			PDF<br>
+                </h2>
+            	</div>
+		</div>
+              <%= yield %>
+		<div class="text-center">
+		Upload your <%= @pagename %> here:
+		<br>
+		<input type="file" name="datafile" size="40">
+		<input type="submit" value="Upload">
+		</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-bar bg-color-red">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", initial_path %></li>
+            <li><%= link_to "Curriculum Vitae", curriculum_vitae_path %></li>
+            <li><%= link_to "Teaching Statement", teaching_statement_path %></li>
+            <li><%= link_to "Research Statement", researchstatement_path %></li>
+            <li><%= link_to "Service Statement", servicestatement_path %></li>
+            <li><%= link_to "Additional Materials", additional_materials_path %></li>
+            <li><%= link_to "Publish", publish_path %></li>
+            <li><%= link_to "Compiling", compiling_path %></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="nav-bar bg-color-red">
+          <div class="nav-bar-inner" style="padding: 10px 10px 5px;">
+            <span class="element">&copy; Fdisk 2014</span>
+          </div>
+        </div>
+
+    </div>
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>    
+
+  </body>
+</html>

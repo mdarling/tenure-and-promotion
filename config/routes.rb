@@ -1,15 +1,21 @@
 NewDatabase1::Application.routes.draw do 
-  get "publish", to: "publish#index"
-  get "compiling", to: "compiling#index"
-  get "additional_materials", to: "additional_materials#index"
-  get "servicestatement", to: "servicestatement#index"
-  get "researchstatement", to: "researchstatement#index"
-  get "teaching_statement", to: "teaching_statement#index"
-  get "curriculum_vitae", to: "curriculum_vitae#index"
-  get "initial", to: "initial#index"
-  get "fdisk", to: "fdisk#index"
-  get "tenure_review_guidlines", to: "tenure_review_guidlines#index"
+
   get "candidate_view", to: "candidate_view#index"
+  get "tenure_review_guidlines", to: "tenure_review_guidlines#index"
+
+  #Dossier Wizard Controller
+  get "initial", to: "initial#index"
+  get "curriculum_vitae", to: "initial#cv"
+  get "teaching_statement", to: "intial#ts"
+  get "researchstatement", to: "initial#rs"
+  get "servicestatement", to: "initial#ss"
+  get "additional_materials", to: "initial#am"
+  get "publish", to: "initial#publish"
+  get "compiling", to: "initial#compile"
+
+  #Just for testing
+  get "fdisk", to: "fdisk#index"
+
   resources :sends
 
   resources :creates
