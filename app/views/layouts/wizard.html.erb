@@ -76,18 +76,24 @@
 		<div style="background: url(images/b1.jpg) top left no-repeat; background-size: cover; height: 200px;">
 	            <div class="container" style="padding: 50px 20px">
 	                <h1><%=  @pagename %></h1>
-		<h2>
+		<% if @pagetype==1 %>
+    <h2>
 		Browse for your <%= @pagename %> on your computer.<br>Accepted formats are Microsoft Word, Microsoft Powerpoint, and 			PDF<br>
                 </h2>
             	</div>
 		</div>
               <%= yield %>
-		<div class="text-center">
+		<form action="http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi"
+enctype="multipart/form-data" method="post">
+    <div class="text-center">
 		Upload your <%= @pagename %> here:
 		<br>
 		<input type="file" name="datafile" size="40">
 		<input type="submit" value="Upload">
 		</div>
+    <% elsif %>
+    <%= yield %>
+    <% end %>
             </div>
           </div>
         </div>
@@ -101,8 +107,8 @@
             <li><%= link_to "Research Statement", researchstatement_path %></li>
             <li><%= link_to "Service Statement", servicestatement_path %></li>
             <li><%= link_to "Additional Materials", additional_materials_path %></li>
-            <li><%= link_to "Publish", publish_path %></li>
             <li><%= link_to "Compiling", compiling_path %></li>
+            <li><%= link_to "Publish", publish_path %></li>
           </ul>
         </div>
       </div>
