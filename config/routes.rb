@@ -6,7 +6,7 @@ NewDatabase1::Application.routes.draw do
   #Dossier Wizard Controller
   get "initial", to: "initial#index"
   get "curriculum_vitae", to: "initial#cv"
-  get "teaching_statement", to: "intial#ts"
+  get "teaching_statement", to: "initial#ts"
   get "researchstatement", to: "initial#rs"
   get "servicestatement", to: "initial#ss"
   get "additional_materials", to: "initial#am"

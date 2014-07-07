@@ -7,7 +7,7 @@ class InitialController < ApplicationController
   @pagename="Curriculum Vitae"
   end
   def ts
-  @pagename="Test File"
+  @pagename="Teaching Statement"
   end
   def rs
   @pagename="Research Statement"
