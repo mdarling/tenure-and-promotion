@@ -1,0 +1,2 @@
+module DepartmentAdminViewHelper
+end

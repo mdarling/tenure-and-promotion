@@ -1,0 +1,16 @@
+<div style="top left no-repeat; background-size: cover; height: 250px;">
+            <div class="container" style="padding: 50px 20px">
+                <h1>Welcome, <%= session[:cas_user] %></h1>
+                <h2>
+                    To the UNM Tenure & Promotion App
+                </h2>
+            </div>
+        </div>
+<div class ="container"> 
+<div class="grid fluid">
+<div class="row">
+<%= link_to raw('<h2 class="fg-color-white">Tenure Review Guidelines</h2>'), tenure_review_guidlines_path, :class => "span4 padding20 text-center bg-color-red" %>
+<%= link_to raw('<h2 class="fg-color-white">Review Process<br>&#160;</h2>'), confidentiality_path, :class => "span4 padding20 text-center bg-color-red" %>
+</div>
+</div>
+</div>

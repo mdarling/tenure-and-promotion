@@ -1,5 +1,15 @@
 NewDatabase1::Application.routes.draw do 
 
+  get "department_admin_view", to: "department_admin_view#index"
+  
+  #Review Process
+  get "confidentiality", to: "department_admin_view#c"
+  get "select_a_candidate", to: "department_admin_view#sac"
+  get "candidates_dossier", to: "department_admin_view#cd"
+  get "letters_of_reccomendation", to: "department_admin_view#lor"
+  get "evaluation_form", to: "department_admin_view#ef"
+  get "review_and_vote", to: "department_admin_view#rav"
+
   get "candidate_view", to: "candidate_view#index"
   get "tenure_review_guidlines", to: "tenure_review_guidlines#index"
 
