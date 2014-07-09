@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610165602) do
+ActiveRecord::Schema.define(version: 20140709192727) do
 
   create_table "candidate_profiles", force: true do |t|
     t.text     "Curriculum_Vitae"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(version: 20140610165602) do
   add_index "committees", ["department_id"], name: "index_committees_on_department_id"
 
   create_table "creates", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "department_admin_views", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

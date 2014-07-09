@@ -1,0 +1,12 @@
+<form>
+ <select name="Select A Candidate">
+ <% @user.each do |user| %>
+  <option value"<%= user.name %>"><%= user.name %>
+ <%end%>
+ </select>
+</form>
+
+
+<form action="http://localhost:3000/candidates_dossier">
+<input type="submit" value="Select Candidate and View Dossier" style="margin-left: 200px; margin-top:  -30px">
+</form>
