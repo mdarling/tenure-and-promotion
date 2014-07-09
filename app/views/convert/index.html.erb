@@ -1,0 +1,6 @@
+<h1>Convert#index</h1>
+<p>Find me in app/views/convert/index.html.erb</p>
+<% for thething in @conversion.converter_options("","pdf") %>
+<%= raw thething["inputformat"] %>
+<br>
+<% end %>
