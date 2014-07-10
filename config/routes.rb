@@ -1,5 +1,6 @@
 NewDatabase1::Application.routes.draw do 
 
+  get "convert/index"
   get "department_admin_view", to: "department_admin_view#index"
   
   #Review Process
