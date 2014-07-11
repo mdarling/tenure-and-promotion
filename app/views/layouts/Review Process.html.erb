@@ -51,7 +51,7 @@
             <li><%= link_to "Home", "/" %></li>
 	    <li>Welcome, <%= raw session[:cas_user]%></li>
        <li style="margin-left: 600px" data-role="dropdown">
-                <li><%= link_to "Sign Out", "https://129.24.24.151:8443/logout" %></li>
+                <li><%= link_to "Sign Out", "#{Rails.application.config.rubycas.cas_base_url}logout" %></li>
               </ul>
             </li>
           </ul>

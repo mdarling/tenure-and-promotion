@@ -53,3 +53,6 @@ gem 'metro-ui-rails', :git => "git://github.com/rickpr/metroui.git"
 
 #Mandrill
 gem 'mandrill-rails'
+
+#CloudConvert
+gem 'cloudconvert'

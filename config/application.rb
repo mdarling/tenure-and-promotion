@@ -19,7 +19,7 @@ module NewDatabase1
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.rubycas.cas_base_url = 'https://129.24.24.151:8443/'
+    config.rubycas.cas_base_url = 'https://cas-unm.rhcloud.com/'
     config.action_mailer.smtp_settings = {
       :address   => "smtp.mandrillapp.com",
       :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
