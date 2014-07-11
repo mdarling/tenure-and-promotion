@@ -53,8 +53,7 @@
                 <li><%= link_to "Sign Out", "#{Rails.application.config.rubycas.cas_base_url}logout" %></li>
              
               </ul>
-            </li>
-          </ul>
+
         </div>
       </div>
        <div class="nav-bar bg-color-red">
@@ -96,7 +95,12 @@ enctype="multipart/form-data" method="post">
 		<input type="submit" value="Upload"> 
     <% else %>
     <%= yield %>
+
     <% end %>
+<div class="row text-center" style="position: fixed; bottom: 200px;">
+    <%= link_to '< Back', @backpage, :class => "button" %>
+    <%= link_to 'Next >', @forwardpage, :class => "button" %>
+</div>
 		</div>
             </div>
           </div>

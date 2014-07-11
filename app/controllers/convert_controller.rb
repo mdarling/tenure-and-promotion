@@ -7,7 +7,7 @@ class ConvertController < ApplicationController
 #conversion.convert(inputformat, outputformat, file_path, options)
 
 # for versions >=0.0.5 (callback_url passing enabled for each conversion)
-#conversion.convert(inputformat, outputformat, file_path, callback_url, options)
+#@conversion.convert(png, pdf, test.png, callback_url, options)
 
 # options parameter is Conversion type specific options , which you can get from, 
 #conversion.converter_options
