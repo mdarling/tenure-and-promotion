@@ -56,3 +56,6 @@ gem 'mandrill-rails'
 
 #CloudConvert
 gem 'cloudconvert'
+
+#jQuery File Upload
+gem 'jquery.fileupload-rails'

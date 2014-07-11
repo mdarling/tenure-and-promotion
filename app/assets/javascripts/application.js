@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require metro-ui
 //= require turbolinks
+//= require jquery.fileupload
 //= require_tree .
