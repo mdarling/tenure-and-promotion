@@ -59,12 +59,33 @@
        <div class="nav-bar bg-color-red">
         <div class="nav-bar-inner padding10">
           <ul class="menu">
+
             <li><%= link_to "Start", initial_path %></li>
             <li><%= link_to "Curriculum Vitae", curriculum_vitae_path %></li>
-            <li><%= link_to "Teaching Statement", teaching_statement_path %></li>
-            <li><%= link_to "Research Statement", researchstatement_path %></li>
-            <li><%= link_to "Service Statement", servicestatement_path %></li>
-            <li><%= link_to "Additional Materials", additional_materials_path %></li>
+             <li data-role="dropdown">
+              <a href="#">Teaching Statement</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Teaching Statement", "/teaching_statement" %></li>
+              </ul>
+            </li>
+             <li data-role="dropdown">
+              <a href="#">Research Statement</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Research Statement", "/research_statement" %></li>
+              </ul>
+            </li>
+             <li data-role="dropdown">
+              <a href="#">Service Statement</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Service Statement", "/servicestatement" %></li>
+              </ul>
+            </li>
+             <li data-role="dropdown">
+              <a href="#">Supplementary Materials</a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Supplementary Materials", "/additional_materials" %></li>
+              </ul>
+            </li>
             <li><%= link_to "Compiling", compiling_path %></li>
             <li><%= link_to "Publish", publish_path %></li>
           </ul>
