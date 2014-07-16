@@ -1,5 +1,6 @@
 NewDatabase1::Application.routes.draw do 
-
+  resources :converts
+  get '/converts/c/q', to: 'converts#create'
   get "convert/index"
   get "department_admin_view", to: "department_admin_view#index"
   
