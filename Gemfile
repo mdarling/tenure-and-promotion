@@ -59,3 +59,9 @@ gem 'cloudconvert'
 
 #jQuery File Upload
 gem 'jquery.fileupload-rails'
+
+# Use Outbound.io wrapper
+gem 'outbound'
+
+# Mandrill api gem
+gem 'mandrill-api'
