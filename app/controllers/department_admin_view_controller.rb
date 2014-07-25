@@ -22,4 +22,7 @@ class DepartmentAdminViewController < ApplicationController
   def rav
   @pagename="Review and Vote"
   end
+  def login
+  @pagename="Login Page"
+  end
 end

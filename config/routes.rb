@@ -10,6 +10,7 @@ NewDatabase1::Application.routes.draw do
   get "letters_of_reccomendation", to: "department_admin_view#lor"
   get "evaluation_form", to: "department_admin_view#ef"
   get "review_and_vote", to: "department_admin_view#rav"
+  get "login", to: "department_admin_view#login"
 
   get "candidate_view", to: "candidate_view#index"
   get "tenure_review_guidlines", to: "tenure_review_guidlines#index"

@@ -37,7 +37,7 @@
 
   <body class="metrouicss" style="overflow: scrollbar;">
     <div class="page">
-      <div class="nav-bar bg-color-red">
+      <div class="nav-bar bg-color-darken">
         <div class="nav-bar-inner padding10">
           <span class="pull-menu"></span>
           <a href="/">
@@ -49,33 +49,35 @@
 
           <ul class="menu">
             <li><%= link_to "Home", "/" %></li>
-	    <li>Welcome, <%= raw session[:cas_user]%></li>
+	    <li style="color: white;">Welcome, <%= raw session[:cas_user]%></li>
                 <li><%= link_to "Sign Out", "#{Rails.application.config.rubycas.cas_base_url}logout" %></li>
              
               </ul>
 
         </div>
       </div>
-       <div class="nav-bar bg-color-red">
+       <div class="nav-bar bg-color-darken">
         <div class="nav-bar-inner padding10">
           <ul class="menu">
 
             <li><%= link_to "Start", initial_path %></li>
             <li><%= link_to "Curriculum Vitae", curriculum_vitae_path %></li>
              <li data-role="dropdown">
-              <a href="#">Teaching Statement</a>
+              <a href="#">Teaching</a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Teaching Statement", "/teaching_statement" %></li>
               </ul>
             </li>
              <li data-role="dropdown">
-              <a href="#">Research Statement</a>
+              <a href="#">Research</a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Research Statement", "/research_statement" %></li>
+                <li><%= link_to "Research Statement", "/researchstatement" %></li>
+                <li><%= link_to "Articles", "/researchstatement" %></li>
+                <li><%= link_to "Books", "/researchstatement" %></li>
               </ul>
             </li>
              <li data-role="dropdown">
-              <a href="#">Service Statement</a>
+              <a href="#">Service</a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Service Statement", "/servicestatement" %></li>
               </ul>
@@ -84,6 +86,8 @@
               <a href="#">Supplementary Materials</a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Supplementary Materials", "/additional_materials" %></li>
+                <li><%= link_to "Videos", "/additional_materials" %></li>
+                <li><%= link_to "Other", "/additional_materials" %></li>
               </ul>
             </li>
             <li><%= link_to "Compiling", compiling_path %></li>
@@ -118,9 +122,9 @@ enctype="multipart/form-data" method="post">
     <%= yield %>
 
     <% end %>
-<div class="row text-center" style="position: fixed; bottom: 200px;">
-    <%= link_to '< Back', @backpage, :class => "button" %>
-    <%= link_to 'Next >', @forwardpage, :class => "button" %>
+<div class="row text-center" style="position: scroll; bottom: 200px; color:blue;">
+    <%= link_to '< Back', @backpage, :class => "button bg-color-darken", :style => "color:white" %>
+    <%= link_to 'Next >', @forwardpage, :class => "button bg-color-darken", :style => "color:white" %>
 </div>
 		</div>
             </div>
