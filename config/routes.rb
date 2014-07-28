@@ -1,10 +1,24 @@
 NewDatabase1::Application.routes.draw do 
+  get "college_admin_view/index"
   resources :converts
   get '/converts/c/q', to: 'converts#create'
   get "convert/index"
   get "department_admin_view", to: "department_admin_view#index"
+  get "college_admin_view", to: "college_admin_view#index"
   
-  #Review Process
+  
+  #Review Process College
+  get "confidentiality", to: "college_admin_view#c"
+  get "select_a_candidate", to: "college_admin_view#sac"
+  get "candidates_dossier", to: "college_admin_view#cd"
+  get "letters_of_reccomendation", to: "college_admin_view#lor"
+  get "evaluation_form", to: "college_admin_view#ef"
+  get "review_and_vote", to: "college_admin_view#rav"
+  get "login", to: "college_admin_view#login"
+  get "department_reviews", to: "college_admin_view#dr"
+
+
+  #Review Process Department
   get "confidentiality", to: "department_admin_view#c"
   get "select_a_candidate", to: "department_admin_view#sac"
   get "candidates_dossier", to: "department_admin_view#cd"

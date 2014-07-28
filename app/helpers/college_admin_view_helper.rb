@@ -1,0 +1,2 @@
+module CollegeAdminViewHelper
+end
