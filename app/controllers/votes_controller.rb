@@ -72,3 +72,14 @@ class VotesController < ApplicationController
       params.require(:vote).permit(:vote_id, :Review_id, :Review_Candidate_Profile_id, :user_id)
     end
 end
+
+def Outbound  
+  # Create the object
+  ob = Outbound::API.new("25edb84b14c36065f874c2b32185f34c")
+
+  # identify a user
+  ob.identify(unique user id, traits)
+
+  # track a user
+  ob.track(unique user id, event, payload)
+end

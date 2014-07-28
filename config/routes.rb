@@ -1,8 +1,11 @@
 NewDatabase1::Application.routes.draw do 
+  get "provost_admin_view/index"
   resources :converts
   get '/converts/c/q', to: 'converts#create'
   get "convert/index"
   get "department_admin_view", to: "department_admin_view#index"
+  get "provost_admin_view", to: "provost_admin_view#index"
+
   
   #Review Process
   get "confidentiality", to: "department_admin_view#c"
@@ -12,6 +15,17 @@ NewDatabase1::Application.routes.draw do
   get "evaluation_form", to: "department_admin_view#ef"
   get "review_and_vote", to: "department_admin_view#rav"
   get "login", to: "department_admin_view#login"
+  
+  #Review Process for Provost
+  get "confidentiality", to: "provost_admin_view#c"
+  get "select_a_candidate", to: "provost_admin_view#sac"
+  get "candidates_dossier", to: "provost_admin_view#cd"
+  get "letters_of_reccomendation", to: "provost_admin_view#lor"
+  get "evaluation_form", to: "provost_admin_view#ef"
+  get "review_and_vote", to: "provost_admin_view#rav"
+  get "login", to: "provost_admin_view#login"
+  get "department_reviews", to: "provost_admin_view#dr"
+  get "college_reviews", to: "provost_admin_view#cr"
 
   get "candidate_view", to: "candidate_view#index"
   get "tenure_review_guidlines", to: "tenure_review_guidlines#index"
