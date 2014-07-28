@@ -68,6 +68,10 @@
             <% if @pagetype==3 %>
             <li><%= link_to "Department Reviews", department_reviews_path %></li>
             <% end %>
+            <% if @pagetype==4 %>
+            <li><%= link_to "Department Reviews", department_reviews_path %></li>
+            <li><%= link_to "College Reviews", college_reviews_path %></li>
+            <% end %>
             <li><%= link_to "Evaluation Form", evaluation_form_path %></li>
             <li><%= link_to "Review And Vote", review_and_vote_path %></li>
           </ul>
