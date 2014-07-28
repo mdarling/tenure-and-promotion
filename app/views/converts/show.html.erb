@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cid:</strong>
+  <%= @convert.cid %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @convert.url %>
+</p>
+
+<p>
+  <strong>Step:</strong>
+  <%= @convert.step %>
+</p>
+
+<%= link_to 'Edit', edit_convert_path(@convert) %> |
+<%= link_to 'Back', converts_path %>

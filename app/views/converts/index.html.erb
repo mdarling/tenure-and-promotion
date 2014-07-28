@@ -1,0 +1,31 @@
+<h1>Listing converts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cid</th>
+      <th>Url</th>
+      <th>Step</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @converts.each do |convert| %>
+      <tr>
+        <td><%= convert.cid %></td>
+        <td><%= convert.url %></td>
+        <td><%= convert.step %></td>
+        <td><%= link_to 'Show', convert %></td>
+        <td><%= link_to 'Edit', edit_convert_path(convert) %></td>
+        <td><%= link_to 'Destroy', convert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Convert', new_convert_path %>
