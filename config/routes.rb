@@ -1,4 +1,6 @@
 NewDatabase1::Application.routes.draw do 
+  resources :uploads
+
   resources :converts
   get '/converts/c/q', to: 'converts#create'
   get "convert/index"

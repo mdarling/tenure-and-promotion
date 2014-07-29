@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716173148) do
+ActiveRecord::Schema.define(version: 20140729190625) do
 
   create_table "candidate_profiles", force: true do |t|
     t.text     "Curriculum_Vitae"
@@ -119,6 +119,16 @@ ActiveRecord::Schema.define(version: 20140716173148) do
   create_table "sign_ins", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "uploads", force: true do |t|
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "users", force: true do |t|
