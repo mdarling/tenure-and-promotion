@@ -1,0 +1,2 @@
+module CollegeCommitteeFacultyViewHelper
+end

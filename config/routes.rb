@@ -1,5 +1,10 @@
 NewDatabase1::Application.routes.draw do 
 
+  get "associate_vice_provost_faculty_view/index"
+  get "senior_vice_provost_view/index"
+  get "provost_committee_faculty_view/index"
+  get "college_committee_faculty_view/index"
+  get "department_faculty_view/index"
   get "college_admin_view/index"
 
   get "provost_admin_view/index"
@@ -13,38 +18,108 @@ NewDatabase1::Application.routes.draw do
 
   get "provost_admin_view", to: "provost_admin_view#index"
 
+  get "department_faculty_view", to: "department_faculty_view#index"
+
+  get "college_committee_faculty_view", to: "college_committee_faculty_view#index"
+
+  get "provost_committee_faculty_view", to: "provost_committee_faculty_view#index"
+
+  get "senior_vice_provost_view", to: "senior_vice_provost_view#index"
+
+  get "associate_vice_provost_faculty_view", to: "associate_vice_provost_faculty_view#index"
+
   
-  
-  #Review Process College
-  get "confidentiality", to: "college_admin_view#c"
-  get "select_a_candidate", to: "college_admin_view#sac"
-  get "candidates_dossier", to: "college_admin_view#cd"
-  get "letters_of_reccomendation", to: "college_admin_view#lor"
-  get "evaluation_form", to: "college_admin_view#ef"
-  get "review_and_vote", to: "college_admin_view#rav"
-  get "login", to: "college_admin_view#login"
-  get "department_reviews", to: "college_admin_view#dr"
+  #Review Process College Committe Faculty
+  get "confidentialityccf", to: "college_committee_faculty_view#c"
+  get "select_a_candidateccf", to: "college_committee_faculty_view#sac"
+  get "candidates_dossierccf", to: "college_committee_faculty_view#cd"
+  get "letters_of_reccomendationccf", to: "college_committee_faculty_view#lor"
+  get "evaluation_formccf", to: "college_committee_faculty_view#ef"
+  get "review_and_voteccf", to: "college_committee_faculty_view#rav"
+  get "loginccf", to: "college_committee_faculty_view#login"
+  get "department_reviewsccf", to: "college_committee_faculty_view#dr"
 
 
-  #Review Process Department
-  get "confidentiality", to: "department_admin_view#c"
-  get "select_a_candidate", to: "department_admin_view#sac"
-  get "candidates_dossier", to: "department_admin_view#cd"
-  get "letters_of_reccomendation", to: "department_admin_view#lor"
-  get "evaluation_form", to: "department_admin_view#ef"
-  get "review_and_vote", to: "department_admin_view#rav"
-  get "login", to: "department_admin_view#login"
+
+  # Review Process Dept. Faculty
+  get "confidentialitydf", to: "department_faculty_view#c"
+  get "select_a_candidatedf", to: "department_faculty_view#sac"
+  get "candidates_dossierdf", to: "department_faculty_view#cd"
+  get "letters_of_reccomendationdf", to: "department_faculty_view#lor"
+  get "evaluation_formdf", to: "department_faculty_view#ef"
+  get "review_and_votedf", to: "department_faculty_view#rav"
+  get "logindf", to: "department_faculty_view#login"
   
-  #Review Process for Provost
-  get "confidentiality", to: "provost_admin_view#c"
-  get "select_a_candidate", to: "provost_admin_view#sac"
-  get "candidates_dossier", to: "provost_admin_view#cd"
-  get "letters_of_reccomendation", to: "provost_admin_view#lor"
-  get "evaluation_form", to: "provost_admin_view#ef"
-  get "review_and_vote", to: "provost_admin_view#rav"
-  get "login", to: "provost_admin_view#login"
-  get "department_reviews", to: "provost_admin_view#dr"
-  get "college_reviews", to: "provost_admin_view#cr"
+
+
+  #Review Process College Admin
+  get "confidentialityca", to: "college_admin_view#c"
+  get "select_a_candidateca", to: "college_admin_view#sac"
+  get "candidates_dossierca", to: "college_admin_view#cd"
+  get "letters_of_reccomendationca", to: "college_admin_view#lor"
+  get "evaluation_formca", to: "college_admin_view#ef"
+  get "review_and_voteca", to: "college_admin_view#rav"
+  get "loginca", to: "college_admin_view#login"
+  get "department_reviewsca", to: "college_admin_view#dr"
+
+
+  #Review Process Department Admin
+  get "confidentialityda", to: "department_admin_view#c"
+  get "select_a_candidateda", to: "department_admin_view#sac"
+  get "candidates_dossierda", to: "department_admin_view#cd"
+  get "letters_of_reccomendationda", to: "department_admin_view#lor"
+  get "evaluation_formda", to: "department_admin_view#ef"
+  get "review_and_voteda", to: "department_admin_view#rav"
+  get "loginda", to: "department_admin_view#login"
+  
+  #Review Process for Provost Admin
+  get "confidentialitypa", to: "provost_admin_view#c"
+  get "select_a_candidatepa", to: "provost_admin_view#sac"
+  get "candidates_dossierpa", to: "provost_admin_view#cd"
+  get "letters_of_reccomendationpa", to: "provost_admin_view#lor"
+  get "evaluation_formpa", to: "provost_admin_view#ef"
+  get "review_and_votepa", to: "provost_admin_view#rav"
+  get "loginpa", to: "provost_admin_view#login"
+  get "department_reviewspa", to: "provost_admin_view#dr"
+  get "college_reviewspa", to: "provost_admin_view#cr"
+
+
+  #Review Process for Senior Vice Provost
+  get "confidentialitysvp", to: "provost_admin_view#c"
+  get "select_a_candidatesvp", to: "provost_admin_view#sac"
+  get "candidates_dossiersvp", to: "provost_admin_view#cd"
+  get "letters_of_reccomendationsvp", to: "provost_admin_view#lor"
+  get "evaluation_formsvp", to: "provost_admin_view#ef"
+  get "review_and_votesvp", to: "provost_admin_view#rav"
+  get "loginsvp", to: "provost_admin_view#login"
+  get "department_reviewssvp", to: "provost_admin_view#dr"
+  get "college_reviewssvp", to: "provost_admin_view#cr"
+
+
+
+#Review Process for Associate Provost Faculty
+  get "confidentialityapf", to: "provost_admin_view#c"
+  get "select_a_candidateapf", to: "provost_admin_view#sac"
+  get "candidates_dossierapf", to: "provost_admin_view#cd"
+  get "letters_of_reccomendationapf", to: "provost_admin_view#lor"
+  get "evaluation_formapf", to: "provost_admin_view#ef"
+  get "review_and_voteapf", to: "provost_admin_view#rav"
+  get "loginapf", to: "provost_admin_view#login"
+  get "department_reviewsapf", to: "provost_admin_view#dr"
+  get "college_reviewsapf", to: "provost_admin_view#cr"
+
+
+
+    #Review Process for Provost Committee Faculty
+  get "confidentialitypcf", to: "provost_admin_view#c"
+  get "select_a_candidatepcf", to: "provost_admin_view#sac"
+  get "candidates_dossierpcf", to: "provost_admin_view#cd"
+  get "letters_of_reccomendationpcf", to: "provost_admin_view#lor"
+  get "evaluation_formpcf", to: "provost_admin_view#ef"
+  get "review_and_votepcf", to: "provost_admin_view#rav"
+  get "loginpcf", to: "provost_admin_view#login"
+  get "department_reviewspcf", to: "provost_admin_view#dr"
+  get "college_reviewspcf", to: "provost_admin_view#cr"
 
   get "candidate_view", to: "candidate_view#index"
   get "tenure_review_guidlines", to: "tenure_review_guidlines#index"

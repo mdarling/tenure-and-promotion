@@ -57,26 +57,163 @@
           </ul>
         </div>
       </div>
+       
+
+
+      <!-- Department Admin NavBar --> 
+       <% if @pagetype==2 %>   
        <div class="nav-bar bg-color-darken">
         <div class="nav-bar-inner padding10">
           <ul class="menu">
             <li><%= link_to "Start", department_admin_view_path %></li>
-            <li><%= link_to "Confidentiality", confidentiality_path %></li>
-            <li><%= link_to "Candidate Selection", select_a_candidate_path %></li>
-            <li><%= link_to "Candidate Dossier", candidates_dossier_path %></li>
-            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendation_path %></li>
-            <% if @pagetype==3 %>
-            <li><%= link_to "Department Reviews", department_reviews_path %></li>
-            <% end %>
-            <% if @pagetype==4 %>
-            <li><%= link_to "Department Reviews", department_reviews_path %></li>
-            <li><%= link_to "College Reviews", college_reviews_path %></li>
-            <% end %>
-            <li><%= link_to "Evaluation Form", evaluation_form_path %></li>
-            <li><%= link_to "Review And Vote", review_and_vote_path %></li>
+            <li><%= link_to "Confidentiality", confidentialityda_path %></li>
+            <li><%= link_to "Candidate Selection", select_a_candidateda_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossierda_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationda_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formda_path %></li>
+            <li><%= link_to "Review And Vote", review_and_voteda_path %></li>
           </ul>
         </div>
       </div>
+      <% end %>
+
+      <!-- Department Faculty NavBar -->
+      <% if @pagetype==3 %>   
+      <div class="nav-bar bg-color-darken">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", department_faculty_view_path %></li>
+            <li><%= link_to "Confidentiality", confidentialitydf_path %></li>
+            <li><%= link_to "Your Candidate", select_a_candidatedf_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossierdf_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationdf_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formdf_path %></li>
+            <li><%= link_to "Review And Vote", review_and_votedf_path %></li>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+
+
+        <!-- College Admin NavBar --> 
+       <% if @pagetype==4 %>   
+      <div class="nav-bar bg-color-darken">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", college_admin_view_path %></li>
+            <li><%= link_to "Confidentiality", confidentialityca_path %></li>
+            <li><%= link_to "Candidate Selection", select_a_candidateca_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossierca_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationca_path %></li>
+            <li><%= link_to "Department Reviews", department_reviewsca_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formca_path %></li>
+            <li><%= link_to "Review And Vote", review_and_voteca_path %></li>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+
+
+        <!-- College Committee Faculty NavBar --> 
+       <% if @pagetype==5 %>   
+      <div class="nav-bar bg-color-darken">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", college_committee_faculty_view_path %></li>
+            <li><%= link_to "Confidentiality", confidentialityccf_path %></li>
+            <li><%= link_to "Your Candidate", select_a_candidateccf_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossierccf_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationccf_path %></li>
+            <li><%= link_to "Department Reviews", department_reviewsccf_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formccf_path %></li>
+            <li><%= link_to "Review And Vote", review_and_voteccf_path %></li>
+          </ul>
+        </div>
+      </div>
+      <% end %> 
+
+
+        <!-- Provost Admin NavBar --> 
+       <% if @pagetype==6 %>   
+      <div class="nav-bar bg-color-darken">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", provost_admin_view_path %></li>
+            <li><%= link_to "Confidentiality", confidentialitypa_path %></li>
+            <li><%= link_to "Candidate Selection", select_a_candidatepa_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossierpa_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationpa_path %></li>
+            <li><%= link_to "Department Reviews", department_reviewspa_path %></li>
+            <li><%= link_to "College Reviews", college_reviewspa_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formpa_path %></li>
+            <li><%= link_to "Review And Vote", review_and_votepa_path %></li>
+          </ul>
+        </div>
+      </div>
+      <% end %> 
+
+          <!-- Provost Committee Faculty NavBar --> 
+       <% if @pagetype==7 %>   
+      <div class="nav-bar bg-color-darken">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", provost_committee_faculty_view_path %></li>
+            <li><%= link_to "Confidentiality", confidentialitypcf_path %></li>
+            <li><%= link_to "Your Candidate", select_a_candidatepcf_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossierpcf_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationpcf_path %></li>
+            <li><%= link_to "Department Reviews", department_reviewspcf_path %></li>
+            <li><%= link_to "College Reviews", college_reviewspcf_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formpcf_path %></li>
+            <li><%= link_to "Review And Vote", review_and_votepcf_path %></li>
+          </ul>
+        </div>
+      </div>
+      <% end %> 
+
+      <!-- Senior Vice Provost  NavBar --> 
+       <% if @pagetype==8 %>   
+      <div class="nav-bar bg-color-darken">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", senior_vice_provost_view_path %></li>
+            <li><%= link_to "Confidentiality", confidentialitysvp_path %></li>
+            <li><%= link_to "Candidate Selection", select_a_candidatesvp_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossiersvp_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationsvp_path %></li>
+            <li><%= link_to "Department Reviews", department_reviewssvp_path %></li>
+            <li><%= link_to "College Reviews", college_reviewssvp_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formsvp_path %></li>
+            <li><%= link_to "Review And Vote", review_and_votesvp_path %></li>
+          </ul>
+        </div>
+      </div>
+      <% end %> 
+
+      <!-- Associate Vice Provost Faculty NavBar --> 
+       <% if @pagetype==9 %>   
+      <div class="nav-bar bg-color-darken">
+        <div class="nav-bar-inner padding10">
+          <ul class="menu">
+            <li><%= link_to "Start", associate_vice_provost_faculty_view_path %></li>
+            <li><%= link_to "Confidentiality", confidentialityapf_path %></li>
+            <li><%= link_to "Candidate Selection", select_a_candidateapf_path %></li>
+            <li><%= link_to "Candidate Dossier", candidates_dossierapf_path %></li>
+            <li><%= link_to "Letters Of Recommendation", letters_of_reccomendationapf_path %></li>
+            <li><%= link_to "Department Reviews", department_reviewspa_path %></li>
+            <li><%= link_to "College Reviews", college_reviewsapf_path %></li>
+            <li><%= link_to "Evaluation Form", evaluation_formapf_path %></li>
+            <li><%= link_to "Review And Vote", review_and_voteapf_path %></li>
+          </ul>
+        </div>
+      </div>
+      <% end %> 
+
+
+
+
+
+
       
 
 
