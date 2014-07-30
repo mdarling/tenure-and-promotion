@@ -34,7 +34,7 @@ tmp
 assets/images/*/*.psd
 
 #ignore database config file
-database.yml
+#database.yml
 
 #ignore OSX keychaing
 git-credential-osxkeychain
