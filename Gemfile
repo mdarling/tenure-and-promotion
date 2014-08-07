@@ -39,3 +39,6 @@ gem 'twitter-bootstrap-rails'
 
 #CloudConvert
 gem 'cloudconvert'
+
+#CAS Authentication
+gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rails.git"

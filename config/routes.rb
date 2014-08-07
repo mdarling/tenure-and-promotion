@@ -1,8 +1,11 @@
 JqueryFileuploadRailsExample::Application.routes.draw do
-  get 'test/index'
 
+  get 'test/index'
+  resources :users do
   resources :uploads
-  root :to => 'uploads#index'
+  end
+
+  #root :to => 'uploads#index'
   get '/convert/:id', to: 'uploads#convert'
 
   # The priority is based upon order of creation:
