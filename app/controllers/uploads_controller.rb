@@ -82,9 +82,15 @@ class UploadsController < ApplicationController
   end
 
   def convert
-    @upload=Upload.find(params[:id])
-    @conversion = Cloudconvert::Conversion.new
-    @conversion.convert( "ps", "pdf", "http://129.24.24.151" + @upload.upload.url)
+    @user = User.find(params[:id])
+    #@upload = @user.Uploads.find(params[:id])
+
+    #respond_to do |format|
+     # format.html # show.html.erb
+      #format.json { render json: @upload }
+    end
+    #@conversion = Cloudconvert::Conversion.new
+    #@conversion.convert( "ps", "pdf", 
   end
 
   # DELETE /uploads/1

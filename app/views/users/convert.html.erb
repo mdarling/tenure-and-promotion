@@ -1,0 +1,8 @@
+HI
+<%= params[:id] %>
+HI
+ <% @user.Uploads.each do |upload| %>
+      <tr>
+        <td><%= link_to "hi","/users/#{@user.id}/uploads/#{upload.id}" %></td>
+     </tr>
+    <% end %>

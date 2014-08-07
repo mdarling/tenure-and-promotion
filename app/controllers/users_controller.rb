@@ -39,6 +39,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def convert
+    #@upload=Upload.find(params[:id])
+    #@conversion = Cloudconvert::Conversion.new
+    #@conversion.convert( "ps", "pdf", "http://129.24.24.151" + @upload.upload.url)
+  end
+
   # DELETE /users/1
   def destroy
     @user.destroy

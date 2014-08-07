@@ -1,8 +1,13 @@
 JqueryFileuploadRailsExample::Application.routes.draw do
 
+  get 'converter/index'
+
   get 'test/index'
   resources :users do
   resources :uploads
+   member do
+      get :convert
+  end
   end
 
   #root :to => 'uploads#index'
