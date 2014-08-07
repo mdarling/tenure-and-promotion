@@ -40,9 +40,16 @@ class UsersController < ApplicationController
   end
 
   def convert
-    #@upload=Upload.find(params[:id])
-    #@conversion = Cloudconvert::Conversion.new
-    #@conversion.convert( "ps", "pdf", "http://129.24.24.151" + @upload.upload.url)
+     @user=User.find(params[:id])
+    #upload=Upload.find(params[:id])
+    counter=0
+    @convpass = Array.new
+    @user.Uploads.each do |upload|
+    conversion = Cloudconvert::Conversion.new
+    conversion.convert( "ps", "pdf", "http://129.24.25.59" + upload.upload.url)
+    @convpass[counter]=conversion.download_link
+    counter += 1
+    end
   end
 
   # DELETE /users/1

@@ -1,8 +1,14 @@
+  <%= @user.name %>
+<% if @user.name==session[:cas_user] %>
 HI
-<%= params[:id] %>
-HI
+<% end %>
  <% @user.Uploads.each do |upload| %>
       <tr>
-        <td><%= link_to "hi","/users/#{@user.id}/uploads/#{upload.id}" %></td>
+        <td><%= upload.upload.url %></td>
+     </tr>
+    <% end %>
+ <% @convpass.each do |convert| %>
+      <tr>
+        <td><%= convert.download_link %></td>
      </tr>
     <% end %>

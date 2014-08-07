@@ -81,18 +81,6 @@ class UploadsController < ApplicationController
     end
   end
 
-  def convert
-    @user = User.find(params[:id])
-    #@upload = @user.Uploads.find(params[:id])
-
-    #respond_to do |format|
-     # format.html # show.html.erb
-      #format.json { render json: @upload }
-    end
-    #@conversion = Cloudconvert::Conversion.new
-    #@conversion.convert( "ps", "pdf", 
-  end
-
   # DELETE /uploads/1
   # DELETE /uploads/1.json
   def destroy
