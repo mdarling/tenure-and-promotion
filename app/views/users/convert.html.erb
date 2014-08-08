@@ -1,6 +1,8 @@
   <%= @user.name %>
 <% if @user.name==session[:cas_user] %>
-HI
+Authorized
+<% else %>
+NOT ALLOWED
 <% end %>
  <% @user.Uploads.each do |upload| %>
       <tr>
@@ -12,3 +14,4 @@ HI
         <td><%= convert %></td>
      </tr>
     <% end %>
+<%= link_to 'Download', "http://fdisk.co/tp/merge.pdf" %>
