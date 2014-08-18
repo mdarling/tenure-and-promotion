@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def convert
-     @user=User.find(params[:id])
+     @user=User.find(params[:user_id])
     #upload=Upload.find(params[:id])
     counter=0
     @convpass = Array.new
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
       end
       @convpass[counter]=conversion.download_link
       counter += 1
-      @user.Converts.create(:download=conversion.download_link)
+      @user.Converts.create(download: conversion.download_link)
     end
   end
 

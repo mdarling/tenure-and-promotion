@@ -2,8 +2,8 @@
 
 one:
   download: MyString
-  User_id: 
+  user_id: 
 
 two:
   download: MyString
-  User_id: 
+  user_id: 

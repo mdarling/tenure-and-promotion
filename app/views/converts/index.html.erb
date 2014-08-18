@@ -13,10 +13,10 @@
     <% @converts.each do |convert| %>
       <tr>
         <td><%= convert.download %></td>
-        <td><%= convert.User %></td>
-        <td><%= link_to 'Show', convert %></td>
-        <td><%= link_to 'Edit', edit_convert_path(convert) %></td>
-        <td><%= link_to 'Destroy', convert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= convert.user %></td>
+        <td><%# link_to 'Show', convert %></td>
+        <td><%# link_to 'Edit', edit_convert_path(convert) %></td>
+        <td><%# link_to 'Destroy', convert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Convert', new_convert_path %>
+<%# link_to 'New Convert', new_convert_path %>

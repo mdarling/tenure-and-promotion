@@ -18,7 +18,7 @@ class ConvertsControllerTest < ActionController::TestCase
 
   test "should create convert" do
     assert_difference('Convert.count') do
-      post :create, convert: { User_id: @convert.User_id, download: @convert.download }
+      post :create, convert: { download: @convert.download, user_id: @convert.user_id }
     end
 
     assert_redirected_to convert_path(assigns(:convert))
@@ -35,7 +35,7 @@ class ConvertsControllerTest < ActionController::TestCase
   end
 
   test "should update convert" do
-    patch :update, id: @convert, convert: { User_id: @convert.User_id, download: @convert.download }
+    patch :update, id: @convert, convert: { download: @convert.download, user_id: @convert.user_id }
     assert_redirected_to convert_path(assigns(:convert))
   end
 
