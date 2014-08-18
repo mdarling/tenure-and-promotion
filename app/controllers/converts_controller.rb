@@ -28,7 +28,7 @@ class ConvertsController < ApplicationController
   # POST /converts
   def create
     @user = User.find(params[:user_id])
-    @convert = @user.Converts.find(params[:id])
+    @convert = @user.Converts.new(convert_params)
 
     if @convert.save
       redirect_to @convert, notice: 'Convert was successfully created.'
