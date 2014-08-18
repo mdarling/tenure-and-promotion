@@ -1,5 +1,11 @@
 JqueryFileuploadRailsExample::Application.routes.draw do
 
+  root :to => 'testmode#index'
+
+  get 'testmode/index'
+
+  get '/contact', to: 'contact#index'
+
   get 'converter/index'
 
   get 'test/index'
