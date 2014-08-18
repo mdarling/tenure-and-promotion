@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       counter += 1
       step = conversion.status["step"]
       until (step =~ /error|finished/)
-        step = conv.step
+        step = conversion.status["step"]
         puts step
         sleep 1
       end
