@@ -40,13 +40,16 @@ class UsersController < ApplicationController
   end
 
   def convert
-     @user=User.find(params[:user_id])
+    @user=User.find(params[:user_id])
+    @user.Converts.each do |convert|
+      convert.destroy
+    end
     #upload=Upload.find(params[:id])
     counter=0
     @convpass = Array.new
     @user.Uploads.each do |upload|
       conversion = Cloudconvert::Conversion.new
-      conversion.convert( "ps", "pdf", "http://129.24.24.151" + upload.upload.url)
+      conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
       step = conversion.status["step"]
       until (step =~ /error|finished/)
         step = conversion.status["step"]
