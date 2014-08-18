@@ -55,6 +55,7 @@ class UsersController < ApplicationController
       end
       @convpass[counter]=conversion.download_link
       counter += 1
+      @user.Converts.create(conversion.download_link)
     end
   end
 

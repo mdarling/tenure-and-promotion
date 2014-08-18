@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Download:</strong>
+  <%= @convert.download %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @convert.User %>
+</p>
+
+<%= link_to 'Edit', edit_convert_path(@convert) %> |
+<%= link_to 'Back', converts_path %>

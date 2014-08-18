@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807153614) do
+ActiveRecord::Schema.define(version: 20140818081103) do
+
+  create_table "converts", force: true do |t|
+    t.string   "download"
+    t.integer  "User_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "download_file_name"
+    t.string   "download_content_type"
+    t.integer  "download_file_size"
+    t.datetime "download_updated_at"
+  end
+
+  add_index "converts", ["User_id"], name: "index_converts_on_User_id"
 
   create_table "uploads", force: true do |t|
     t.integer  "user_id"
