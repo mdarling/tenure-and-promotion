@@ -47,14 +47,14 @@ class UsersController < ApplicationController
     @user.Uploads.each do |upload|
       conversion = Cloudconvert::Conversion.new
       conversion.convert( "ps", "pdf", "http://129.24.24.151" + upload.upload.url)
-      @convpass[counter]=conversion.download_link
-      counter += 1
       step = conversion.status["step"]
       until (step =~ /error|finished/)
         step = conversion.status["step"]
         puts step
         sleep 1
       end
+      @convpass[counter]=conversion.download_link
+      counter += 1
     end
   end
 
