@@ -49,6 +49,7 @@ class UsersController < ApplicationController
       conversion.convert( "ps", "pdf", "http://129.24.24.151" + upload.upload.url)
       @convpass[counter]=conversion.download_link
       counter += 1
+      step = conversion.status["step"]
       until (step =~ /error|finished/)
         step = conv.step
         puts step
