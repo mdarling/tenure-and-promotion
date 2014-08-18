@@ -67,7 +67,7 @@ class ConvertsController < ApplicationController
       @converts = @user.Converts.all
       #pdf_file_paths = ["1.pdf", "2.pdf"]
       Prawn::Document.generate("result.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
-        @converts.each do |pdf_file|
+        @converts.download.each do |pdf_file|
           #if File.exists?("./public#{pdf_file}")
             pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file}").page_count
             (1..pdf_temp_nb_pages).each do |i|
