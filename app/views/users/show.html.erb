@@ -1,25 +1,13 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>NetID:</strong>
+  <%= @user.name %>
+</p>
 
 <p>
   <strong>Name:</strong>
-  <%= @user.name %>
-<% if @user.name==session[:cas_user] %>
-HI
-<% end %>
-</p>
-
-<p>
-  <strong>Role:</strong>
   <%= @user.role %>
 </p>
-
-<div class="container">
   <h2>Upload file</h2>
- <% @user.Uploads.each do |upload| %>
-      <tr>
-        <td><%= link_to "hi","/users/#{@user.id}/uploads/#{upload.id}" %></td>
-     </tr>
-    <% end %>
 
   <%#= form_for Upload.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
   <%= form_for [@user, Upload.new], :html => { :multipart => true, :id => "fileupload"  } do |f| %>
@@ -60,7 +48,6 @@ HI
     </table>
   <% end %>
 
-</div>
 <script>
   var fileUploadErrors = {
   maxFileSize: 'File is too big',
@@ -137,10 +124,10 @@ HI
   $(function () {
       // Initialize the jQuery File Upload widget:
       $('#fileupload').fileupload();
-      // 
+      //
       // Load existing files:
       $.getJSON($('#fileupload').prop('action'), function (files) {
-        var fu = $('#fileupload').data('blueimpFileupload'), 
+        var fu = $('#fileupload').data('blueimpFileupload'),
           template;
         fu._adjustMaxNumberOfFiles(-files.length);
         console.log(files);
@@ -155,8 +142,7 @@ HI
 
   });
 </script>
+<h2 class="text-center"><%= link_to 'Click here to convert all files', "/users/#{@user.id}/convert", :class => "text-success" %></h2>
+<h3 class="text-center text-error">May take some time.</h3>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-<%= link_to 'Convert',  "/users/#{@user.id}/convert" %>
+<%= link_to 'Click here to edit your name', edit_user_path(@user) %>

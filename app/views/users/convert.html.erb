@@ -1,17 +1,2 @@
-  <%= @user.name %>
-<% if @user.name==session[:cas_user] %>
-Authorized
-<% else %>
-NOT ALLOWED
-<% end %>
- <% @user.Uploads.each do |upload| %>
-      <tr>
-        <td><%= upload.upload.url %></td>
-     </tr>
-    <% end %>
- <% @convpass.each do |convert| %>
-      <tr>
-        <td><%= convert %></td>
-     </tr>
-    <% end %>
-<%= link_to 'Continue', user_converts_path %>
+<h1 class="text-center text-success">    <%= @counter %> file(s) converted</h1>
+<h2 class="text-center"><%= link_to 'Continue', user_converts_path, :class => "text-primary" %>

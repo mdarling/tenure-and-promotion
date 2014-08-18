@@ -4,6 +4,12 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
+    if User.find_by_name(session[:cas_user])
+      redirect_to "/users/#{User.find_by_name(session[:cas_user]).id}"
+    else
+      redirect_to "/users/new"
+    end
+    User.find_by_name(session[:cas_user])
   end
 
   # GET /users/1
@@ -45,8 +51,7 @@ class UsersController < ApplicationController
       convert.destroy
     end
     #upload=Upload.find(params[:id])
-    counter=0
-    @convpass = Array.new
+    @counter=0
     @user.Uploads.each do |upload|
       conversion = Cloudconvert::Conversion.new
       conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
@@ -56,8 +61,7 @@ class UsersController < ApplicationController
         puts step
         sleep 1
       end
-      @convpass[counter]=conversion.download_link
-      counter += 1
+      @counter += 1
       @user.Converts.create(download: conversion.download_link)
     end
   end
@@ -71,7 +75,8 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      #@user = User.find(params[:id])
+      @user=User.find_by_name(session[:cas_user])
     end
 
     # Only allow a trusted parameter "white list" through.

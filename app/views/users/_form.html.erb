@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label "NetID" %><br>
+    <%= f.text_field :name, :value => session[:cas_user], :readonly => true %>
   </div>
   <div class="field">
-    <%= f.label :role %><br>
+    <%= f.label "Name" %><br>
     <%= f.text_field :role %>
   </div>
   <div class="actions">

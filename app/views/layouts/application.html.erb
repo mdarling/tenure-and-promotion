@@ -7,16 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= nav_bar do %>
+  <%= nav_bar do %>
  <%= menu_group do %>
-        <%= menu_item "Home", users_path %>
+        <%= menu_item "Start", users_path %>
         <%= menu_divider %>
-        <%= menu_item "Contact", users_path %>
+        <%= menu_item "Contact", contact_path %>
+        <%= menu_item "Log out " + session[:cas_user], "https://login.unm.edu/cas/logout" %>
     <% end %>
 <% end %>
-
+<div class="container">
 <%= yield %>
-
+</div>
 </body>
 </html>
