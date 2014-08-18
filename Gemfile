@@ -45,3 +45,6 @@ gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rai
 
 #Puma Server for Concurrency
 gem 'puma'
+
+#Prawn for PDF generation, 0.13 for merging
+gem 'prawn', '0.13'

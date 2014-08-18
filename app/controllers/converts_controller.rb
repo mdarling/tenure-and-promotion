@@ -5,6 +5,7 @@ class ConvertsController < ApplicationController
   def index
     @user=User.find(params[:user_id])
     @converts = @user.Converts.all
+    shrimp
   end
 
   # GET /converts/1
@@ -60,4 +61,20 @@ class ConvertsController < ApplicationController
     def convert_params
       params.require(:convert).permit(:download, :user_id)
     end
+
+    def shrimp
+      @user=User.find(params[:user_id])
+      @converts = @user.Converts.all
+      #pdf_file_paths = ["1.pdf", "2.pdf"]
+      Prawn::Document.generate("result.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
+        @converts.each do |pdf_file|
+          if File.exists?("./public#{pdf_file}")
+            pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file}").page_count
+            (1..pdf_temp_nb_pages).each do |i|
+            pdf.start_new_page(:template => "./public#{pdf_file}", :template_page => i)
+          end
+        end
+      end
+    end
+  end
 end
