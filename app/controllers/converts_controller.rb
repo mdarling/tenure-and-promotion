@@ -50,7 +50,7 @@ class ConvertsController < ApplicationController
     @convert.destroy
     redirect_to converts_url, notice: 'Convert was successfully destroyed.'
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_convert
@@ -65,16 +65,28 @@ class ConvertsController < ApplicationController
     def shrimp
       @user=User.find(params[:user_id])
       @converts = @user.Converts.all
-      #pdf_file_paths = ["1.pdf", "2.pdf"]
       Prawn::Document.generate("public/#{session[:cas_user]}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
+        counter = 0
         @converts.each do |pdf_file|
+          counter +=1
           if File.exists?("./public#{pdf_file.download}")
+            outline = nil
             pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file.download}").page_count
             (1..pdf_temp_nb_pages).each do |i|
             pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
+            pdf.outline.update do
+              if outline == nil
+                section "#{pdf_file.download}", :destination => counter, :closed => true #do
+                outline = 1
+              end
+              page :destination => counter, :title => "Page #{i}"
+              #end
+            end
           end
         end
       end
     end
+
   end
+
 end

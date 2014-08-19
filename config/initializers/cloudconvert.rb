@@ -11,6 +11,6 @@ def local_ip
 ensure
   Socket.do_not_reverse_lookup = orig
 end
-    config.api_key  = "jUhrw6w8yuYA1cusmLm50KDBrU6NxZ3fWuTReTBHc5dcFQSGfrfgcIWZXegj4yWm-EVcgBv4MwuTOPPskiRvNA"
+    config.api_key  = "eNePD1_gRa02Owh7D_uKtYIjNr58yMO5ML4BUjOfuT3btA-GU1l14eqbNGiic4UmFVeRKcEgpuxDK9X7nzFhrA"
     config.callback = "http://#{local_ip}:3000/cloud"
 end

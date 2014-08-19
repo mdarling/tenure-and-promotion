@@ -47,4 +47,5 @@ gem "rubycas-client-rails", :git => "git://github.com/rubycas/rubycas-client-rai
 gem 'puma'
 
 #Prawn for PDF generation, 0.13 for merging
-gem 'prawn', '0.13'
+gem 'prawn', '0.13'  #:git => "https://github.com/rickpr/prawn-1.git"
+#gem 'prawn-templates'#, :require => "prawn-templates"#, '0.13'
