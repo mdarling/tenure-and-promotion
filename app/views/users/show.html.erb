@@ -1,11 +1,11 @@
 <p>
   <strong>NetID:</strong>
-  <%= @user.name %>
+  <%= @current_user.name %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @user.role %>
+  <%= @current_user.role %>
 </p>
   <h2>Upload file</h2>
 
@@ -13,5 +13,3 @@
   <%= render 'form' %>
 <h2 class="text-center"><%= link_to 'Click here to convert all files', "/users/#{@user.id}/convert", :class => "text-success" %></h2>
 <h3 class="text-center text-error">May take some time.</h3>
-
-<%= link_to 'Click here to edit your name', edit_user_path(@user) %>
