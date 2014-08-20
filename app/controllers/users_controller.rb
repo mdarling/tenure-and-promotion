@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     else
       redirect_to "/users/new"
     end
-    User.find_by_name(session[:cas_user])
   end
 
   # GET /users/1

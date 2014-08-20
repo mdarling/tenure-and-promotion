@@ -18,7 +18,7 @@ gem 'therubyracer'
 gem 'uglifier'
 
 gem 'jquery-rails'
-gem 'jquery-fileupload-rails'
+gem 'jquery-fileupload-rails'#, :git => "https://github.com/felixbuenemann/jquery-fileupload-rails.git", :branch => "update-assets"
 gem 'paperclip'
 gem 'twitter-bootstrap-rails'
 
