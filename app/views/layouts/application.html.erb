@@ -50,7 +50,7 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Home", users_path  %></li>
             <li><%= link_to "Contact Us", contact_path  %></li>
-            <li><%= link_to "Log out #{session[:cas_user]}", "https://login.unm.edu/cas/logout"  %></li>
+            <li><%= link_to "Log out #{@current_user.role}", "https://login.unm.edu/cas/logout"  %></li>
           </ul>
         </div>
       </div>
@@ -66,17 +66,17 @@
           <div class="well sidebar-nav">
             <h3>Dossier Actions</h3>
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
+              <li class="nav-header">Steps:</li>
               <li><%= link_to "Upload", users_path  %></li>
-              <li><%= link_to "Convert", "/users/#{@user.id}/convert"  %></li>
-              <li><%= link_to "Compile", "/users/#{@user.id}/converts"  %></li>
+              <li><%= link_to "Convert", "/users/#{@current_user.id}/convert"  %></li>
+              <li><%= link_to "Compile", "/users/#{@current_user.id}/converts"  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; UNM 2014</p>
       </footer>
 
     </div> <!-- /container -->
