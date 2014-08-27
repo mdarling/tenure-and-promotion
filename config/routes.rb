@@ -1,5 +1,7 @@
 JqueryFileuploadRailsExample::Application.routes.draw do
 
+  resources :categories
+
   root :to => 'testmode#index'
 
   get 'testmode/index'

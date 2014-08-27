@@ -1,5 +1,6 @@
 class Upload < ActiveRecord::Base
-belongs_to :User
+belongs_to :Category
+has_many :Uploads, dependent: :destroy
   has_attached_file :upload
   do_not_validate_attachment_file_type :upload
 
@@ -11,7 +12,7 @@ belongs_to :User
       "url" => upload.url(:original),
       "delete_url" => user_upload_path(user_id,self),
 #      "delete_url" => upload_path(self),
-      "delete_type" => "DELETE" 
+      "delete_type" => "DELETE"
     }
   end
 
