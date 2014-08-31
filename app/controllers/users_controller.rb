@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    if User.find_by_name(session[:cas_user])
+    if current_user
       redirect_to "/users/#{User.find_by_name(session[:cas_user]).id}"
     else
       redirect_to "/users/new"
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def convert
-    @user=User.find(params[:user_id])
+    @user=current_user
     @user.Converts.each do |convert|
       convert.destroy
     end
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       #@user = User.find(params[:id])
-      @user=User.find_by_name(session[:cas_user])
+      @user=current_user
     end
 
     # Only allow a trusted parameter "white list" through.

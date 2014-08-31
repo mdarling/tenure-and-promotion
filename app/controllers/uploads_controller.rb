@@ -2,7 +2,8 @@ class UploadsController < ApplicationController
   # GET /uploads
   # GET /uploads.json
   def index
-    @user = User.find(params[:user_id])
+    #@user = User.find(params[:user_id])
+    @user=current_user
     @uploads = @user.Uploads.all
 
     respond_to do |format|
@@ -14,7 +15,7 @@ class UploadsController < ApplicationController
   # GET /uploads/1
   # GET /uploads/1.json
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user
     @upload = @user.Uploads.find(params[:id])
 
     respond_to do |format|
@@ -28,7 +29,7 @@ class UploadsController < ApplicationController
   # GET /uploads/new
   # GET /uploads/new.json
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @upload = @user.Uploads.new
 
     respond_to do |format|
@@ -39,14 +40,14 @@ class UploadsController < ApplicationController
 
   # GET /uploads/1/edit
   def edit
-    @user = User.find(params[:user_id])
+    @user = current_user
     @upload = @user.Uploads.find(params[:id])
   end
 
   # POST /uploads
   # POST /uploads.json
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @upload = @user.Uploads.new(upload_params) #(params[:upload])
 
     respond_to do |format|
@@ -67,7 +68,7 @@ class UploadsController < ApplicationController
   # PUT /uploads/1
   # PUT /uploads/1.json
   def update
-    @user = User.find(params[:user_id])
+    @user = current_user
     @upload = @user.Uploads.find(params[:id])
 
     respond_to do |format|
@@ -84,7 +85,7 @@ class UploadsController < ApplicationController
   # DELETE /uploads/1
   # DELETE /uploads/1.json
   def destroy
-    @user = User.find(params[:user_id])
+    @user = current_user
     @upload = @user.Uploads.find(params[:id])
     @upload.destroy
 
