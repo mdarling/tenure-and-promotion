@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user=User.find_by_name(session[:cas_user])
-    User.find_by_name(session[:cas_user])
+    User.find_by_netid(session[:cas_user])
   end
 
 end

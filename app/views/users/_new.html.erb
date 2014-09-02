@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label "Role" %><br>
-    <%= f.text_field :role %>
+    <%= f.select :role, options_for_select(@roles) %>
   </div>
   <div class="field">
-    <%= f.label "Role" %><br>
-    <%= f.text_field :role %>
+    <%= f.label "Department" %><br>
+    <%= f.select :department, options_for_select(@departments) %>
   </div>
   <div class="actions">
     <%= f.submit %>

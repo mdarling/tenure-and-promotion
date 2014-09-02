@@ -1,5 +1,7 @@
 TenureAndPromotion::Application.routes.draw do
 
+  resources :categories
+
   root :to => 'testmode#index'
 
   get 'testmode/index'
@@ -12,7 +14,6 @@ TenureAndPromotion::Application.routes.draw do
   resources :users do
   resources :converts
            get :convert
-  resources :uploads
   end
   resources :uploads
 

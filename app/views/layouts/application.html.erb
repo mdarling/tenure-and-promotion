@@ -50,7 +50,7 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Home", users_path  %></li>
             <li><%= link_to "Contact Us", contact_path  %></li>
-            <li><%= link_to "Log out #{current_user.role}", "https://login.unm.edu/cas/logout"  %></li>
+            <li><%= link_to "Log out #{current_user.name}", "https://login.unm.edu/cas/logout"  %></li>
           </ul>
         </div>
       </div>

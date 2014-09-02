@@ -3,7 +3,7 @@ class UploadsController < ApplicationController
   # GET /uploads.json
   def index
     #@user = User.find(params[:user_id])
-    @user=@current_user
+    @user=current_user
     @uploads = @user.Uploads.all
 
     respond_to do |format|

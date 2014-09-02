@@ -13,12 +13,26 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-   # redirect_to uploads_path
+    redirect_to uploads_path
   end
 
   # GET /users/new
   def new
     @user = User.new
+    counter =0
+    @roles=Array.new
+    roles=SmarterCSV.process('roles.csv')
+    roles.each do |r|
+      @roles[counter]=r[:role]
+      counter += 1
+    end
+    counter =0
+    @departments=Array.new
+    departments=SmarterCSV.process('departments.csv')
+    departments.each do |d|
+      @departments[counter]=d[:department]
+      counter += 1
+    end
     render layout: 'newuser'
   end
 
