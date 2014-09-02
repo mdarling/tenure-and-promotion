@@ -3,20 +3,19 @@ class ConvertsController < ApplicationController
 
   # GET /converts
   def index
-    @user=User.find(params[:user_id])
+    @user=current_user
     @converts = @user.Converts.all
     shrimp
   end
 
   # GET /converts/1
   def show
-    @user=User.find(params[:user_id])
-    @convert=User.Converts.find(params[:id])
+    @convert=@user.Converts.find(params[:id])
   end
 
   # GET /converts/new
   def new
-    @user=User.find(params[:user_id])
+    @user=current_user
     @convert = @user.Converts.new
   end
 
@@ -26,7 +25,7 @@ class ConvertsController < ApplicationController
 
   # POST /converts
   def create
-    @user=User.find(params[:user_id])
+    @user=current_user
     @convert = @user.Converts.new(convert_params)
 
     if @convert.save
@@ -54,7 +53,8 @@ class ConvertsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_convert
-      @convert = Convert.find(params[:id])
+      @user=current_user
+      @convert = @user.Convert.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
@@ -63,9 +63,9 @@ class ConvertsController < ApplicationController
     end
 
     def shrimp
-      @user=User.find(params[:user_id])
+      @user=current_user
       @converts = @user.Converts.all
-      Prawn::Document.generate("public/#{session[:cas_user]}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
+      Prawn::Document.generate("public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
         counter = 0
         @converts.each do |pdf_file|
           counter +=1
