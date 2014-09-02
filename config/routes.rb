@@ -1,26 +1,22 @@
 TenureAndPromotion::Application.routes.draw do
-
-  resources :categories
-
+  #Point the root to the warning page for now
   root :to => 'testmode#index'
-
-  get 'testmode/index'
-
+  #Hardcode contact info into the application
   get '/contact', to: 'contact#index'
-
-  get 'converter/index'
-
-  get 'test/index'
+  #Conversion is a "special" action
   get '/convert', to: 'uploads#convert'
+  #Compilation is a "special" action
+  get '/compile', to: 'converts#index'
   resources :users do
+  #Todo: pull these resources out entirely (form issues)
   resources :uploads
   resources :converts
            get :convert
   end
+  #This is how it should be
   resources :uploads
-
-  #root :to => 'uploads#index'
-  #get '/convert/:id', to: 'uploads#convert'
+  resources :categories
+  resources :converts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
