@@ -11,14 +11,13 @@ TenureAndPromotion::Application.routes.draw do
   get 'converter/index'
 
   get 'test/index'
+  get '/convert', to: 'uploads:convert'
   resources :users do
   resources :uploads
   resources :converts
            get :convert
   end
-  resources :uploads do
-    get :convert
-  end
+  resources :uploads
 
   #root :to => 'uploads#index'
   #get '/convert/:id', to: 'uploads#convert'
