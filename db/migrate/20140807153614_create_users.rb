@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :netid
       t.string :name
       t.string :role
+      t.string :department
 
       t.timestamps
     end
