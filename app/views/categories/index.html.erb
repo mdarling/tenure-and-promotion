@@ -1,27 +1,12 @@
-<h1>Listing categories</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.user %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<h1>Dossier categories</h1>
+   <ul class="list-group">
+    <% @categories.each do |category| %><i class="fa fa-trash"></i>
+       <li class="list-group-item">
+         <%= category.name %>
+           <span class="badge"><%= link_to '<i class="fa fa-trash-o"></i>Delete'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+           </span>
+       </li>
     <% end %>
-  </tbody>
-</table>
-
+   </ul>
 <br>
-
 <%= link_to 'New Category', new_category_path %>

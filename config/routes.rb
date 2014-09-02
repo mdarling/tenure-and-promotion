@@ -12,6 +12,7 @@ TenureAndPromotion::Application.routes.draw do
 
   get 'test/index'
   resources :users do
+  resources :uploads
   resources :converts
            get :convert
   end

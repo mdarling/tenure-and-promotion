@@ -1,10 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :set_category only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   def index
     @user=current_user
-    @categories = @user.Category.all
+    @categories = @user.Categories.all
   end
 
   # GET /categories/1
@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @user=current_user
-    @category = @user.Category.new
+    @category = @user.Categories.new
   end
 
   # GET /categories/1/edit
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
   # POST /categories
   def create
     @user=current_user
-    @category = @user.Category.new(category_params)
+    @category = @user.Categories.new(category_params)
 
     if @category.save
       redirect_to @category, notice: 'Category was successfully created.'
@@ -52,7 +52,7 @@ class CategoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @user=current_user
-      @category = @user.Category.find(params[:id])
+      @category = @user.Categories.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
