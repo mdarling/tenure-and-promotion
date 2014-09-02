@@ -46,6 +46,10 @@ class UsersController < ApplicationController
 
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
+      categories=SmarterCSV.process('categories.csv')
+      categories.each do |c|
+        @user.Categories.create(name: c[:categories])
+      end
     else
       render :new
     end
