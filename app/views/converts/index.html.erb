@@ -1,6 +1,6 @@
 <h1 class="text-center text-success">Download your Dossier!</h1>
 
 <br>
-<h2><%= link_to 'Download', "http://#{local_ip}/#{session[:cas_user]}.pdf" %></h2>
+<h2><%= link_to 'Download', "http://#{local_ip}/#{session[:cas_user]}.pdf", :class => "btn btn-info" %></h2>
 <h3><%= link_to 'Start Over', users_path %></h3>
 <%# link_to 'New Convert', new_convert_path %>
