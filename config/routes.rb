@@ -1,4 +1,4 @@
-JqueryFileuploadRailsExample::Application.routes.draw do
+TenureAndPromotion::Application.routes.draw do
 
   root :to => 'testmode#index'
 
@@ -14,6 +14,7 @@ JqueryFileuploadRailsExample::Application.routes.draw do
            get :convert
   resources :uploads
   end
+  resources :uploads
 
   #root :to => 'uploads#index'
   #get '/convert/:id', to: 'uploads#convert'

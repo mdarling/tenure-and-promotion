@@ -13,10 +13,18 @@
 
   <div class="field">
     <%= f.label "NetID" %><br>
-    <%= f.text_field :name, :value => session[:cas_user], :readonly => true %>
+    <%= f.text_field :netid, :value => session[:cas_user], :readonly => true %>
   </div>
   <div class="field">
     <%= f.label "Name" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label "Role" %><br>
+    <%= f.text_field :role %>
+  </div>
+  <div class="field">
+    <%= f.label "Role" %><br>
     <%= f.text_field :role %>
   </div>
   <div class="actions">

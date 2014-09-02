@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    if User.find_by_name(session[:cas_user])
-      redirect_to "/users/#{User.find_by_name(session[:cas_user]).id}"
+    if current_user
+      redirect_to uploads_path
     else
       redirect_to "/users/new"
     end
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    redirect_to uploads_path
   end
 
   # GET /users/new
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def convert
-    @user=User.find(params[:user_id])
+    @user=current_user
     @user.Converts.each do |convert|
       convert.destroy
     end
@@ -76,11 +77,11 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       #@user = User.find(params[:id])
-      @user=User.find_by_name(session[:cas_user])
+      @user=current_user
     end
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :role)
+      params.require(:user).permit(:netid, :name, :role, :department)
     end
 end
