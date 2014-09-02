@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827183743) do
-
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.integer  "User_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "categories", ["User_id"], name: "index_categories_on_User_id"
+ActiveRecord::Schema.define(version: 20140818100524) do
 
   create_table "converts", force: true do |t|
     t.string   "download"

@@ -1,5 +1,5 @@
 class Upload < ActiveRecord::Base
-belongs_to :Category
+belongs_to :User
 has_many :Uploads, dependent: :destroy
   has_attached_file :upload
   do_not_validate_attachment_file_type :upload

@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module JqueryFileuploadRailsExample
+module TenureAndPromotion
   class Application < Rails::Application
     config.rubycas.cas_base_url = 'https://login.unm.edu/cas'
     # Settings in config/environments/* take precedence over those specified here.

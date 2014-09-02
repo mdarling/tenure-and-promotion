@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     if current_user
-      redirect_to "/users/#{User.find_by_name(session[:cas_user]).id}"
+      redirect_to uploads_path
     else
       redirect_to "/users/new"
     end
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    redirect_to uploads_path
   end
 
   # GET /users/new
@@ -81,6 +82,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :role)
+      params.require(:user).permit(:netid, :name, :role)
     end
 end
