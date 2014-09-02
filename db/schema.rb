@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 20140818100524) do
   add_index "uploads", ["user_id"], name: "index_uploads_on_user_id"
 
   create_table "users", force: true do |t|
+    t.string   "netid"
     t.string   "name"
     t.string   "role"
+    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
