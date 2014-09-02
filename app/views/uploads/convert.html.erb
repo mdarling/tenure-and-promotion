@@ -1,5 +1,2 @@
- <% @user.Uploads.each do |upload| %>
-      <tr>
-        <td><%= link_to "hi","/users/#{@user.id}/uploads/#{upload.id}" %></td>
-     </tr>
-    <% end %>
+<h1 class="text-center text-success">    <%= @counter %> file(s) converted</h1>
+    <h2 class="text-center"><%= link_to 'Continue', user_converts_path, :class => "text-primary" %>
