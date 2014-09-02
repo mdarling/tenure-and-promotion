@@ -16,7 +16,9 @@ TenureAndPromotion::Application.routes.draw do
   resources :converts
            get :convert
   end
-  resources :uploads
+  resources :uploads do
+    get :convert
+  end
 
   #root :to => 'uploads#index'
   #get '/convert/:id', to: 'uploads#convert'

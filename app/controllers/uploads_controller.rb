@@ -82,6 +82,27 @@ class UploadsController < ApplicationController
     end
   end
 
+def convert
+  @user=current_user
+  @user.Converts.each do |convert|
+    convert.destroy
+  end
+  #upload=Upload.find(params[:id])
+  @counter=0
+  @user.Uploads.each do |upload|
+    conversion = Cloudconvert::Conversion.new
+    conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
+    step = conversion.status["step"]
+    until (step =~ /error|finished/)
+      step = conversion.status["step"]
+      puts step
+      sleep 1
+    end
+    @counter += 1
+    @user.Converts.create(download: conversion.download_link)
+  end
+end
+
   # DELETE /uploads/1
   # DELETE /uploads/1.json
   def destroy
