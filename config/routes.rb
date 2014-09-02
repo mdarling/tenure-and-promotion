@@ -5,8 +5,6 @@ TenureAndPromotion::Application.routes.draw do
   get '/contact', to: 'contact#index'
   #Conversion is a "special" action
   get '/convert', to: 'uploads#convert'
-  #Compilation is a "special" action
-  get '/compile', to: 'converts#index'
   resources :users do
   #Todo: pull these resources out entirely (form issues)
   resources :uploads
