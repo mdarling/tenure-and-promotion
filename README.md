@@ -1,12 +1,8 @@
-# Upload files with jQuery File Upload and Paperclip
+# UNM Tenure & Promotion
 
-This is an example app that uses the following gems to upload files for your Rails application:
+This is the base working application for UNM Tenure & Promotion
 
-* [jquery-fileupload-rails](https://github.com/tors/jquery-fileupload-rails)
-* [Paperclip](https://github.com/thoughtbot/paperclip)
-
-This app also uses [twitter-bootstrap-rails](https://github.com/seyhunak/twitter-bootstrap-rails) but is not required.
-
+This app also uses [twitter-bootstrap-rails](https://github.com/seyhunak/twitter-bootstrap-rails)
 This app uses Rails 4.1.4.
 
 ## Running the app
@@ -15,7 +11,3 @@ This app uses Rails 4.1.4.
     rails server
 
 Open http:://localhost:3000
-
-## License
-The Unlicense (i.e Public Domain)
-
