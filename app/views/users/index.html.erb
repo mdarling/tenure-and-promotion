@@ -5,21 +5,25 @@
     <tr>
       <th>NetID</th>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th>Role</th>
+      <th>Department</th>
+      <!--th colspan="3"--></th>
     </tr>
   </thead>
 
   <tbody>
-    <%# User.find_by_name(session[:cas_user]).id %>
-    <%# @users.each do |user| %>
+    <%= current_user.id %>
+    <% @users.each do |user| %>
       <tr>
-          <td><%# user.name %></td>
-          <td><%# user.role %></td>
-          <td><%# link_to 'Create Dossier', user %></td>
-          <td><%# link_to 'Edit Permissions', edit_user_path(user) %></td>
-          <td><%# link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= user.netid %></td>
+          <td><%= user.name %></td>
+          <td><%= user.role %></td>
+          <td><%= user.department %></td>
+          <td><%# link_to 'Show', user %></td>
+          <td><%= link_to 'Edit User', edit_user_path(user) %></td>
+          <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <%# end %>
+    <% end %>
   </tbody>
 </table>
 

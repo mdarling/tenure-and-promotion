@@ -4,10 +4,11 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    if current_user
+    if super_user
+    elsif current_user
       redirect_to uploads_path
     else
-      redirect_to "/users/new"
+      redirect_to "EROR"
     end
   end
 
