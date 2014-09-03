@@ -9,6 +9,6 @@
   <strong>User:</strong>
   <%= @category.user.name %>
 </p>
-<%= render 'form_for(Upload.new)' %>
+<%= render 'uploader' %>
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
