@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_options, only: [:new, :edit]
   # GET /users
   def index
     @users = User.all
@@ -20,20 +20,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    counter =0
-    @roles=Array.new
-    roles=SmarterCSV.process('roles.csv')
-    roles.each do |r|
-      @roles[counter]=r[:role]
-      counter += 1
-    end
-    counter =0
-    @departments=Array.new
-    departments=SmarterCSV.process('departments.csv')
-    departments.each do |d|
-      @departments[counter]=d[:department]
-      counter += 1
-    end
     render layout: 'newuser'
   end
 
@@ -98,7 +84,22 @@ class UsersController < ApplicationController
       #@user = User.find(params[:id])
       @user=current_user
     end
-
+    def set_options
+      counter =0
+      @roles=Array.new
+      roles=SmarterCSV.process('roles.csv')
+      roles.each do |r|
+        @roles[counter]=r[:role]
+        counter += 1
+      end
+      counter =0
+      @departments=Array.new
+      departments=SmarterCSV.process('departments.csv')
+      departments.each do |d|
+        @departments[counter]=d[:department]
+        counter += 1
+      end
+    end
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:netid, :name, :role, :department)
