@@ -7,7 +7,6 @@ TenureAndPromotion::Application.routes.draw do
   get '/convert', to: 'uploads#convert'
   resources :users do
   #Todo: pull these resources out entirely (form issues)
-  resources :uploads
   resources :converts
            get :convert
   end
