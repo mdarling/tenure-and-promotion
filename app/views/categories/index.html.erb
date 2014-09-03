@@ -1,12 +1,12 @@
 <h1>Dossier categories</h1>
    <ul class="list-group">
-    <% @categories.each do |category| %><i class="fa fa-trash"></i>
-       <li class="list-group-item">
-         <%= category.name %>
-           <span class="badge"><%= link_to '<i class="fa fa-trash-o"></i>Delete'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-           </span>
+   <tbody>
+    <% @categories.each do |category| %>
+       <li class = "list-group-item">
+         <%=link_to category.name, category, :class => "" %>
+           <%= link_to '<i class="fa fa-trash-o"></i>Delete'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "badge" %>
        </li>
     <% end %>
    </ul>
 <br>
-<%= link_to 'New Category', new_category_path %>
+<%= link_to 'Make your own category', new_category_path %>
