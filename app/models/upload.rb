@@ -10,8 +10,8 @@ has_many :Uploads, dependent: :destroy
       "name" => read_attribute(:upload_file_name),
       "size" => read_attribute(:upload_file_size),
       "url" => upload.url(:original),
-      "delete_url" => upload_path(user_id,self),
-#      "delete_url" => upload_path(self),
+#      "delete_url" => upload_path(user_id,self),
+      "delete_url" => upload_path(self,@user.id),
       "delete_type" => "DELETE"
     }
   end
