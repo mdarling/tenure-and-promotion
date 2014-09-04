@@ -7,6 +7,7 @@ This app uses Rails 4.1.4.
 
 ## Running the app
 
+    bundle install
     rake db:migrate
     rails server
 
