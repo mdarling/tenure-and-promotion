@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     render layout: 'newuser'
-    #THIS WILL KICK OUT NON ADMIN USERS
+    #THIS WILL KICK OUT NON ADMIN USERS IN FINAL
   end
 
   # GET /users/1/edit

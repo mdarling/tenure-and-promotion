@@ -116,6 +116,6 @@ end
     end
   end
   def upload_params
-    params.require(:upload).permit(:upload,:user_id)
+    params.require(:upload).permit(:upload,:category_id)
   end
 end
