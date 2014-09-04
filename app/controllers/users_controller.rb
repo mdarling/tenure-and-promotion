@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     elsif current_user
       redirect_to uploads_path
     else
-      redirect_to "EROR"
+      redirect_to new_user_path
+      #THIS SHOULD ACTUALLY REDIRECT TO ERROR, ALLOWING FOR TESTING
     end
   end
 
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     render layout: 'newuser'
+    #THIS WILL KICK OUT NON ADMIN USERS
   end
 
   # GET /users/1/edit
