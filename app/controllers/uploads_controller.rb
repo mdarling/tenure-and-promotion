@@ -4,7 +4,8 @@ class UploadsController < ApplicationController
   def index
     #@user = User.find(params[:user_id])
     @user=current_user
-    @uploads = @user.Uploads.all
+    @category=@user.Categories.find(params[:category_id])
+    @uploads = @category.Uploads.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,21 +17,21 @@ class UploadsController < ApplicationController
   # GET /uploads/1.json
   def show
     @user = current_user
-    @upload = @user.Uploads.find(params[:id])
+    @category = @user.Categories.find(params[:category_id])
+    @upload = @category.Uploads.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @upload }
     end
-    #@conversion = Cloudconvert::Conversion.new
-    #@conversion.convert( "ps", "pdf", "http://129.24.24.151" + @upload.upload.url)
-  end
+   end
 
   # GET /uploads/new
   # GET /uploads/new.json
   def new
     @user = current_user
-    @upload = @user.Uploads.new
+    @category = @user.Categories.find(params[:category_id])
+    @upload = @category.Uploads.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,14 +42,16 @@ class UploadsController < ApplicationController
   # GET /uploads/1/edit
   def edit
     @user = current_user
-    @upload = @user.Uploads.find(params[:id])
+    @category=@user.Categories.find(params[:category_id])
+    @upload = @category.Uploads.find(params[:id])
   end
 
   # POST /uploads
   # POST /uploads.json
   def create
     @user = current_user
-    @upload = @user.Uploads.new(upload_params) #(params[:upload])
+    @category = @user.Categories.find(params[:category_id])
+    @upload = @category.Uploads.new(upload_params) #(params[:upload])
 
     respond_to do |format|
       if @upload.save
@@ -57,7 +60,7 @@ class UploadsController < ApplicationController
           :content_type => 'text/html',
           :layout => false
         }
-        format.json { render json: {files: [@upload.to_jq_upload]}, status: :created, location: @user }
+        format.json { render json: {files: [@upload.to_jq_upload]}, status: :created, location: @category }
       else
         format.html { render action: "new" }
         format.json { render json: @upload.errors, status: :unprocessable_entity }
@@ -69,7 +72,8 @@ class UploadsController < ApplicationController
   # PUT /uploads/1.json
   def update
     @user = current_user
-    @upload = @user.Uploads.find(params[:id])
+    @category = @user.Categories.find(params[:category_id])
+    @upload = @category.Uploads.find(params[:id])
 
     respond_to do |format|
       if @upload.update_attributes(params[:upload])
@@ -84,12 +88,13 @@ class UploadsController < ApplicationController
 
 def convert
   @user=current_user
-  @user.Converts.each do |convert|
+  @categories=@user.Categories.all
+  @categories.Converts.each do |convert|
     convert.destroy
   end
   #upload=Upload.find(params[:id])
   @counter=0
-  @user.Uploads.each do |upload|
+  @categories.Uploads.each do |upload|
     conversion = Cloudconvert::Conversion.new
     conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
     step = conversion.status["step"]
@@ -107,7 +112,8 @@ end
   # DELETE /uploads/1.json
   def destroy
     @user = current_user
-    @upload = @user.Uploads.find(params[:id])
+    @category = @user.Categories.find(params[:category_id])
+    @upload = @category.Uploads.find(params[:id])
     @upload.destroy
 
     respond_to do |format|
@@ -116,6 +122,6 @@ end
     end
   end
   def upload_params
-    params.require(:upload).permit(:upload,:user_id)
+    params.require(:upload).permit(:upload,:category_id)
   end
 end

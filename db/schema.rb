@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140902185853) do
   add_index "converts", ["user_id"], name: "index_converts_on_user_id"
 
   create_table "uploads", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "category_id"
     t.string   "upload_file_name"
     t.string   "upload_content_type"
     t.integer  "upload_file_size"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140902185853) do
     t.datetime "updated_at"
   end
 
-  add_index "uploads", ["user_id"], name: "index_uploads_on_user_id"
+  add_index "uploads", ["category_id"], name: "index_uploads_on_category_id"
 
   create_table "users", force: true do |t|
     t.string   "netid"

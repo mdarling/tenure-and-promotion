@@ -1,7 +1,7 @@
 class CreateUploads < ActiveRecord::Migration
   def change
     create_table :uploads do |t|
-      t.references :user, index: true
+      t.references :category, index: true
       t.string   "upload_file_name"
       t.string   "upload_content_type"
       t.integer  "upload_file_size"
