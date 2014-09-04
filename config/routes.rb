@@ -11,7 +11,6 @@ TenureAndPromotion::Application.routes.draw do
            get :convert
   end
   #This is how it should be
-  resources :uploads
   resources :categories do
     resources :uploads
   end

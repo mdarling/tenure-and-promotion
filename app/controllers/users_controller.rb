@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    redirect_to uploads_path
+    redirect_to categories_path
   end
 
   # GET /users/new
