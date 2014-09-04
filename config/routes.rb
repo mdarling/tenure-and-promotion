@@ -12,7 +12,9 @@ TenureAndPromotion::Application.routes.draw do
   end
   #This is how it should be
   resources :uploads
-  resources :categories
+  resources :categories do
+    resources :uploads
+  end
   resources :converts
 
   # The priority is based upon order of creation:

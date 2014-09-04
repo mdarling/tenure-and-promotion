@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @users = User.all
     if super_user
     elsif current_user
-      redirect_to uploads_path
+      redirect_to categories_path
     else
       redirect_to new_user_path
       #THIS SHOULD ACTUALLY REDIRECT TO ERROR, ALLOWING FOR TESTING
