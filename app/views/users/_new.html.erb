@@ -25,7 +25,11 @@
   </div>
   <div class="field">
     <%= f.label "Department" %><br>
-    <%= f.select :department, options_for_select(@departments) %>
+    <% if super_user %>
+      <%= f.select :department,  options_for_select(@departments) %>
+    <% else %>
+      <%= f.text_field :department, :value => current_user.department, :readonly => true %><%#, options_for_select(@departments) %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

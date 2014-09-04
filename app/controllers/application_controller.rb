@@ -16,4 +16,7 @@ class ApplicationController < ActionController::Base
     superuser.any? {|u| u[:netid] == session[:cas_user]}
   end
 
+  def department_admin
+    departmentadmin=current_user.role=="Department Admin"
+  end
 end

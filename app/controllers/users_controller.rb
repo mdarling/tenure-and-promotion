@@ -21,7 +21,11 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    render layout: 'newuser'
+    if !(super_user || department_admin)
+      redirect_to root_url
+    else
+      render layout: 'newuser'
+    end
     #THIS WILL KICK OUT NON ADMIN USERS IN FINAL
   end
 
