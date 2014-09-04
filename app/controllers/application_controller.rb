@@ -12,10 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def super_user
-    if current_user
-      superuser=SmarterCSV.process("superuser.csv")
-      superuser.any? {|u| u[:netid] == current_user.netid}
-    end
+    superuser=SmarterCSV.process("superuser.csv")
+    superuser.any? {|u| u[:netid] == session[:cas_user]}
   end
 
 end
