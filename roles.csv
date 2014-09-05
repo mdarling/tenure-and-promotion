@@ -1,9 +1,12 @@
-role
-Department Admin
-Department Faculty
-College Committee Faculty
-College Admin
-Provost's Committee Faculty
-Provost's Admin
-Senior Vice Provost
-Associate Vice Provost Faculty
+"owner","role"
+"Department Admin","Tenure and Promotion Candidate"
+"Department Admin","Mid-Probationary Candidate"
+"Department Admin","Full Candidate"
+"Provost's Admin","Department Admin"
+super_user,"Department Faculty"
+"College Admin","College Committee Faculty"
+"Provost's Admin","College Admin"
+"Provest's Admin","Provost's Committee Faculty"
+super_user,"Provost's Admin"
+super_user,"Senior Vice Provost"
+"Provost's Admin""Associate Vice Provost Faculty"

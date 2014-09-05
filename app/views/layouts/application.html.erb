@@ -50,7 +50,7 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Home", users_path  %></li>
             <li><%= link_to "Contact Us", contact_path  %></li>
-            <li><%= link_to "Log out #{current_user.name}", "https://login.unm.edu/cas/logout"  %></li>
+            <li><%= link_to "Log out", "https://login.unm.edu/cas/logout"  %></li>
           </ul>
         </div>
       </div>
@@ -62,17 +62,9 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <% if super_user %>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Superuser Menu</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Steps:</li>
-              <li><%= link_to "Users", users_path  %></li>
-                  <li><%= link_to "Categories", categories_path  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+        <!-- Show the admin menu to admin users -->
+        <% if user_admin %>
+          <%= render partial: "layouts/menu/menu" %>
         <% end %>
       </div><!--/row-->
 

@@ -1,4 +1,17 @@
-<h1>APP IS IN TEST MODE</h1>
-<p>Do not use the app for any sensitive data.</p>
-<p>It is not secure or stable.</p>
-<h2 class="text-center"><%= link_to "Click here to start!", users_path, :class => "text-success" %></h2>
+<!-- This is the disclaimer/license page -->
+<h1>Welcome to UNM Tenure & Promotion!</h1>
+<p>This application is designed to help manage the Tenure and Promotion Process.</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <h4>Sensitive and Protected Information Statement:</h4>
+  </div>
+  <div class="panel-body">
+
+<p>When using online cloud services, you agree to act in accordance with applicable laws, regulations, and also in accordance with The University of New Mexico policies, procedures and operational controls regarding UNM sensitive and protected data as identified in UNM Policy 2520, which states: "Users are responsible for proper use and protection of University information and are prohibited from sharing information with unauthorized individuals." 2520 also states "Access to ... sensitive and protected information must be authorized by the department head and approved by the University designated data custodian."</p>
+
+<p>For assistance with the operational controls for HIPAA information, please consult the HSC Privacy Office; for assistance with FERPA information, please consult the UNM Registrar. For all other sensitive or protected data, please open a HELP ticket, and the UNM Information Security and Privacy team will assist you in identifying the appropriate data steward.</p>
+</div>
+</div>
+<div class="navbar btn-toolbar">
+<%= link_to "Accept", users_path, :class => "btn btn-success" %><%= link_to "Reject", "https://login.unm.edu/cas/logout", :class => "btn btn-danger" %>
+</div>

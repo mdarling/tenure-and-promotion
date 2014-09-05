@@ -5,6 +5,7 @@ class UploadsController < ApplicationController
     #@user = User.find(params[:user_id])
     @user=current_user
     @category=@user.Categories.find(params[:category_id])
+    #Uploads belong to Categories which belong to Users
     @uploads = @category.Uploads.all
 
     respond_to do |format|
@@ -56,6 +57,7 @@ class UploadsController < ApplicationController
     respond_to do |format|
       if @upload.save
         format.html {
+          #Send back the JS to the page so it doesn't have to reload
           render :json => [@upload.to_jq_upload].to_json,
           :content_type => 'text/html',
           :layout => false
@@ -85,28 +87,6 @@ class UploadsController < ApplicationController
       end
     end
   end
-
-def convert
-  @user=current_user
-  @categories=@user.Categories.all
-  @categories.Converts.each do |convert|
-    convert.destroy
-  end
-  #upload=Upload.find(params[:id])
-  @counter=0
-  @categories.Uploads.each do |upload|
-    conversion = Cloudconvert::Conversion.new
-    conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
-    step = conversion.status["step"]
-    until (step =~ /error|finished/)
-      step = conversion.status["step"]
-      puts step
-      sleep 1
-    end
-    @counter += 1
-    @user.Converts.create(download: conversion.download_link)
-  end
-end
 
   # DELETE /uploads/1
   # DELETE /uploads/1.json

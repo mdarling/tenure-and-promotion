@@ -1,36 +1,45 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_options, only: [:new, :edit]
+  before_action :set_options, only: [:new, :edit, :index]
   # GET /users
   def index
     @users = User.all
-    if super_user
+    if user_admin
+      #List Users
     elsif current_user
+      #Candidates go to categories
       redirect_to categories_path
     else
-      redirect_to new_user_path
-      #THIS SHOULD ACTUALLY REDIRECT TO ERROR, ALLOWING FOR TESTING
+      #If the person is not in the system, send them back to the license.
+      redirect_to root_url
     end
   end
 
   # GET /users/1
   def show
-    redirect_to categories_path
+    if !user_admin
+      #If a candidate tries to visit this, send him or her back to categories
+      redirect_to categories_path
+    end
   end
 
   # GET /users/new
   def new
     @user = User.new
-    if !(super_user || department_admin)
+    if !user_admin
+      #If a candidate tries to visit this, send him or her back to categories
       redirect_to root_url
     else
-      render layout: 'newuser'
     end
-    #THIS WILL KICK OUT NON ADMIN USERS IN FINAL
   end
 
   # GET /users/1/edit
   def edit
+    if !user_admin
+      #If a candidate tries to visit this, send him or her back to categories
+      redirect_to root_url
+    else
+    end
   end
 
   # POST /users
@@ -38,12 +47,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to users_path, notice: 'User was successfully created.'
+      #Read the categories from the csv file
       categories=SmarterCSV.process('categories.csv')
       categories.each do |c|
+        #Create the categories for the candidate
         @user.Categories.create(name: c[:categories])
       end
     else
+      #Go back to the page if error
       render :new
     end
   end
@@ -57,27 +69,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def convert
-    @user=current_user
-    @user.Converts.each do |convert|
-      convert.destroy
-    end
-    #upload=Upload.find(params[:id])
-    @counter=0
-    @user.Uploads.each do |upload|
-      conversion = Cloudconvert::Conversion.new
-      conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
-      step = conversion.status["step"]
-      until (step =~ /error|finished/)
-        step = conversion.status["step"]
-        puts step
-        sleep 1
-      end
-      @counter += 1
-      @user.Converts.create(download: conversion.download_link)
-    end
-  end
-
   # DELETE /users/1
   def destroy
     @user.destroy
@@ -87,21 +78,25 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      #@user = User.find(params[:id])
       @user=current_user
     end
     def set_options
       counter =0
       @roles=Array.new
+      #Get roles from the CSV
       roles=SmarterCSV.process('roles.csv')
       roles.each do |r|
-        @roles[counter]=r[:role]
-        counter += 1
+        #If the current user doesn't own a role, don't show it.
+        if r[:owner]==user_role || super_user
+          @roles[counter]=r[:role]
+          counter += 1
+        end
       end
       counter =0
       @departments=Array.new
       departments=SmarterCSV.process('departments.csv')
       departments.each do |d|
+        #Allows superuser to select department
         @departments[counter]=d[:department]
         counter += 1
       end

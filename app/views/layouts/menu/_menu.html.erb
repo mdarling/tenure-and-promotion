@@ -1,0 +1,13 @@
+<!--This menu is shown to admins and superusers -->
+<div class="col-lg-3">
+  <div class="well sidebar-nav">
+    <h3>Admin Menu</h3>
+    <ul class="nav nav-list">
+      <%if super_user %>
+        <%= render partial: 'layouts/menu/superuser' %>
+      <% else %>
+        <%= render partial: 'layouts/menu/admin' %>
+      <% end %>
+    </ul>
+  </div><!--/.well -->
+</div><!--/span-->

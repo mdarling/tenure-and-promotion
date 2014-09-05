@@ -1,3 +1,4 @@
+#This corrects a behavior of Paperclip that may make it incorrectly detect files with "spoofed" MIME types.
 require 'paperclip/media_type_spoof_detector'
 module Paperclip
   class MediaTypeSpoofDetector

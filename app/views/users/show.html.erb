@@ -1,15 +1,19 @@
 <p>
   <strong>NetID:</strong>
-  <%= @current_user.name %>
+  <%= @user.name %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @current_user.name %>
+  <%= @user.name %>
 </p>
-  <h2>Upload file</h2>
 
-  <%#= form_for Upload.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
-  <%= render 'form' %>
-<h2 class="text-center"><%= link_to 'Click here to convert all files', "/users/#{@user.id}/convert", :class => "text-success" %></h2>
-<h3 class="text-center text-error">May take some time.</h3>
+<p>
+  <strong>Role:</strong>
+  <%= @user.department %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @user.department %>
+</p>

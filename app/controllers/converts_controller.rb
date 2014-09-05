@@ -4,7 +4,8 @@ class ConvertsController < ApplicationController
   # GET /converts
   def index
     @user=current_user
-    @converts = @user.Converts.all
+    @categories=@user.Categories.all
+    #@converts = @categories.Converts.all
     shrimp
   end
 
@@ -62,31 +63,42 @@ class ConvertsController < ApplicationController
       params.require(:convert).permit(:download, :user_id)
     end
 
+    #Compile with Prawn
     def shrimp
       @user=current_user
-      @converts = @user.Converts.all
-      Prawn::Document.generate("public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
-        counter = 1
-        @converts.each do |pdf_file|
-          if File.exists?("./public#{pdf_file.download}")
-            outline = nil
-            pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file.download}").page_count
-            (1..pdf_temp_nb_pages).each do |i|
-            pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
-            pdf.outline.update do
-              if outline == nil
-                section "#{pdf_file.download}", :destination => counter, :closed => true #do
-                outline = 1
+      @categories=@user.Categories.all
+      @converts=Array.new
+      @categories.each do |category|
+        @converts = category.Converts.all
+        #Generates the PDF
+        Prawn::Document.generate("public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
+          counter = 1
+          @converts.each do |pdf_file|
+            #Checks if file exists to avoid exception if it doesn't for some reason
+            if File.exists?("./public#{pdf_file.download}")
+              outline = nil
+              #Uses Prawn templates to make the new page
+              pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file.download}").page_count
+              (1..pdf_temp_nb_pages).each do |i|
+              pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
+              #Updates the outline
+              pdf.outline.update do
+                if outline == nil
+                  #Creates a section for each new document
+                  section "#{pdf_file.download}", :destination => counter, :closed => true #do
+                  outline = 1
+                end
+                #Creates a marker to each page
+                page :destination => counter, :title => "Page #{i}"
+                counter +=1
+                #end
               end
-              page :destination => counter, :title => "Page #{i}"
-              counter +=1
-              #end
             end
           end
         end
       end
     end
 
-  end
+    end
 
 end

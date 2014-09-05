@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "NetID" %><br>
-    <%= f.text_field :netid, :value => session[:cas_user] %> <%#, :readonly => true %>
+    <%= f.label :netid, "UNM Net ID" %><br>
+    <%= f.text_field :netid %> <%#, :readonly => true %>
   </div>
   <div class="field">
     <%= f.label "Name" %><br>
@@ -26,12 +26,12 @@
   <div class="field">
     <%= f.label "Department" %><br>
     <% if super_user %>
-      <%= f.select :department,  options_for_select(@departments) %>
+      <%= f.select :department, options_for_select(@departments) %>
     <% else %>
-      <%= f.text_field :department, :value => current_user.department, :readonly => true %><%#, options_for_select(@departments) %>
+      <%= f.text_field :department, :value => current_user.department, :readonly => true %>
     <% end %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :value => "Add Candidate" %>
   </div>
 <% end %>

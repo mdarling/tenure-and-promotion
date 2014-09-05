@@ -4,16 +4,13 @@ TenureAndPromotion::Application.routes.draw do
   #Hardcode contact info into the application
   get '/contact', to: 'contact#index'
   #Conversion is a "special" action
-  get '/convert', to: 'uploads#convert'
-  resources :users do
-  #Todo: pull these resources out entirely (form issues)
-  resources :converts
-           get :convert
-  end
-  #This is how it should be
+  get '/convert', to: 'categories#convert'
+  resources :users
+  #Nest uploads within categories
   resources :categories do
     resources :uploads
   end
+  #Converts belong straight to users, so no nesting.
   resources :converts
 
   # The priority is based upon order of creation:
