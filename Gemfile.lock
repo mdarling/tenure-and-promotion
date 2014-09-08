@@ -55,6 +55,7 @@ GEM
     coffee-script-source (1.8.0)
     commonjs (0.2.7)
     erubis (2.7.0)
+    excon (0.39.5)
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -77,6 +78,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-api (1.0.52)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (1.25.1)
     minitest (5.4.1)
     multi_json (1.10.1)
@@ -170,6 +174,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   less-rails
+  mandrill-api
   paperclip
   pg
   prawn (= 0.13)

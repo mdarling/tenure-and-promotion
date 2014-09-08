@@ -1,24 +1,22 @@
-#Model the actual database.yml after this:
+
 development:
   adapter: postgresql
-  host: localhost
+  encoding: unicode
+  database: tenure_and_promotion_development
+  pool: 5
   username: fdisk
   password: password
-  database: tenure_and_promotion_development
-  encoding: UTF8
-
-production:
-  adapter: postgresql
-  host: localhost
-  username: fdisk
-  password: password
-  database: tenure_and_promotion_development
-  encoding: UTF8
 
 test:
   adapter: postgresql
-  host: localhost
+  database: tenure_and_promotion_test
+  pool: 5
   username: fdisk
   password: password
-  database: tenure_and_promotion_test
-  encoding: UTF8
+
+production:
+  adapter: postgresql
+  database: tenure_and_promotion_production
+  pool: 5
+  username: fdisk
+  password: password

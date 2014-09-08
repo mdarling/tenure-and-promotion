@@ -1,7 +1,7 @@
 "owner","role"
 "Department Admin","Tenure and Promotion Candidate"
 "Department Admin","Mid-Probationary Candidate"
-"Department Admin","Full Candidate"
+"Department Admin","Full Professor Candidate"
 "Provost's Admin","Department Admin"
 super_user,"Department Faculty"
 "College Admin","College Committee Faculty"

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<img src="http://www.bosqueschool.org/uploads/images/unm%20logo.JPG">
+</p>Hello <%= @candidate.name %>!</p>
+Welcome to UNM Tenure and Promotion!
+
+To begin, click on the link below:
+
+<%= link_to "UNM Tenure and Promotion", "http://tp2.fdisk.co" %>
+
+<p>If you have any questions, contact your <%= @candidate.department %> department admin, or for technical issues, contact Ricardo:</p>
+<p>Academic Affairs Applcation Developer<br>
+<%= mail_to "fdisk122@unm.edu" %>
+</body>
+</html>
+

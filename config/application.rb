@@ -8,7 +8,8 @@ Bundler.require(*Rails.groups)
 
 module TenureAndPromotion
   class Application < Rails::Application
-    config.rubycas.cas_base_url = 'https://cas-unm.rhcloud.com'
+    config.rubycas.cas_base_url = 'https://login.unm.edu/cas'
+    #config.rubycas.cas_base_url = 'https://cas-unm.rhcloud.com'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -20,5 +21,14 @@ module TenureAndPromotion
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+     config.action_mailer.smtp_settings = {
+       :address => "smtp.mandrillapp.com",
+       :port => "587",
+       :enable_starttls_auto => true,
+       :user_name => "fdisk@fdisk.co",
+       :password => "X0ihFVMYdA_K4xgw32Q21Q",
+       :authentication => 'login',
+       :domain => 'unm.edu',
+     }
   end
 end

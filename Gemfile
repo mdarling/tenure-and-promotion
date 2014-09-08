@@ -51,3 +51,6 @@ gem 'puma'
 gem 'prawn', '0.13'  #:git => "https://github.com/rickpr/prawn-1.git"
 #gem 'prawn-templates'#, :require => "prawn-templates"#, '0.13'
 gem 'smarter_csv'
+
+#Mandril for sending mail
+gem 'mandrill-api'
