@@ -54,6 +54,7 @@ class UsersController < ApplicationController
         #Create the categories for the candidate
         @user.Categories.create(name: c[:categories])
       end
+      Welcome.candidate_mail(recipient: @user).deliver
     else
       #Go back to the page if error
       render :new
@@ -62,23 +63,27 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
-    else
-      render :edit
+    if user_admin
+      if @user.update(user_params)
+        redirect_to @user, notice: 'User was successfully updated.'
+      else
+        render :edit
+      end
     end
   end
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    if user_admin
+      @user.destroy
+      redirect_to users_url, notice: 'User was successfully destroyed.'
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user=current_user
+      @user=User.find(params[:id])
     end
     def set_options
       counter =0

@@ -11,7 +11,7 @@ class ConvertsController < ApplicationController
 
   # GET /converts/1
   def show
-    @convert=@user.Converts.find(params[:id])
+    @convert=@user.Categories.Converts.find(params[:id])
   end
 
   # GET /converts/new
@@ -67,12 +67,14 @@ class ConvertsController < ApplicationController
     def shrimp
       @user=current_user
       @categories=@user.Categories.all
-      @converts=Array.new
-      @categories.each do |category|
-        @converts = category.Converts.all
-        #Generates the PDF
-        Prawn::Document.generate("public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
-          counter = 1
+        #Generates the PDF File
+      Prawn::Document.generate("public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
+        #This tracks the page number
+        counter = 1
+        #Run through each category
+        @categories.each do |category|
+          @converts = category.Converts.all
+          #Loop through all the converted files in each category
           @converts.each do |pdf_file|
             #Checks if file exists to avoid exception if it doesn't for some reason
             if File.exists?("./public#{pdf_file.download}")
@@ -80,25 +82,24 @@ class ConvertsController < ApplicationController
               #Uses Prawn templates to make the new page
               pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file.download}").page_count
               (1..pdf_temp_nb_pages).each do |i|
-              pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
-              #Updates the outline
-              pdf.outline.update do
-                if outline == nil
-                  #Creates a section for each new document
-                  section "#{pdf_file.download}", :destination => counter, :closed => true #do
-                  outline = 1
-                end
+                pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
+                #Updates the outline
+                pdf.outline.update do
+                  if outline == nil #Checks if it's the first page in each document to add a section
+                    #Creates a section for each new document
+                    section "#{pdf_file.download}", :destination => counter, :closed => true #do
+                    outline = 1
+                  end #END First page check/secion add
                 #Creates a marker to each page
                 page :destination => counter, :title => "Page #{i}"
                 counter +=1
-                #end
-              end
-            end
-          end
-        end
-      end
-    end
+              end #END Outline Update per page
+            end #END Make each page
+          end #END if File exists
+        end #END each converted document
+      end #END each category
+    end #END PDF
 
-    end
+  end
 
 end
