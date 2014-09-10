@@ -1,27 +1,13 @@
 <h4>This application is intended to be used to manage the documents and flow of Tenure &amp; Promotion</h4>
 
-<h2>General Recursive structure:</h2>
-
-<h2>General Feature</h2>
-
-<ul>
-<li><h3>Subfeature</h3>
-
-<p>{Implemented parts}</p>
-
-<ul><li>What it does</li>
-<li>How it works (nontechnical details)</li>
-<li>Technical details</li></ul>
-
-<p>{Nonimplemented Parts}</p>
-
-<ul><li><em>What it will do</em></li>
-<li><em>How it will work (nontechnical details)</em></li>
-<li><em>Technical details</em></li></ul></li>
-</ul>
-
-<p>Features:</p>
-
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+  Features:</a></h4></div>
+<div id="collapseOne" class="panel-collapse collapse in">
+  <div class="panel-body">
 <h2>CAS Authentication</h2>
 
 <ul>
@@ -38,9 +24,15 @@
 <h4>Technical Details:</h4>
 
 <ul><li>Uses RubyCAS rails, code for class
-<code>
-Here is the code
-</code></li></ul></li>
+<pre>
+class ApplicationController
+  #Require CAS to log in.
+  before_filter :cas_filter
+
+  def cas_filter
+    RubyCAS::Filter.filter(self)
+  end
+</pre></li></ul></li>
 <li><h3>Allow external reviewers through</h3>
 
 <h4>What it does:</h4>
@@ -55,9 +47,9 @@ Here is the code
 
 <ul><li>RubyCAS is defined in a class, the class is escaped for certain pages</li>
 <li>An external reviewer would be authenticated internally against a database
-<code>
-RubyCAS escape code
-</code></li></ul></li>
+<pre>
+# To skip the filter:
+skip_before_filter :cas_filter</pre></li></ul></li>
 </ul>
 
 <h2>Role-based user registration</h2>
@@ -90,9 +82,20 @@ RubyCAS escape code
 <li>This CSV file has two fields, role and owner.</li>
 <li>If an owner owns a role, he can manage users that have that role within his or her scope</li>
 <li>These can be loaded into the database, allowing for higher reconfigurability
-<code>
-Code for CSV file
-</code></li></ul></li>
+<pre>
+def set_options
+  counter =0
+  @roles=Array.new
+  #Get roles from the CSV
+  roles=SmarterCSV.process('roles.csv')
+  roles.each do |r|
+    #If the current user doesn't own a role, don't show it.
+    if r[:owner]==user_role || super_user
+      @roles[counter]=r[:role]
+      counter += 1
+    end
+  end
+</pre></li></ul></li>
 <li><h3>Senior Vice Provost Role</h3>
 
 <h4>What it does:</h4>
@@ -264,9 +267,13 @@ Code for CSV file
 <ul><li>Tech user doesn't own any users in the CSV (roles.csv)</li>
 <li>Tech users are put into a CSV before the app is launched (superuser.csv)</li>
 <li>A special method is called for tech users called <strong>super<em>user</strong> in <strong>application</em>controller.rb</strong>
-<code>
-Code for super_user
-</code></li></ul></li>
+<pre>
+#Pull superusers (tech users) out of a CSV.
+def super_user
+  superuser=SmarterCSV.process("superuser.csv")
+  superuser.any? {|u| u[:netid] == session[:cas_user]}
+end
+</pre></li></ul></li>
 </ul>
 
 <h2>College and Department Based User Matching</h2>
@@ -429,9 +436,21 @@ Code for super_user
 <ul><li>These are defined in a CSV file (categories.CSV)</li>
 <li>They may be defined in a database instead if convenient</li>
 <li>When a user is created, the following is called:
-<code>
-Code for user creation
-</code></li></ul></li>
+<pre>
+if @user.save
+  redirect_to users_path, notice: 'User was successfully created.'
+  #Read the categories from the csv file
+  categories=SmarterCSV.process('categories.csv')
+  categories.each do |c|
+    #Create the categories for the candidate
+    @user.Categories.create(name: c[:categories])
+  end
+  Welcome.candidate_mail(recipient: @user).deliver
+else
+  #Go back to the page if error
+  render :new
+end
+</pre></li></ul></li>
 <li><h3>All files fit into a category, owned by a user</h3>
 
 <h4>What it does:</h4>
@@ -483,9 +502,38 @@ Code for user creation
 <li>This must be done asynchronously, or the client will experience lag (that is the case now)</li>
 <li>These raw files must either be deleted or secured after the conversion</li>
 <li>Here's how it currently works:
-<code>
-CloudConvert code
-</code></li></ul></li>
+<pre>
+#This converts the files to PDF using CloudConvert.
+def convert
+  @user=current_user
+  @categories=@user.Categories.each
+  @categories.each do |category|
+    category.Converts.each do |convert|
+      #Purge all the old entries
+      convert.destroy
+    end
+  end
+  @counter=0
+  @categories.each do |category|
+    category.Uploads.each do |upload|
+      conversion = Cloudconvert::Conversion.new
+      #Tell CloudConvert to get the files
+      conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
+      step = conversion.status["step"]
+      #Send one file at a time, to keep track
+      until (step =~ /error|finished/)
+        step = conversion.status["step"]
+        puts step
+        sleep 1
+      end
+      @counter += 1
+      puts conversion.download_link
+      #Add the converted file back into ActiveRecord as a convert
+      category.Converts.create(download: conversion.download_link)
+    end
+  end
+end
+</pre></li></ul></li>
 <li><h3>PDFs are merged into a single PDF, indexed, and served with all files relevant to a user</h3>
 
 <h4>What it does:</h4>
@@ -513,9 +561,43 @@ CloudConvert code
 <ul><li>The indexing needs to be able to retrieve the file names</li>
 <li>This is also dependent on other users being able to work within a candidate's scope</li>
 <li>This is currently done within a big nasty loop:
-<code>
-shrimp code here
-</code></li></ul></li>
+<pre>
+#Compile with Prawn
+def shrimp
+  @user=current_user
+  @categories=@user.Categories.all
+    #Generates the PDF File
+  Prawn::Document.generate("public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
+    #This tracks the page number
+    counter = 1
+    #Run through each category
+    @categories.each do |category|
+      @converts = category.Converts.all
+      #Loop through all the converted files in each category
+      @converts.each do |pdf_file|
+        #Checks if file exists to avoid exception if it doesn't for some reason
+        if File.exists?("./public#{pdf_file.download}")
+          outline = nil
+          #Uses Prawn templates to make the new page
+          pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file.download}").page_count
+          (1..pdf_temp_nb_pages).each do |i|
+            pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
+            #Updates the outline
+            pdf.outline.update do
+              if outline == nil #Checks if it's the first page in each document to add a section
+                #Creates a section for each new document
+                section "#{pdf_file.download}", :destination => counter, :closed => true #do
+                outline = 1
+              end #END First page check/secion add
+            #Creates a marker to each page
+            page :destination => counter, :title => "Page #{i}"
+            counter +=1
+          end #END Outline Update per page
+        end #END Make each page
+      end #END if File exists
+    end #END each converted document
+  end #END each category
+end #END PDF</pre></li></ul></li>
 </ul>
 
 <h2>E-mail Reminders</h2>
@@ -539,9 +621,21 @@ shrimp code here
 <ul><li>This e-mail is sent using Action Mailer and Mandrill.</li>
 <li>In order to be editable, we will need to provide the user with an HTML/ERB editor.</li>
 <li>This code is called when a user is created:
-<code>
-user.create
-</code></li></ul></li>
+<pre>
+if @user.save
+  redirect_to users_path, notice: 'User was successfully created.'
+  #Read the categories from the csv file
+  categories=SmarterCSV.process('categories.csv')
+  categories.each do |c|
+    #Create the categories for the candidate
+    @user.Categories.create(name: c[:categories])
+  end
+  Welcome.candidate_mail(recipient: @user).deliver
+else
+  #Go back to the page if error
+  render :new
+end
+</pre></li></ul></li>
 <li><h3>E-mail reminders by date</h3>
 
 <h4>What it does:</h4>
@@ -621,3 +715,7 @@ user.create
 <li>Deleting files from the app may be somehat tricky.</li>
 <li>Deleting a candidate from the app currently deletes all files from within his or her categories</li></ul></li>
 </ul>
+</div>
+</div>
+</div>
+</div>
