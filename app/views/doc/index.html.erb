@@ -1,0 +1,623 @@
+<h4>This application is intended to be used to manage the documents and flow of Tenure &amp; Promotion</h4>
+
+<h2>General Recursive structure:</h2>
+
+<h2>General Feature</h2>
+
+<ul>
+<li><h3>Subfeature</h3>
+
+<p>{Implemented parts}</p>
+
+<ul><li>What it does</li>
+<li>How it works (nontechnical details)</li>
+<li>Technical details</li></ul>
+
+<p>{Nonimplemented Parts}</p>
+
+<ul><li><em>What it will do</em></li>
+<li><em>How it will work (nontechnical details)</em></li>
+<li><em>Technical details</em></li></ul></li>
+</ul>
+
+<p>Features:</p>
+
+<h2>CAS Authentication</h2>
+
+<ul>
+<li><h3>User logs in by UNM Net ID</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Allows users to be automatically identified and registered by UNM Net ID</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Redirects to UNM CAS to log in before allowing anybody to get into the application</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Uses RubyCAS rails, code for class
+<code>
+Here is the code
+</code></li></ul></li>
+<li><h3>Allow external reviewers through</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Allows external reviewers to log in without a Net ID</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>The CAS Redirection is not enabled for some pages, requiring a regular login instead</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>RubyCAS is defined in a class, the class is escaped for certain pages</li>
+<li>An external reviewer would be authenticated internally against a database
+<code>
+RubyCAS escape code
+</code></li></ul></li>
+</ul>
+
+<h2>Role-based user registration</h2>
+
+<ul>
+<li><h3>Pre-defined roles (can be reconfigured)</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Roles allow users to do what they are supposed to do within the scope of the application.</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Roles are currently defined as follows:</li>
+<li>Senior Vice Provost</li>
+<li>Provost's Admin</li>
+<li>Provost's Committee Faculty</li>
+<li>College Admin</li>
+<li>College Committee Faculty</li>
+<li>Department Faculty</li>
+<li>Department Admin</li>
+<li>Full Professor Candidate</li>
+<li>Mid-Probationary Candidate</li>
+<li>Tenure and Promotion Candidate</li>
+<li>Tech User</li></ul>
+
+<h4>Technical details</h4>
+
+<ul><li>These roles are currently processed from a CSV file</li>
+<li>This CSV file has two fields, role and owner.</li>
+<li>If an owner owns a role, he can manage users that have that role within his or her scope</li>
+<li>These can be loaded into the database, allowing for higher reconfigurability
+<code>
+Code for CSV file
+</code></li></ul></li>
+<li><h3>Senior Vice Provost Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Senior Vice Provost is allowed to add other users at the Provost level</li></ul>
+
+<h4>How it works</h4>
+
+<ul><li>Senior Vice Provost can register the following users:</li>
+<li>Senior Vice Provost</li>
+<li>Provost's Admin</li>
+<li>Provost's Committee Faculty</li></ul>
+
+<h4>Technical Details</h4>
+
+<ul><li>Senior Vice Provost owns the following roles in the CSV (roles.csv):</li>
+<li>"Senior Vice Provost"</li>
+<li>"Provost's Admin"</li>
+<li>"Provost's Committee Faculty"</li></ul></li>
+<li><h3>Provost's Admin Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Provost's Admin is allowed to add Provost's Committee and College Admins.</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Provost's Admin can register the following users:</li>
+<li>Provost's Admin</li>
+<li>College Admin</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Provost's Admin owns the following roles in the CSV (roles.csv):</li>
+<li>"Provost's Admin"</li>
+<li>"College Admin"</li></ul></li>
+<li><h3>Provost's Committee Faculty Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Provost's Committee Faculty does not register any users</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Provost's Committee Faculty does not need to register any users</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Provost's Committee Faculty does not own any roles in the CSV (roles.csv)</li></ul></li>
+<li><h3>College Admin Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>College Admin is allowed to add other users at the College level</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>College Admin can register the following users:</li>
+<li>College Admin</li>
+<li>College Committee Faculty</li>
+<li>Department Admin</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>College Admin owns the following roles in the CSV (roles.csv):</li>
+<li>"College Admin"</li>
+<li>"College Committee Faculty"</li>
+<li>"Department Admin"</li></ul></li>
+<li><h3>College Committee Faculty Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>College Committee Faculty does not register any users</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>College Committee Faculty does not need to register any users</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>College Committee Faculty does not own any users in the CSV (roles.csv)</li></ul></li>
+<li><h3>Department Faculty Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Department Committee Faculty does not register any users</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Department Committee Faculty does not need to register any users</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Department Committee Faculty does not own any users in the CSV (roles.csv)</li></ul></li>
+<li><h3>Department Admin Role</h3>
+
+<ul><li>#### What it does:</li>
+<li>Department Admin is allowed to add other users at the Department level</li>
+<li>#### How it works:</li>
+<li>Department Admin is allowed to add the following users:</li>
+<li>Department Admin</li>
+<li>Department Faculty</li>
+<li>Full Professor Candidate</li>
+<li>Mid-Probationary Candidate</li>
+<li>Tenure and Promotion Candidate</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Department Admin owns the following roles in the CSV:</li>
+<li>Department Admin</li>
+<li>Department Faculty</li>
+<li>Full Professor Candidate</li>
+<li>Mid-Probationary Candidate</li>
+<li>Tenure and Promotion Candidate</li></ul></li>
+<li><h3>Full Professor Candidate Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Full Professor Candidate does not register any users</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Full Professor Candidate does not need to register any users</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Full Professor Candidate does not own any users in the CSV (roles.csv)</li>
+<li>Full Professor Candidate is denied access to the user list page</li></ul></li>
+<li><h3>Mid-Probationary Candidate Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Mid-Probationary Candidate does not register any users</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Mid-Probationary Candidate does not need to register any users</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Mid-Probationary Candidate does not own any users in the CSV (roles.csv)</li>
+<li>Mid-Probationary Candidate is denied access to the user list page</li></ul></li>
+<li><h3>Tenure and Promotion Candidate Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Tenure and Promotion Candidate does not register any users</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Tenure and Promotion Candidate does not need to register any users</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Tenure and Promotion Candidate does not own any users in the CSV (roles.csv)</li>
+<li>Tenure and Promotion Candidate is denied access to the user list page</li></ul></li>
+<li><h3>Tech User Role</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Tech User registers any user</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Tech User can register any user role</li></ul>
+
+<h4>Technical details:</h4>
+
+<ul><li>Tech user doesn't own any users in the CSV (roles.csv)</li>
+<li>Tech users are put into a CSV before the app is launched (superuser.csv)</li>
+<li>A special method is called for tech users called <strong>super<em>user</strong> in <strong>application</em>controller.rb</strong>
+<code>
+Code for super_user
+</code></li></ul></li>
+</ul>
+
+<h2>College and Department Based User Matching</h2>
+
+<ul>
+<li><h3>Pre-defined Colleges and Departments (can be reconfigured)</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Colleges and departments define a scope for College and Department level users to work in</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Colleges and Departments are defined as follows:</li>
+<li>Anderson School of Management
+<ul><li>Accounting</li>
+<li>Finance, International, Technology and Entrepreneurship (FITE)</li>
+<li>Department of Marketing, Information Systems, Information Assurance, &amp; Operations Management Faculty (MIDS)</li>
+<li>Department of Organizational Studies (DOS)</li></ul></li>
+<li>College of Arts &amp; Sciences</li>
+<li>American Studies</li>
+<li>Anthropology</li>
+<li>Biology</li>
+<li>Chemistry and Chemical Biology</li>
+<li>Communication &amp; Journalism</li>
+<li>Earth &amp; Planetary Sciences</li>
+<li>Economics</li>
+<li>English</li>
+<li>Foreign Languages &amp; Literature</li>
+<li>Geography</li>
+<li>History</li>
+<li>Linguistics</li>
+<li>Mathematics &amp; Statistics</li>
+<li>Philosophy</li>
+<li>Physics &amp; Astronomy</li>
+<li>Political Science</li>
+<li>Psychology</li>
+<li>Sociology</li>
+<li>Spanish &amp; Portuguese</li>
+<li>Speech &amp; Hearing Sciences</li>
+<li>College of Education</li>
+<li>Educational Specialties</li>
+<li>Health, Exercise, and Sports Sciences (HESS)</li>
+<li>Individual, Family, and Community Education (IFCE)</li>
+<li>Language, Literacy, and Sociocultural Studies (LLSS)</li>
+<li>Teacher Education, Educational Leadership &amp; Policy (TEELP)</li>
+<li>College of Fine Arts</li>
+<li>Art &amp; Art History</li>
+<li>Music</li>
+<li>Theatre &amp; Dance</li>
+<li>Cinematic Arts</li>
+<li>College of Nursing</li>
+<li>College of Nursing</li>
+<li>College of Pharmacy</li>
+<li>College of Pharmacy</li>
+<li>College of University Libraries &amp; Learning Sciences</li>
+<li>College of University Libraries &amp; Learning Sciences</li>
+<li>College of Architecture and Planning</li>
+<li>Architecture</li>
+<li>Community &amp; Regional Planning</li>
+<li>Landscape Architecture</li>
+<li>Historic Preservation &amp; Regionalism</li>
+<li>Urban &amp; Regional Design</li>
+<li>School of Engineering</li>
+<li>Chemical &amp; Bioloigical Engineering</li>
+<li>Civil Engineering</li>
+<li>Computer Science</li>
+<li>Electrical &amp; Computer Engineering</li>
+<li>Mechanical Engineering</li>
+<li>Nuclear Engineering</li>
+<li>School of Law</li>
+<li>School of Law</li>
+<li>School of Medicine</li>
+<li>Anesthesiology &amp; Critical Care Medicine</li>
+<li>Biochemistry &amp; Molecular Biology</li>
+<li>Cell Biology and Physiology</li>
+<li>Dental Medicine</li>
+<li>Dermatology</li>
+<li>Emergency Medicine</li>
+<li>Family and Community Medicine</li>
+<li>Internal Medicine</li>
+<li>Molecular Genetics &amp; Microbiology</li>
+<li>Neurology</li>
+<li>Neurosciences</li>
+<li>Neurosurgery</li>
+<li>Obstetrics &amp; Gynecology</li>
+<li>School of Public Administration</li>
+<li>School of Public Administration</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>These values are stored in a CSV files (departments.csv) as college,department</li>
+<li>These can be pulled into the database for storage if it's preferable.</li></ul></li>
+<li><h3>Users operate within their own scope</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Users only see other users and files within their own scope</li>
+<li>Users can attach files to users within their scope</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Users are assigned to the Provost, College, Department, or Personal level</li>
+<li>Users at the Provost level can see all files at the college level.</li>
+<li>Users at the college level can see all files at the department level within their college</li>
+<li>Users at the department level can see all files at the personal level within their department</li>
+<li>Users at the personal level can see their own files</li>
+<li>Users are assigned as follows:</li>
+<li>Provost Level
+<ul><li>Senior Vice Provost</li>
+<li>Provost's Admin</li>
+<li>Provost's Committee Faculty</li></ul></li>
+<li>College Level
+<ul><li>College Admin</li>
+<li>College Committee Faculty</li></ul></li>
+<li>Department Level
+<ul><li>Department Admin</li>
+<li>Department Faculty</li></ul></li>
+<li>Personal Level
+<ul><li>Full Professor Candidate</li>
+<li>Mid-Probationary Candidate</li>
+<li>Tenure and Promotion Candidate</li>
+<li>Tech User</li></ul></li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>The roles belonging to users in the User Registration are also constrained by this scope</li>
+<li>Tech users cannot see anyone's files, even though they can register any user</li></ul></li>
+</ul>
+
+<h2>Dossier Creation and Categories</h2>
+
+<ul>
+<li><h3>Pre-defined Categories (can be reconfigured)</h3>
+
+<h4>What it does</h4>
+
+<ul><li>Categories are pre-defined for each candidate according to a convention</li></ul>
+
+<h4>How it works</h4>
+
+<ul><li>When a candidate is registered, categories are created for him or her.</li>
+<li>The categories are as follows:</li>
+<li>Curriculum Vitae</li>
+<li>Teaching Statement</li>
+<li>Research Statement</li>
+<li>Teaching Record</li>
+<li>Summary of Student Evaluations</li>
+<li>Course Materials</li>
+<li>External Reviews</li>
+<li>Department Vote and Comments</li>
+<li>Letter from Department Chair</li>
+<li>College Committee Vote and Comments</li>
+<li>Letter from Dean</li>
+<li>Supplemental Materials</li>
+<li>These categories will each have different users put files into them, but will all belong to a single candidate</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>These are defined in a CSV file (categories.CSV)</li>
+<li>They may be defined in a database instead if convenient</li>
+<li>When a user is created, the following is called:
+<code>
+Code for user creation
+</code></li></ul></li>
+<li><h3>All files fit into a category, owned by a user</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>All files uploaded into a dossier for a candidate fit into a category</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Multiple files may be uploaded to each category</li>
+<li>Only users who own each category can upload to it</li>
+<li>Category ownership is as follows:</li>
+<li>Candidate:
+<ul><li>Curriculum Vitae</li>
+<li>Teaching Statement</li>
+<li>Research Statement</li>
+<li>Teaching Record</li>
+<li>Summary of Student Evaluations</li>
+<li>Course Materials</li>
+<li>Supplemental Materials</li></ul></li>
+<li>Department Admin
+<ul><li>External Reviews</li>
+<li>Department Vote and Comments</li>
+<li>Letter from Department Chair</li></ul></li>
+<li>College Admin
+<ul><li>College Committee Vote and Comments</li>
+<li>Letter from Dean</li></ul></li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Each user will be able to see that all categories exist, but will be allowed access based on scope</li>
+<li>There will have to be a system in which College Admins and Department Admins operate within the scope of a candidate to access candidates' categories</li></ul></li>
+<li><h3>All files are converted into standard PDF</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>After being uploaded, all files that can be converted into a PDF will be converted into a PDF</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>After uploading files, the person who uploaded clicks a button, and the app converts them to PDF</li>
+<li>This conversion is done by an external service called <a href="http://cloudconvert.org">CloudConvert</a>.</li>
+<li>Files that can't be converted to PDF are stored in file storage and linked to from a PDF.</li>
+<li>Each file is stored as an individual PDF</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>This runs a loop and sends each file in the dossier to CloudConvert</li>
+<li>After conversion is complete the app redownloads it</li>
+<li>This must be done asynchronously, or the client will experience lag (that is the case now)</li>
+<li>These raw files must either be deleted or secured after the conversion</li>
+<li>Here's how it currently works:
+<code>
+CloudConvert code
+</code></li></ul></li>
+<li><h3>PDFs are merged into a single PDF, indexed, and served with all files relevant to a user</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>When a user download's a candidate's dossier, he or she receives a single file with all files that fall within his or her scope.</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>The application checks which categories the user owns relevant to the cadidate</li>
+<li>The application takes the individual stored PDFs and merges them into a large one</li>
+<li>The application creates an index that has the following structure:</li>
+<li>Category
+<ul><li>File</li>
+<li>Page 1</li>
+<li>Page 2</li>
+<li>File</li>
+<li>Page 1</li>
+<li>Page 2</li></ul></li>
+<li>Category
+<ul><li>File</li>
+<li>Page 1</li></ul></li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>The indexing needs to be able to retrieve the file names</li>
+<li>This is also dependent on other users being able to work within a candidate's scope</li>
+<li>This is currently done within a big nasty loop:
+<code>
+shrimp code here
+</code></li></ul></li>
+</ul>
+
+<h2>E-mail Reminders</h2>
+
+<ul>
+<li><h3>Invitation sent when users are registered (Welcome e-mail)</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Users are sent a link to the application when they are registered</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>A template is stored within the application as a welcome e-mail</li>
+<li>This template sends the e-mail to the user based on netid@unm.edu, and includes his or her name</li>
+<li>This template will be made editable</li>
+<li>The e-mail is sent when a user is registered</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>This e-mail is sent using Action Mailer and Mandrill.</li>
+<li>In order to be editable, we will need to provide the user with an HTML/ERB editor.</li>
+<li>This code is called when a user is created:
+<code>
+user.create
+</code></li></ul></li>
+<li><h3>E-mail reminders by date</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>When deadlines are coming up, faculty members are automatically sent e-mail reminders</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>Deadline dates will be saved in the application</li>
+<li>The e-mail will be sent to all staff signed up for the application before the deadline</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>This is dependent on the dates being stored somewhere</li>
+<li>The dates can be stored in a CSV (dates.csv) or in the database</li>
+<li>This is dependent on the server periodically checking time, perhaps we run some kind of scheduler on the server.</li></ul></li>
+<li><h3>E-mail reminders by event</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>E-mails are automatically sent when a user needs to take an action</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>When documents are submitted within the application, the next user in the chain is notified.</li>
+<li>The chain looks like this:</li>
+<li>Candidate submits dossier >> Department Faculty and Department Admin are notified</li>
+<li>Departmin Admin submits letter >> College Admin is notified</li>
+<li>College Admin verifies Department process >> College Committee Faculty is notified</li>
+<li>College Admin submits letter >> Provost's Admin is notified</li>
+<li>Provost's Admin verifies College process >> Provost's Committee Faculty and Senior Vice Provost are notified</li>
+<li>These e-mails will be based on templated in the application</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>Each of these events needs to trigger a mailer</li>
+<li>This would be the same event that locks users out of their categories</li>
+<li>Something needs to be done about negative decisions</li></ul></li>
+</ul>
+
+<h2>Archiving</h2>
+
+<ul>
+<li><h3>Long-term storage</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Stores dossier files for the long-term</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>After the process is complete, the files are moved (right now manually) to long-term storage</li>
+<li>The final PDF that was seen at the Provost level, along with materials linked to from the PDF will be included.</li>
+<li>A Provost's Admin may save his or her version of the PDF, or a Tech User may be granted a special permission to create the PDF.</li>
+<li>This long-term storage will be secure.</li></ul>
+
+<h3>Technical Details:</h3>
+
+<ul><li>Provost's Admins would be best suited to this role, so Tech Users do not have to access privileged information</li>
+<li>This long-term storage could be within UNM IT, or on a local hard drive, or in a secure cloud</li>
+<li>This archive should have AT LEAST one backup</li></ul></li>
+<li><h3>Deleting Files</h3>
+
+<h4>What it does:</h4>
+
+<ul><li>Clears files out of the application and archives</li></ul>
+
+<h4>How it works:</h4>
+
+<ul><li>A Provost Admin or specially designated Tech User will delete files (right now manually)</li>
+<li>Files may be deleted from the application once they are put into long-term storage</li>
+<li>Files may be deleted from long-term storage once a certain length of time has passed</li></ul>
+
+<h4>Technical Details:</h4>
+
+<ul><li>A Tech User may be best suited to this role, as he or she can delete files without being able to view them.</li>
+<li>Deleting files from the app may be somehat tricky.</li>
+<li>Deleting a candidate from the app currently deletes all files from within his or her categories</li></ul></li>
+</ul>

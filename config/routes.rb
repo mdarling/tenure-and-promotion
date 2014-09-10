@@ -12,7 +12,7 @@ TenureAndPromotion::Application.routes.draw do
   end
   #Converts belong straight to users, so no nesting.
   resources :converts
-
+  get '/docs', to: 'doc#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
