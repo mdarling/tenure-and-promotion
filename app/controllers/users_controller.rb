@@ -54,6 +54,15 @@ class UsersController < ApplicationController
         #Create the categories for the candidate
         @user.Categories.create(name: c[:categories])
       end
+      set_options
+      roles=DefaultRole.all
+      @roles=Array.new
+      counter = 0
+      roles.each do |r|
+        if r[:owner]==@user.role
+          @user.owned_roles.create(role: r[:role], user: @user)
+        end
+      end
       Welcome.candidate_mail(recipient: @user).deliver
     else
       #Go back to the page if error
@@ -88,8 +97,8 @@ class UsersController < ApplicationController
     def set_options
       counter =0
       @roles=Array.new
-      #Get roles from the CSV
-      roles=SmarterCSV.process('roles.csv')
+      #Get roles from the model
+      roles=DefaultRole.all
       roles.each do |r|
         #If the current user doesn't own a role, don't show it.
         if r[:owner]==user_role || super_user

@@ -96,7 +96,6 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (0.17.1)
     polyglot (0.3.5)
     prawn (0.13.0)
       afm
@@ -144,6 +143,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sqlite3 (1.3.9)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -176,13 +176,13 @@ DEPENDENCIES
   less-rails
   mandrill-api
   paperclip
-  pg
   prawn (= 0.13)
   puma
   rails
   rubycas-client-rails!
   sass-rails
   smarter_csv
+  sqlite3
   therubyracer
   twitter-bootstrap-rails
   uglifier

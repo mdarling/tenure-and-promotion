@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904215205) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "candidate_roles", force: true do |t|
-    t.string   "role"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140930190937) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -29,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140904215205) do
     t.datetime "updated_at"
   end
 
-  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id"
 
   create_table "converts", force: true do |t|
     t.string   "download"
@@ -42,7 +33,23 @@ ActiveRecord::Schema.define(version: 20140904215205) do
     t.datetime "download_updated_at"
   end
 
-  add_index "converts", ["category_id"], name: "index_converts_on_category_id", using: :btree
+  add_index "converts", ["category_id"], name: "index_converts_on_category_id"
+
+  create_table "default_roles", force: true do |t|
+    t.string   "role"
+    t.string   "owner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "owned_roles", force: true do |t|
+    t.string   "role"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "owned_roles", ["user_id"], name: "index_owned_roles_on_user_id"
 
   create_table "uploads", force: true do |t|
     t.integer  "category_id"
@@ -54,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140904215205) do
     t.datetime "updated_at"
   end
 
-  add_index "uploads", ["category_id"], name: "index_uploads_on_category_id", using: :btree
+  add_index "uploads", ["category_id"], name: "index_uploads_on_category_id"
 
   create_table "users", force: true do |t|
     t.string   "netid"

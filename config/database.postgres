@@ -1,0 +1,22 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: tenure_and_promotion_development
+  pool: 5
+  username: fdisk
+  password: password
+
+test:
+  adapter: postgresql
+  database: tenure_and_promotion_test
+  pool: 5
+  username: fdisk
+  password: password
+
+production:
+  adapter: postgresql
+  database: tenure_and_promotion_production
+  pool: 5
+  username: fdisk
+  password: password

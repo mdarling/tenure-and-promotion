@@ -1,11 +1,16 @@
 TenureAndPromotion::Application.routes.draw do
-  #Point the root to the warning page for now
+  #This provides all the default roles. Editable by Tech User.
+  resources :default_roles
+  #This is the route for editing default roles  #Point the root to the warning page for now
   root :to => 'testmode#index'
   #Hardcode contact info into the application
   get '/contact', to: 'contact#index'
-  #Conversion is a "special" action
+  #Conversion is a "special" action. Need to convert it to a local REST API.
   get '/convert', to: 'categories#convert'
-  resources :users
+  resources :users do
+    #Thes are the roles that the user can create. Nesting them here allows granular policy.
+    resources :owned_roles
+  end
   #Nest uploads within categories
   resources :categories do
     resources :uploads

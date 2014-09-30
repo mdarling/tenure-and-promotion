@@ -22,7 +22,7 @@
             <td><%= user.name %></td>
             <td><%= user.role %></td>
             <td><%= user.department %></td>
-            <td><%# link_to 'Show', user %></td>
+            <td><%= link_to 'Owned Roles', user_owned_roles_path(user), class: "badge" %></td>
             <td><%= link_to 'Edit', edit_user_path(user), class: "badge" %></td>
             <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge fa fa-trash-o" %></td>
         </tr>
