@@ -8,7 +8,7 @@
         <span>Add files...</span>
         <%= f.file_field :upload %>
       </span>
-      <button type="submit" class="btn btn-primary start">
+      <!--button type="submit" class="btn btn-primary start">
         <i class="fa fa-upload"></i>
         <span>Start upload</span>
       </button>
@@ -20,7 +20,7 @@
         <i class="fa fa-trash-o"></i>
         <span>Delete</span>
       </button>
-      <input type="checkbox" class="toggle btn">Select All
+      <input type="checkbox" class="toggle btn">Select All-->
     </div>
     <div class="span5">
       <!-- The global progress bar -->
@@ -58,21 +58,21 @@ emptyResult: 'Empty file upload result'
   <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
   {% } else if (o.files.valid && !i) { %}
   <td>
-    <div class="progress progress-success progress-striped active"><div class="progress-bar bar" style="width:0%;"></div></div>
+    <div class="progress progress-success progress-striped active text-primary"><div class="progress-bar bar" style="width:0%;"></div>PENDING...</div>
   </td>
   <td class="start">{% if (!o.options.autoUpload) { %}
     <button class="btn btn-primary">
       <i class="fa fa-upload"></i>
-      <span>{%=locale.fileupload.start%}</span>
+      <span>Upload</span>
     </button>
     {% } %}</td>
   {% } else { %}
   <td colspan="2"></td>
   {% } %}
   <td class="cancel">{% if (!i) { %}
-    <button class="btn btn-warning">
-      <i class="fa fa-ban"></i>
-      <span>{%=locale.fileupload.cancel%}</span>
+    <button class="btn btn-danger">
+      <i class="fa fa-trash-o"></i>
+      <span>Delete</span>
     </button>
     {% } %}</td>
 </tr>
@@ -102,7 +102,7 @@ emptyResult: 'Empty file upload result'
         <i class="fa fa-trash-o"></i>
         <span>{%=locale.fileupload.destroy%}</span>
       </button>
-      <input type="checkbox" name="delete" value="1">
+      <!--input type="checkbox" name="delete" value="1"-->
     </td>
   </tr>
   {% } %}

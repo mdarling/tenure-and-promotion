@@ -1,4 +1,5 @@
 TenureAndPromotion::Application.routes.draw do
+  mount RailsEmailPreview::Engine, at: 'emails'
   #This provides all the default roles. Editable by Tech User.
   resources :default_roles
   #This is the route for editing default roles  #Point the root to the warning page for now

@@ -54,3 +54,5 @@ gem 'smarter_csv'
 
 #Mandril for sending mail
 gem 'mandrill-api'
+#Rails Email preview for email management
+gem 'rails_email_preview'
