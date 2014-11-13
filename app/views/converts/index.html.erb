@@ -3,11 +3,11 @@
 <br>
 
 <%# These next few lines are for testing only %>
-<% @user.Categories.each do |category| %>
-  <% category.Uploads.each do |upload| %>
-    <%= upload.upload.inspect %>
-  <% end %>
-<% end %>
+<%# @user.Categories.each do |category| %>
+  <%# category.Uploads.each do |upload| %>
+    <%# upload.upload.inspect %>
+  <%# end %>
+<%# end %>
 
 <%= link_to 'Download', "http://#{local_ip}/#{session[:cas_user]}.pdf", :class => "btn btn-info" %>
 <%= link_to 'Start Over', users_path, :class => "btn btn-danger" %>
