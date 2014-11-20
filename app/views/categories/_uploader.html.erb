@@ -4,8 +4,8 @@
     <div class="span7">
       <!-- The fileinput-button span is used to style the file input field as button -->
       <span class="btn btn-success fileinput-button">
-        <i class="fa fa-plus"></i>
-        <span>Add files...</span>
+        <i class="fa fa-folder-open"></i>
+        <span>Browse for files...</span>
         <%= f.file_field :upload %>
       </span>
       <!--button type="submit" class="btn btn-primary start">
@@ -33,7 +33,8 @@
   <div class="fileupload-loading"></div>
   <br>
   <!-- The table listing the files available for upload/download -->
-  <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+  <table class="table table-bordered table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+<div class="well">Drag and drop files and folders here. <i class="fa fa-file"></i></div>
   </table>
 <% end %>
 <script>
