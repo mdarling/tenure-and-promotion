@@ -75,7 +75,7 @@ class CategoriesController < ApplicationController
         @counter += 1
         puts conversion.download_link
         #Add the converted file back into ActiveRecord as a convert
-        category.Converts.create(download: conversion.download_link)
+        category.Converts.create(download: "#{conversion.download_link}\/#{conversion.status["output"]["filename"]}")
       end
     end
   end

@@ -78,17 +78,20 @@ class ConvertsController < ApplicationController
           @converts.each do |pdf_file|
             #Checks if file exists to avoid exception if it doesn't for some reason
             if File.exists?("./public#{pdf_file.download}")
-              outline = nil
+              outline = nil #Flag for file index
+              sectionindex = nil #Flag for section/category index
               #Uses Prawn templates to make the new page
               pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file.download}").page_count
-
               (1..pdf_temp_nb_pages).each do |i|
                 pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
-                #Updates the outline
-                pdf.outline.update do
-                  section "#{category.name}", :destination => counter, :closed => true #do
-                end #END Category add
-                if outline == nil #Checks if it's the first page in each document to add a section
+                #Adds marker for each section
+                if !sectionindex
+                  pdf.outline.update do
+                    section "#{category.name}", :destination => counter, :closed => true #do
+                    sectionindex=1
+                  end #END Category add
+                end #END category add check
+                if !outline #Checks if it's the first page in each document to add a section
                   pdf.outline.add_subsection_to "#{category.name}" do
                     #Creates a section for each new document
                     pdf.outline.page :destination => counter, :title => "#{pdf_file.download_file_name.split(".pdf").shift}" #do
