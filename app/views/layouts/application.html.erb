@@ -45,11 +45,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">UNM Tenure & Promotion</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+           <li class="navbar-brand">UNM Candidate Review</li>
+           <li><%= image_tag("unm.jpg") %></li>
             <li><%= link_to "Home", users_path  %></li>
             <li><%= link_to "Contact Us", contact_path  %></li>
+            <li class="navbar-brand">You are logged in as <%= current_user.name %> from UNM CAS</li>
             <li><%= link_to "Log out", "https://login.unm.edu/cas/logout"  %></li>
           </ul>
         </div>
@@ -62,10 +64,6 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <!-- Show the admin menu to admin users -->
-        <% if user_admin %>
-          <%= render partial: "layouts/menu/menu" %>
-        <% end %>
       </div><!--/row-->
 
       <footer>

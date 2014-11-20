@@ -1,0 +1,6 @@
+Remove newuser layout
+What does compile_controller do?
+Remove regexes for category display
+Actually deny access in the controller to hidden items
+Get rid of the CSV's, use seeds
+Add an interface to change these seeds

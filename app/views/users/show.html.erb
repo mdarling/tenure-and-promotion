@@ -1,6 +1,6 @@
 <p>
   <strong>NetID:</strong>
-  <%= @user.name %>
+  <%= @user.netid %>
 </p>
 
 <p>
@@ -10,17 +10,10 @@
 
 <p>
   <strong>Role:</strong>
-  <%= @user.department %>
+  <%= @user.role %>
 </p>
 
 <p>
   <strong>Department:</strong>
   <%= @user.department %>
 </p>
-
-<p>
-  <strong>Dossier:</strong>
-  <%= link_to('Download', 'http://129.24.24.152/#{@user}.pdf') %>
-</p>
-
-

@@ -4,13 +4,13 @@
       <% if !(current_user.role =~ /andida/ && (category.name =~ /College|Department|Dean/)) %>
        <li class = "list-group-item">
          <%=link_to category.name, category, :class => "btn btn-danger" %>
-           <%= link_to '<i class="fa fa-trash-o"></i>Delete'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "badge" %>
+           <%# link_to '<i class="fa fa-trash-o"></i>Delete'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "badge" %>
        </li>
       <% end %>
     <% end %>
    </ul>
 <br>
-<%= link_to 'Make your own section', new_category_path, class: 'btn btn-success' %>
+<%# link_to 'Make your own section', new_category_path, class: 'btn btn-success' %>
 <h1>Warning the compile feature is slow. If it seems to fail, come back and click <%= link_to 'here', '/converts', class: 'text-primary' %></h1>
 <%= link_to 'Compile Your Dossier', '/convert', class: 'btn btn-primary' %>
 This will be fixed November 2014.
