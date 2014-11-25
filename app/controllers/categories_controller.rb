@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
   # GET /categories
   def index
     @user=current_user
@@ -10,16 +9,19 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
+    add_crumb @category.name, category_path
   end
 
   # GET /categories/new
   def new
+    add_crumb 'New Section', new_category_path
     @user=current_user
     @category = @user.Categories.new
   end
 
   # GET /categories/1/edit
   def edit
+    add_crumb @category.name, category_path
   end
 
   # POST /categories
@@ -36,6 +38,7 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1
   def update
+    add_crumb @category.name, category_path
     if @category.update(category_params)
       redirect_to @category, notice: 'Category was successfully updated.'
     else
@@ -51,6 +54,7 @@ class CategoriesController < ApplicationController
 
   #This converts the files to PDF using CloudConvert.
   def convert
+    add_crumb 'Dossier Preview', convert_path
     @user=current_user
     @categories=@user.Categories.each
     @categories.each do |category|

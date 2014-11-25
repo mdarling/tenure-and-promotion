@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_options, only: [:new, :edit, :index]
-  add_crumb "Home", "/"
   # GET /users
   def index
     @users = User.all
@@ -18,6 +17,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    add_crumb @user.name, user_path
     if !user_admin
       #If a candidate tries to visit this, send him or her back to categories
       redirect_to categories_path
@@ -36,6 +36,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    add_crumb @user.name, user_path
     if !user_admin
       #If a candidate tries to visit this, send him or her back to categories
       redirect_to root_url
@@ -73,6 +74,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    add_crumb @user.name, user_path
     if user_admin
       if @user.update(user_params)
         redirect_to @user, notice: 'User was successfully updated.'

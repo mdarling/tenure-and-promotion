@@ -12,3 +12,4 @@ Cache converted files, so that way they don't get converted again
 Make these things act as lists so they can be reordered
 Find a way to get a tree/ERD
 Probably gonna have to rewrite the app, or at least re-run migrations.
+Do something about redirecting from users path for candidates

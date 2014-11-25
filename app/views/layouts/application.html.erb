@@ -1,3 +1,6 @@
+<%# View Only Logic, for Rainbow Breadcrumbs %>
+<% colors=["primary","danger","warning","success"] %>
+<% i=0 %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -64,7 +67,9 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <%= render_crumbs %>
+        <div class="btn-group btn-breadcrumb">
+        <btn class="btn btn-<%= colors[(i=i%4+1)-1] %>"><%= render_crumbs separator: "</btn><btn class='btn btn-#{colors[(i=i%4+1)-1]}'>" %></btn>
+        </div>
       </div><!--/row-->
       <footer>
         <p>&copy; UNM 2014</p>
