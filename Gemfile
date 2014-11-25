@@ -56,3 +56,6 @@ gem 'smarter_csv'
 gem 'mandrill-api'
 #Rails Email preview for email management
 gem 'rails_email_preview'
+
+# Breadcrumbs for navigation
+gem 'crummy'

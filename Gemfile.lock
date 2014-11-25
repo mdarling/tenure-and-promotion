@@ -54,6 +54,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     commonjs (0.2.7)
+    crummy (1.8.0)
     erubis (2.7.0)
     excon (0.39.5)
     execjs (2.2.1)
@@ -189,6 +190,7 @@ PLATFORMS
 DEPENDENCIES
   cloudconvert
   coffee-rails
+  crummy
   jquery-fileupload-rails
   jquery-rails
   less-rails
