@@ -4,3 +4,11 @@ Remove regexes for category display
 Actually deny access in the controller to hidden items
 Get rid of the CSV's, use seeds
 Add an interface to change these seeds
+Check the prawn outline stuff, it seems kind of weird
+FIGURE OUT HOW TO PUT CODE IN MODELS
+Figure out multipuload for CloudConvert
+Don't have public URL's for system assets
+Cache converted files, so that way they don't get converted again
+Make these things act as lists so they can be reordered
+Find a way to get a tree/ERD
+Probably gonna have to rewrite the app, or at least re-run migrations.

@@ -4,4 +4,7 @@ class TestmodeController < ApplicationController
     #This layout is "safe" to not crash if the user isn't registered in the app
     #render layout: 'newuser'
   end
+  def logout
+    RubyCAS::Filter.logout(self)
+  end
 end

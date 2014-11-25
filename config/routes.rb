@@ -3,7 +3,9 @@ TenureAndPromotion::Application.routes.draw do
   #This provides all the default roles. Editable by Tech User.
   resources :default_roles
   #This is the route for editing default roles  #Point the root to the warning page for now
-  root :to => 'testmode#index'
+  root to: 'testmode#index'
+  #Logout
+  get '/logout', to: 'testmode#logout'
   #Hardcode contact info into the application
   get '/contact', to: 'contact#index'
   #Conversion is a "special" action. Need to convert it to a local REST API.
