@@ -6,3 +6,12 @@ If you have any questions, contact your <%= @candidate.department %>
 department admin, or for technical issues, contact Ricardo:
 Academic Affairs Application Developer
 fdisk122@unm.edu
+Hello <%= @candidate.name %>, and welcome to UNM's new application for the
+review of Promotion, Tenure, Mid-Probationary term and Distinguished Professor
+candidates.
+To begin, please download and review the application instructions:
+http://fdisk.co/tp/instructions.pdf
+
+If you have any questions, contact your <%= @candidate.department %> college admin, or for technical issues, contact Ricardo:
+<p>Academic Affairs Applcation Developer<br>
+<%= mail_to "fdisk122@unm.edu" %>

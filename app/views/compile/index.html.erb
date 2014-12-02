@@ -1,0 +1,14 @@
+<div id="compile"></div>
+
+<div id="begin" class="text-center">
+  <h1>Click Begin to start preparing your Dossier! May take a few minutes</h1>
+  <%= form_tag("/compile/begin", method: "get", remote: true) do %>
+    <%= submit_tag "Begin", class: "btn btn-large btn-warning" %>
+  <% end %>
+</div>
+
+<div class="progress progress-success progress-striped active text-primary"><div class="progress-bar bar" style="width:0%;"></div></div>
+
+<script type="text/javascript">
+$(".progress").hide();
+</script>

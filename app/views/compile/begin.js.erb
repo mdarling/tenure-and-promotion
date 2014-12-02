@@ -1,0 +1,8 @@
+var finished=0;
+var error=0;
+var allfiles=<%= @counter %>;
+var filesdone=0;
+var percentComplete=0;
+$("#begin").html('<h1>Converting Entire Dossier to PDF</h1><%= image_tag("loading.gif") %>');
+$(".progress").show();
+$.ajax("/compile/0/0");

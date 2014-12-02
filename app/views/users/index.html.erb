@@ -30,7 +30,7 @@
             <% if File.exists?("public/#{user.netid}.pdf") %>
               <td><%= link_to 'Dossier', "http://129.24.24.150/#{user.netid}.pdf", class: "badge" %></td>
             <% else %>
-              <td><%= link_to 'Dossier', "#", class: "badge alert-warning", data: {toggle: "tooltip", placement: "top"}, title: "Not available", type: "button" %></td>
+              <td><span class="badge alert-warning" data-toggle="tooltip" data-placement="top" title="Not Available">Dossier</span></td>
             <% end %>
         </tr>
         <% end %>
