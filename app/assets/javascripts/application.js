@@ -15,3 +15,4 @@
 //= require twitter/bootstrap
 //= require jquery-fileupload
 //= require_tree .
+//= require fullcalendar_engine/application

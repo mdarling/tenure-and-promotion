@@ -12,8 +12,10 @@
  *= require jquery.fileupload-ui
  *= require bootstrap_and_overrides
  *= require_tree .
- */
-/** The Magic **/
+  *= require fullcalendar_engine/application
+*/
+/** The Magic * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn:not(:last-child):after {
   content: " ";
   display: block;
@@ -44,7 +46,8 @@
   z-index: 3;
 }
 
-/** The Spacing **/
+/** The Spacing * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn {
   padding:6px 12px 6px 24px;
 }
@@ -55,7 +58,8 @@
   padding:6px 18px 6px 24px;
 }
 
-/** Default button **/
+/** Default button * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn.btn-default:not(:last-child):after {
   border-left: 10px solid #fff;
 }
@@ -69,7 +73,8 @@
   border-left: 10px solid #adadad;
 }
 
-/** Primary button **/
+/** Primary button * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
   border-left: 10px solid #428bca;
 }
@@ -83,7 +88,8 @@
   border-left: 10px solid #285e8e;
 }
 
-/** Success button **/
+/** Success button * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn.btn-success:not(:last-child):after {
   border-left: 10px solid #5cb85c;
 }
@@ -97,7 +103,8 @@
   border-left: 10px solid #398439;
 }
 
-/** Danger button **/
+/** Danger button * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn.btn-danger:not(:last-child):after {
   border-left: 10px solid #d9534f;
 }
@@ -111,7 +118,8 @@
   border-left: 10px solid #ac2925;
 }
 
-/** Warning button **/
+/** Warning button * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn.btn-warning:not(:last-child):after {
   border-left: 10px solid #f0ad4e;
 }
@@ -125,7 +133,8 @@
   border-left: 10px solid #d58512;
 }
 
-/** Info button **/
+/** Info button * *= require fullcalendar_engine/application
+*/
 .btn-breadcrumb .btn.btn-info:not(:last-child):after {
   border-left: 10px solid #5bc0de;
 }

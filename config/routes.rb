@@ -1,5 +1,10 @@
 TenureAndPromotion::Application.routes.draw do
+
+  # Calendar
+  get 'cal', to: "cal#index"
+
   mount RailsEmailPreview::Engine, at: 'emails'
+  mount FullcalendarEngine::Engine => "/calendar"
   #This provides all the default roles. Editable by Tech User.
   resources :default_roles
   #This is the route for editing default roles  #Point the root to the warning page for now

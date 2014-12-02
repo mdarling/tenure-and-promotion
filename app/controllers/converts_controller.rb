@@ -1,8 +1,9 @@
 class ConvertsController < ApplicationController
   before_action :set_convert, only: [:show, :edit, :update, :destroy]
-
   # GET /converts
   def index
+    add_crumb "Dossier Preview", "/compile"
+    add_crumb "Dossier Download", "/converts"
     @user=current_user
     @categories=@user.Categories.all
     #@converts = @categories.Converts.all

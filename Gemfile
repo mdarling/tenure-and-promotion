@@ -59,3 +59,6 @@ gem 'rails_email_preview'
 
 # Breadcrumbs for navigation
 gem 'crummy'
+
+# FullCalendar for date interaction
+gem 'fullcalendar_engine'
