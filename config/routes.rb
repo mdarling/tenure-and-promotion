@@ -30,6 +30,7 @@ TenureAndPromotion::Application.routes.draw do
   get '/compile/:category/:upload', to: 'compile#reciprocal'
   get '/compile', to: 'compile#index'
   get '/compile/begin', to: 'compile#begin'
+  get '/compile/compile', to: 'compile#compile'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

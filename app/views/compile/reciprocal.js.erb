@@ -1,13 +1,16 @@
 <% if !@done %>
-  filesdone++;
-  percentComplete=(filesdone / allfiles) * 100;
-  $('.bar').css({ "width": percentComplete + "%" });
+  <% if @upload %>
+    filesdone++;
+    percentComplete=(filesdone / allfiles) * 100;
+    $('.bar').css({ "width": percentComplete + "%" });
+    $('.bar').html(percentComplete.toFixed(2) + "%");
+  <% end %>
   $('#compile').html("Category: <%= @category %><br>File: <%= @upload %><br>Status: <%= @step %>");
   <% if @step %>
     <%= @step %>++;
   <% end %>
   $.ajax("/compile/<%= @catindex %>/<%= @uploadindex %>");
 <% else %>
-  $('#begin').html('<h1>All done!</h1>' + error + ' errors<br>' + finished + ' complete<br><%= link_to "Next Step", converts_path, class: "btn btn-primary" %>');
-  $('.progress').hide();
+  $('#begin').html('<h2>Assembling and indexing...</h2><%= image_tag "compile.gif" %>');
+  $.ajax("/compile/compile");
 <% end %>
