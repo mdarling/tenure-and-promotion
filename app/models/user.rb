@@ -3,4 +3,6 @@ class User < ActiveRecord::Base
   has_many :Categories, dependent: :destroy
   #Some users can create other users.
   has_many :owned_roles, dependent: :destroy
+  # A net ID may only be registered once
+  validates :netid, presence: true, uniqueness: true
 end

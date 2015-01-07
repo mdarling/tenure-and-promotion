@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141202215558) do
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20141202215558) do
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id"
 
-  create_table "converts", force: true do |t|
+  create_table "converts", force: :cascade do |t|
     t.string   "download"
     t.integer  "category_id"
     t.datetime "created_at"
@@ -35,14 +35,14 @@ ActiveRecord::Schema.define(version: 20141202215558) do
 
   add_index "converts", ["category_id"], name: "index_converts_on_category_id"
 
-  create_table "default_roles", force: true do |t|
+  create_table "default_roles", force: :cascade do |t|
     t.string   "role"
     t.string   "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "fullcalendar_engine_event_series", force: true do |t|
+  create_table "fullcalendar_engine_event_series", force: :cascade do |t|
     t.integer  "frequency",  default: 1
     t.string   "period",     default: "monthly"
     t.datetime "starttime"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20141202215558) do
     t.datetime "updated_at"
   end
 
-  create_table "fullcalendar_engine_events", force: true do |t|
+  create_table "fullcalendar_engine_events", force: :cascade do |t|
     t.string   "title"
     t.datetime "starttime"
     t.datetime "endtime"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20141202215558) do
 
   add_index "fullcalendar_engine_events", ["event_series_id"], name: "index_fullcalendar_engine_events_on_event_series_id"
 
-  create_table "owned_roles", force: true do |t|
+  create_table "owned_roles", force: :cascade do |t|
     t.string   "role"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20141202215558) do
 
   add_index "owned_roles", ["user_id"], name: "index_owned_roles_on_user_id"
 
-  create_table "uploads", force: true do |t|
+  create_table "uploads", force: :cascade do |t|
     t.integer  "category_id"
     t.string   "upload_file_name"
     t.string   "upload_content_type"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20141202215558) do
 
   add_index "uploads", ["category_id"], name: "index_uploads_on_category_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "netid"
     t.string   "name"
     t.string   "role"

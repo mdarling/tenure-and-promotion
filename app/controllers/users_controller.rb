@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_options, only: [:new, :edit, :index]
+  before_action :set_options, only: [:new, :edit, :index, :create]
   # GET /users
   def index
     @users = User.all

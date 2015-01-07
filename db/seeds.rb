@@ -29,3 +29,4 @@ DefaultRole.create(role: "Provost's Committee Faculty", owner: "Provost's Admin"
 DefaultRole.create(role: "Provost's Admin", owner: "Tech User")
 DefaultRole.create(role: "Senior Vice Provost", owner: "Tech User")
 DefaultRole.create(role: "Tech User", owner: "Tech User") 
+User.create name: "Ricardo Piro-Rael", netid: "fdisk122", role: "Tech User", department: "Accounting"
