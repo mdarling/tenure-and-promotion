@@ -67,9 +67,9 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="btn-group btn-breadcrumb">
-        <btn class="btn btn-<%= colors[(i=i%4+1)-1] %>"><%= render_crumbs separator: "</btn><btn class='btn btn-#{colors[(i=i%4+1)-1]}'>" %></btn>
-        </div>
+        <ol class="breadcrumb">
+          <%= render_crumbs %>
+        </ol>
       </div><!--/row-->
       <footer>
         <p>&copy; UNM 2014</p>
