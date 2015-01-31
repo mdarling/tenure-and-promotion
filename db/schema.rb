@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202215558) do
+ActiveRecord::Schema.define(version: 20150131061904) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 20141202215558) do
   end
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id"
+
+  create_table "colleges", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "converts", force: :cascade do |t|
     t.string   "download"
@@ -37,10 +43,18 @@ ActiveRecord::Schema.define(version: 20141202215558) do
 
   create_table "default_roles", force: :cascade do |t|
     t.string   "role"
-    t.string   "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "college_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "departments", ["college_id"], name: "index_departments_on_college_id"
 
   create_table "fullcalendar_engine_event_series", force: :cascade do |t|
     t.integer  "frequency",  default: 1
@@ -65,15 +79,6 @@ ActiveRecord::Schema.define(version: 20141202215558) do
 
   add_index "fullcalendar_engine_events", ["event_series_id"], name: "index_fullcalendar_engine_events_on_event_series_id"
 
-  create_table "owned_roles", force: :cascade do |t|
-    t.string   "role"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "owned_roles", ["user_id"], name: "index_owned_roles_on_user_id"
-
   create_table "uploads", force: :cascade do |t|
     t.integer  "category_id"
     t.string   "upload_file_name"
@@ -90,7 +95,6 @@ ActiveRecord::Schema.define(version: 20141202215558) do
     t.string   "netid"
     t.string   "name"
     t.string   "role"
-    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

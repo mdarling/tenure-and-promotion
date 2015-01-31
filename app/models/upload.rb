@@ -1,6 +1,5 @@
 class Upload < ActiveRecord::Base
-belongs_to :category
-#has_many :Uploads, dependent: :destroy
+  belongs_to :category
   has_attached_file :upload
   #Don't check the attachment type, it could be anything!
   do_not_validate_attachment_file_type :upload
@@ -16,5 +15,4 @@ belongs_to :category
       "delete_type" => "DELETE"
     }
   end
-
 end

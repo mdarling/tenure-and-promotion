@@ -1,0 +1,21 @@
+h1 Listing colleges
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @colleges.each do |college|
+      tr
+        td = college.name
+        td = link_to 'Show', college
+        td = link_to 'Edit', edit_college_path(college)
+        td = link_to 'Destroy', college, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New College', new_college_path

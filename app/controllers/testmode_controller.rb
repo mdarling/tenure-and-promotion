@@ -6,6 +6,6 @@ class TestmodeController < ApplicationController
     #render layout: 'newuser'
   end
   def logout
-    RubyCAS::Filter.logout(self)
+    RubyCAS::Filter.logout self
   end
 end

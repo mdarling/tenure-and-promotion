@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OwnedRoleTest < ActiveSupport::TestCase
+class DepartmentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

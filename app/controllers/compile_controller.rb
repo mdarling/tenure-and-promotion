@@ -21,14 +21,14 @@ class CompileController < ApplicationController
     user=current_user
     @catindex=params[:category].to_i
     @uploadindex=params[:upload].to_i
-    category=user.Categories[@catindex]
+    category=user.categories[@catindex]
     if category
       @category=category.name
-      upload=category.Uploads[@uploadindex]
+      upload=category.uploads[@uploadindex]
       if upload
         @upload=upload.upload_file_name
         conversion = Cloudconvert::Conversion.new
-        conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
+        conversion.convert "ps", "pdf", "http://#{local_ip}" + upload.upload.url
         @step = conversion.status["step"]
         until (@step =~ /error|finished/)
           @step = conversion.status["step"]
@@ -37,7 +37,7 @@ class CompileController < ApplicationController
         end
         @uploadindex += 1
         puts conversion.download_link
-        category.Converts.create(download: conversion.download_link)
+        category.converts.create download: conversion.download_link
       else
         @uploadindex = 0
         @catindex += 1
@@ -51,7 +51,7 @@ class CompileController < ApplicationController
     @user=current_user
     @categories=@user.Categories.all
     #Generates the PDF File
-    Prawn::Document.generate("public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true}) do |pdf|
+    Prawn::Document.generate "public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true} do |pdf|
       #This tracks the page number
       counter = 1
       #Run through each category
@@ -60,25 +60,25 @@ class CompileController < ApplicationController
         #Loop through all the converted files in each category
         @converts.each do |pdf_file|
           #Checks if file exists to avoid exception if it doesn't for some reason
-          if File.exists?("./public#{pdf_file.download}")
-            outline = nil #Flag for file index
+          if File.exists? "./public#{pdf_file.download}"
+            outline = false #Flag for file index
             sectionindex = nil #Flag for section/category index
             #Uses Prawn templates to make the new page
-            pdf_temp_nb_pages = Prawn::Document.new(:template => "./public#{pdf_file.download}").page_count
+            pdf_temp_nb_pages = Prawn::Document.new(template: "./public#{pdf_file.download}").page_count
             (1..pdf_temp_nb_pages).each do |i|
-              pdf.start_new_page(:template => "./public#{pdf_file.download}", :template_page => i)
+              pdf.start_new_page template: "./public#{pdf_file.download}", template_page: i
               #Adds marker for each section
-              if !sectionindex
+              unless sectionindex
                 pdf.outline.update do
-                  section "#{category.name}", :destination => counter, :closed => true #do
+                  section "#{category.name}", destination: counter, closed: true #do
                   sectionindex=1
                 end #END Category add
               end #END category add check
-              if !outline #Checks if it's the first page in each document to add a section
+              unless outline #Checks if it's the first page in each document to add a section
                 pdf.outline.add_subsection_to "#{category.name}" do
                   #Creates a section for each new document
-                  pdf.outline.page :destination => counter, :title => "#{pdf_file.download_file_name.split(".pdf").shift}" #do
-                  outline = 1
+                  pdf.outline.page destination: counter, title: "#{pdf_file.download_file_name.split(".pdf").shift}" #do
+                  outline = true
               end #END First page check/section add
               #Creates a marker to each page
               #page :destination => counter, :title => "Page #{i}"

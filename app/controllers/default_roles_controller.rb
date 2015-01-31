@@ -21,7 +21,7 @@ class DefaultRolesController < ApplicationController
 
   # POST /default_roles
   def create
-    @default_role = DefaultRole.new(default_role_params)
+    @default_role = DefaultRole.new default_role_params
 
     if @default_role.save
       redirect_to @default_role, notice: 'Default role was successfully created.'
@@ -32,7 +32,7 @@ class DefaultRolesController < ApplicationController
 
   # PATCH/PUT /default_roles/1
   def update
-    if @default_role.update(default_role_params)
+    if @default_role.update default_role_params
       redirect_to @default_role, notice: 'Default role was successfully updated.'
     else
       render :edit
@@ -48,11 +48,11 @@ class DefaultRolesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_default_role
-      @default_role = DefaultRole.find(params[:id])
+      @default_role = DefaultRole.find params[:id]
     end
 
     # Only allow a trusted parameter "white list" through.
     def default_role_params
-      params.require(:default_role).permit(:role, :owner)
+      params.require(:default_role).permit :role, :owner
     end
 end

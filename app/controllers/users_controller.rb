@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     add_crumb @user.name, user_path
-    if !user_admin
+    unless user_admin
       #If a candidate tries to visit this, send him or her back to categories
       redirect_to categories_path
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    if !user_admin
+    unless user_admin
       #If a candidate tries to visit this, send him or her back to categories
       redirect_to root_url
     else
@@ -46,15 +46,15 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new user_params
 
     if @user.save
       redirect_to users_path, notice: 'User was successfully created.'
       #Read the categories from the csv file
-      categories=SmarterCSV.process('categories.csv')
+      categories=SmarterCSV.process 'categories.csv'
       categories.each do |c|
         #Create the categories for the candidate
-        @user.Categories.create(name: c[:categories])
+        @user.categories.create name: c[:categories]
       end
       set_options
       roles=DefaultRole.all
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       counter = 0
       roles.each do |r|
         if r[:owner]==@user.role
-          @user.owned_roles.create(role: r[:role], user: @user)
+          @user.owned_roles.create role: r[:role], user: @user
         end
       end
       Welcome.candidate_mail(recipient: @user).deliver
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
   def update
     add_crumb @user.name, user_path
     if user_admin
-      if @user.update(user_params)
+      if @user.update user_params
         redirect_to @user, notice: 'User was successfully updated.'
       else
         render :edit
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user=User.find(params[:id])
+      @user=User.find params[:id]
     end
     def set_options
       counter =0
@@ -111,7 +111,7 @@ class UsersController < ApplicationController
       end
       counter =0
       @departments=Array.new
-      departments=SmarterCSV.process('departments.csv')
+      departments=SmarterCSV.process 'departments.csv'
       departments.each do |d|
         #Allows superuser to select department
         @departments[counter]=d[:department]
@@ -120,6 +120,6 @@ class UsersController < ApplicationController
     end
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:netid, :name, :role, :department)
+      params.require(:user).permit :netid, :name, :role, :department
     end
 end

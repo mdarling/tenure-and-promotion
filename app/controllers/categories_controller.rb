@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   def index
     @user=current_user
     #Categories each belong to a user
-    @categories = @user.Categories.all
+    @categories = @user.categories.all
   end
 
   # GET /categories/1
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   def new
     add_crumb 'New Section', new_category_path
     @user=current_user
-    @category = @user.Categories.new
+    @category = @user.categories.new
   end
 
   # GET /categories/1/edit
@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
   # POST /categories
   def create
     @user=current_user
-    @category = @user.Categories.new(category_params)
+    @category = @user.categories.new category_params
 
     if @category.save
       redirect_to @category, notice: 'Category was successfully created.'
@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   def update
     add_crumb @category.name, category_path
-    if @category.update(category_params)
+    if @category.update category_params
       redirect_to @category, notice: 'Category was successfully updated.'
     else
       render :edit
@@ -52,48 +52,15 @@ class CategoriesController < ApplicationController
     redirect_to categories_url, notice: 'Category was successfully destroyed.'
   end
 
-  #This converts the files to PDF using CloudConvert.
-  def convert
-    add_crumb 'Dossier Preview', convert_path
-    @user=current_user
-    @categories=@user.Categories.each
-    @categories.each do |category|
-      category.Converts.each do |convert|
-        #Purge all the old entries
-        convert.destroy
-      end
-    end
-    @counter=0
-    @categories.each do |category|
-      category.Uploads.each do |upload|
-        conversion = Cloudconvert::Conversion.new
-        #Tell CloudConvert to get the files
-        conversion.convert( "ps", "pdf", "http://#{local_ip}" + upload.upload.url)
-        step = conversion.status["step"]
-        #Send one file at a time, to keep track
-        until (step =~ /error|finished/)
-          step = conversion.status["step"]
-          puts step
-          sleep 1
-        end
-        @counter += 1
-        puts conversion.download_link
-        #Add the converted file back into ActiveRecord as a convert
-        category.Converts.create(download: "#{conversion.download_link}\/#{conversion.status["output"]["filename"]}")
-      end
-    end
-  end
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @user=current_user
-      @category = @user.Categories.find(params[:id])
+      @category = @user.categories.find params[:id]
     end
 
     # Only allow a trusted parameter "white list" through.
     def category_params
-      params.require(:category).permit(:name, :user_id)
+      params.require(:category).permit :name, :user_id
     end
 end
