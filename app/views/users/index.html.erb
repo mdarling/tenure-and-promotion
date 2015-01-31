@@ -1,7 +1,7 @@
 <%= link_to 'Create New Candidate', new_user_path, class: "btn btn-lg btn-primary" %>
     <% @users.group_by(&:role).each do |role, users| %>
 
-    <% if users.any? {|u| u.department == current_user.department} && role.in?(@roles) || super_user %>
+    <% if users.any? {|u| u.department == current_user.department} && role.in?(@roles) %>
     <h1><%= role %></h1>
     <table class="table table-striped">
       <thead>
@@ -16,7 +16,7 @@
 
       <tbody>
     <% users.each do |user| %>
-      <% if user.department==current_user.department || super_user %>
+      <% if user.department==current_user.department %>
         <tr>
             <td><%= user.netid %></td>
             <td><%= user.name %></td>

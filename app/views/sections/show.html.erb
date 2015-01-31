@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @section.name %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @section.level %>
+</p>
+
+<p>
+  <strong>Pdf:</strong>
+  <%= @section.pdf %>
+</p>
+
+<%= link_to 'Edit', edit_section_path(@section) %> |
+<%= link_to 'Back', sections_path %>

@@ -4,12 +4,14 @@ class ApplicationController < ActionController::Base
   before_filter :cas_filter
   before_action :mycrumbs
   #These methods can be used in views too!
-  helper_method :current_user, :super_user, :user_role, :user_admin
+  helper_method :current_user, :user_role, :user_admin
+
   #Default Crumbs
   def mycrumbs
     user_admin ? crumbhome = users_path : crumbhome = categories_path
     add_crumb '<i class="fa fa-home"></i>Home'.html_safe, crumbhome
   end
+
   #Put RubyCAS filter in a class, in case it needs to be escaped
   def cas_filter
     RubyCAS::Filter.filter self
@@ -26,8 +28,8 @@ class ApplicationController < ActionController::Base
   end
 
   #An easy way to determine if the user is an admin
-  # FIX THIS
   def user_admin
-    user_role == "Department Admin"
+    user_role.in?  ["Department Admin","College Admin","Tech User"] if user_role
   end
+
 end

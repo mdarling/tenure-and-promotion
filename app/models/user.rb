@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  belongs_to :department
   #Categories belong to each user.
   has_many :categories, dependent: :destroy
   #Some users can create other users.

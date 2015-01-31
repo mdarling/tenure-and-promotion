@@ -2,12 +2,15 @@ TenureAndPromotion::Application.routes.draw do
 
   resources :departments
 
+  resources :sections
+
+  resources :department_sections
+
   resources :colleges
 
   # Calendar
   get 'cal', to: "cal#index"
 
-  mount RailsEmailPreview::Engine, at: 'emails'
   mount FullcalendarEngine::Engine => "/calendar"
   #This provides all the default roles. Editable by Tech User.
   resources :default_roles

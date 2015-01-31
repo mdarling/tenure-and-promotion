@@ -27,21 +27,15 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    unless user_admin
-      #If a candidate tries to visit this, send him or her back to categories
-      redirect_to root_url
-    else
-    end
+    #If a candidate tries to visit this, send him or her back to categories
+    redirect_to root_url unless user_admin
   end
 
   # GET /users/1/edit
   def edit
     add_crumb @user.name, user_path
-    if !user_admin
-      #If a candidate tries to visit this, send him or her back to categories
-      redirect_to root_url
-    else
-    end
+    #If a candidate tries to visit this, send him or her back to categories
+    redirect_to root_url unless user_admin
   end
 
   # POST /users
@@ -104,17 +98,17 @@ class UsersController < ApplicationController
       roles=DefaultRole.all
       roles.each do |r|
         #If the current user doesn't own a role, don't show it.
-        if r[:owner]==user_role || super_user
+#        if r[:owner]==user_role 
           @roles[counter]=r[:role]
           counter += 1
-        end
+#        end
       end
       counter =0
       @departments=Array.new
-      departments=SmarterCSV.process 'departments.csv'
+      departments=Department.all
       departments.each do |d|
         #Allows superuser to select department
-        @departments[counter]=d[:department]
+        @departments[counter]=d.name
         counter += 1
       end
     end

@@ -3,7 +3,7 @@
   <div class="well sidebar-nav">
     <h3>Admin Menu</h3>
     <ul class="nav nav-list">
-      <%if super_user %>
+      <%if user_role=="Tech User" %>
         <%= render partial: 'layouts/menu/superuser' %>
       <% else %>
         <%= render partial: 'layouts/menu/admin' %>
