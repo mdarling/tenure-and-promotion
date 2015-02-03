@@ -2,28 +2,23 @@
 
 <h1>Listing Department Sections</h1>
 
-<table>
+<% @department_sections.group_by(&:department).each do |department, department_sections| %>
+  <h2><%= department.name %></h2>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Department</th>
       <th>Section</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @department_sections.each do |department_section| %>
-      <tr>
-        <td><%= department_section.department %></td>
-        <td><%= department_section.section %></td>
-        <td><%= link_to 'Show', department_section %></td>
-        <td><%= link_to 'Edit', edit_department_section_path(department_section) %></td>
-        <td><%= link_to 'Destroy', department_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% department_sections.each do |department_section| %>
+      <%= render 'department_section', department_section: department_section %>
     <% end %>
   </tbody>
 </table>
-
+<% end %>
 <br>
 
 <%= link_to 'New Department section', new_department_section_path %>

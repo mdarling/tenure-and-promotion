@@ -67,7 +67,7 @@ GEM
     commonjs (0.2.7)
     crummy (1.8.0)
     erubis (2.7.0)
-    excon (0.44.0)
+    excon (0.44.1)
     execjs (2.2.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -171,6 +171,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    slim (3.0.2)
+      temple (~> 0.7.3)
+      tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -182,6 +185,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
+    temple (0.7.5)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -220,6 +224,7 @@ DEPENDENCIES
   rails
   rubycas-client-rails!
   sass-rails
+  slim
   sqlite3
   therubyracer
   twitter-bootstrap-rails

@@ -62,3 +62,6 @@ gem 'fullcalendar_engine'
 
 # Debug tools
 gem 'pry-rails'
+
+# Because Rails insists on generating slim views
+gem 'slim'

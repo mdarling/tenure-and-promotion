@@ -1,7 +1,7 @@
 = form_for @college do |f|
   - if @college.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@college.errors.count, "error")} prohibited this college from being saved:"
+      h2 = "#{pluralize @college.errors.count, "error"} prohibited this college from being saved:"
       ul
         - @college.errors.full_messages.each do |message|
           li = message

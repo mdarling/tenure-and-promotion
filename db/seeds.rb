@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #"owner","role"
 
+ActiveRecord::Base.transaction do
 
 [ # Initial users
   { name: "Ricardo Piro-Rael", netid: "fdisk122", role: "Tech User"}
@@ -129,4 +130,6 @@
 # Dossier Section to Department Connections
 Department.all.product(Section.all) do |ds|
   DepartmentSection.create department: ds.first, section: ds.last
+end
+
 end
