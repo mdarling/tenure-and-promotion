@@ -1,27 +1,16 @@
- <%= form_for [@category, Upload.new], :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+ <%= form_for [@category, Upload.new], html: { multipart: true, id: "fileupload"  } do |f| %>
   <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
   <div class="row fileupload-buttonbar">
     <div class="span7">
       <!-- The fileinput-button span is used to style the file input field as button -->
-      <span class="btn btn-success fileinput-button">
-        <i class="fa fa-folder-open"></i>
-        <span>Browse for files...</span>
-        <%= f.file_field :upload %>
-      </span>
-      <!--button type="submit" class="btn btn-primary start">
-        <i class="fa fa-upload"></i>
-        <span>Start upload</span>
-      </button>
-      <button type="reset" class="btn btn-warning cancel">
-        <i class="fa fa-ban"></i>
-        <span>Cancel upload</span>
-      </button>
-      <button type="button" class="btn btn-danger delete">
-        <i class="fa fa-trash-o"></i>
-        <span>Delete</span>
-      </button>
-      <input type="checkbox" class="toggle btn">Select All-->
+      <%= f.file_field :upload, class: 'hide'  %>
+      <a class="btn btn-success" id="green_button"><em class="fa fa-folder"> </em> Browse for files...</a>
     </div>
+  <script type="text/javascript">
+    $('#green_button').bind("click" , function () {
+      $('#upload_upload').click();
+      });
+  </script>
     <div class="span5">
       <!-- The global progress bar -->
       <div class="progress progress-success progress-striped active fade">
@@ -33,8 +22,8 @@
   <div class="fileupload-loading"></div>
   <br>
   <!-- The table listing the files available for upload/download -->
-  <table class="table table-bordered table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
 <div class="well">Drag and drop files and folders here. <i class="fa fa-file"></i></div>
+  <table class="table table-bordered table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
   </table>
 <% end %>
 <script>

@@ -1,15 +1,11 @@
 <h2>Dossier Sections</h2>
-   <ul class="list-group">
-    <% @categories.each do |category| %>
-      <% if !(current_user.role =~ /andida/ && (category.name =~ /College|Department|Dean|External/)) %>
-       <li class = "list-group-item">
-         <%=link_to category.name, category, :class => "btn btn-danger" %>
-           <%# link_to '<i class="fa fa-trash-o"></i>Delete'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "badge" %>
-       </li>
-      <% end %>
+<div class="list-group">
+  <% @categories.each_with_index do |category,index| %>
+    <%  unless current_user.role =~ /andida/ && category.name =~ /College|Department|Dean|External/ %>
+      <%= link_to raw("<h4>#{category.name}</h4>"), category, class:"list-group-item list-group-item-warning text-center" %>
+      &nbsp; 
     <% end %>
-   </ul>
-<br>
-<%# link_to 'Make your own section', new_category_path, class: 'btn btn-success' %>
+  <% end %>
+</div>
 <%= link_to 'Preview Your Dossier', '/compile', class: 'btn btn-primary' %>
 <br><br>

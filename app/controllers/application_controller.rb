@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :cas_filter
   before_action :mycrumbs
   #These methods can be used in views too!
-  helper_method :current_user, :user_role, :user_admin
+  helper_method :current_user, :user_role, :user_admin, :colors
 
   #Default Crumbs
   def mycrumbs
@@ -30,6 +30,14 @@ class ApplicationController < ActionController::Base
   #An easy way to determine if the user is an admin
   def user_admin
     user_role.in?  ["Department Admin","College Admin","Tech User"] if user_role
+  end
+
+  def colors index
+    # Use mod 4 for ones that use info:
+    # list-group#{colors i%4}
+    # Use mod 4 + 1 for ones that use primary:
+    # btn-#{colors i%4+1}
+    ["info","success","warning","danger","primary"][index]
   end
 
 end

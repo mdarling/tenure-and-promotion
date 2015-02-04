@@ -8,7 +8,7 @@ class UploadsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @uploads.map{|upload| upload.to_jq_upload } }
+      format.json { render json: @uploads.map{ |upload| upload.to_jq_upload } }
     end
   end
 
