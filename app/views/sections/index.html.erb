@@ -15,12 +15,11 @@
   <tbody>
     <% @sections.each do |section| %>
       <tr>
-        <td><%= section.name %></td>
+        <td><strong><%= section.name %></strong></td>
         <td><%= section.level %></td>
-        <td><%= section.pdf %></td>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><em><%= section.pdf? %></em></td>
+        <td><%= link_to 'Edit', edit_section_path(section), class: 'badge alert-warning' %></td>
+        <td><%= link_to raw('<em class="fa fa-trash-o"></em> Delete'), section, method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge alert-danger' %></td>
       </tr>
     <% end %>
   </tbody>

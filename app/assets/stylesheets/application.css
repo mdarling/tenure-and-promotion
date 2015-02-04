@@ -11,6 +11,8 @@
  *= require_self
  *= require jquery.fileupload-ui
  *= require bootstrap_and_overrides
+ *= require select2
+ *= require select2-bootstrap
  *= require_tree .
   *= require fullcalendar_engine/application
 */

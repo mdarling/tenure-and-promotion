@@ -9,24 +9,27 @@
 
 ActiveRecord::Base.transaction do
 
-[ # Initial users
-  { name: "Ricardo Piro-Rael", netid: "fdisk122", role: "Tech User"}
-].each &User.method(:create)
 
 
 [ # Default Roles
-  "Tenure and Promotion Candidate",
-  "Mid-Probationary Candidate",
-  "Full Professor Candidate",
-  "Department Admin",
-  "Department Faculty",
-  "College Commitee Faculty",
-  "College Admin",
-  "Provost's Committee Faculty",
-  "Provost's Admin",
-  "Senior Vice Provost",
-  "Tech User"
-].each  { |r| DefaultRole.create role: r }
+  # Levels are
+  # 0 for candidate
+  # 1 for department
+  # 2 for college
+  # 3 for provost (all university)
+  # name,level
+  ["Tenure and Promotion Candidate",0],
+  ["Mid-Probationary Candidate",0],
+  ["Full Professor Candidate",0],
+  ["Department Admin",1],
+  ["Department Faculty",1],
+  ["College Commitee Faculty",2],
+  ["College Admin",2],
+  ["Provost's Committee Faculty",3],
+  ["Provost's Admin",3],
+  ["Senior Vice Provost",3],
+  ["Tech User",3]
+].each  { |r| Role.create name: r.first, level: r.last }
 
 
 [ # Colleges
@@ -131,5 +134,10 @@ ActiveRecord::Base.transaction do
 Department.all.product(Section.all) do |ds|
   DepartmentSection.create department: ds.first, section: ds.last
 end
+
+[ # Initial users
+  # name,netid,role,department
+  ["Ricardo Piro-Rael","fdisk122","Tech User","Electrical & Computer Engineering"]
+].each { |u| User.create name: u[0], netid: u[1], role: Role.find_by_name(u[2]), department: Department.find_by_name(u[3]) }
 
 end

@@ -1,12 +1,12 @@
-= form_for @college do |f|
-  - if @college.errors.any?
-    #error_explanation
-      h2 = "#{pluralize @college.errors.count, "error"} prohibited this college from being saved:"
-      ul
-        - @college.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions = f.submit
+.row
+  .col-xs-4
+    = bootstrap_form_for @college do |f|
+      - if @college.errors.any?
+        #error_explanation
+          h2 = "#{pluralize @college.errors.count, "error"} prohibited this college from being saved:"
+          ul
+            - @college.errors.full_messages.each do |message|
+              li = message
+    
+      = f.text_field :name
+      = f.primary

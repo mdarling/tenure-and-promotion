@@ -17,11 +17,14 @@ gem 'therubyracer'
 
 gem 'uglifier'
 
+# Gems
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'#, :git => "https://github.com/felixbuenemann/jquery-fileupload-rails.git", :branch => "update-assets"
 gem 'paperclip'
+# Bootstrap Views
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
+gem 'select2-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby'

@@ -3,15 +3,22 @@ class UsersController < ApplicationController
   before_action :set_options, only: [:new, :edit, :index, :create]
   # GET /users
   def index
-    @users = User.all
-    if user_admin
-      #List Users
-    elsif current_user
-      #Candidates go to categories
+    # If the person is not in the system, send them back to the license.
+    redirect_to root_path unless current_user
+    department=current_user.department
+    role=current_user.role
+    if role.candidate?
+      # Candidates go to categories
       redirect_to categories_path
-    else
-      #If the person is not in the system, send them back to the license.
-      redirect_to root_url
+    elsif role.department?
+      # List Users within department
+      @users=User.all.select { |u| department==u.department }
+    elsif role.college?
+      # List Users within college
+      @users=User.all.select { |u| department.college==u.department.college }
+    elsif role.provost?
+      # List all Users
+      @users=User.all
     end
   end
 
@@ -28,14 +35,14 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     #If a candidate tries to visit this, send him or her back to categories
-    redirect_to root_url unless user_admin
+    redirect_to root_url if current_user.role.candidate? 
   end
 
   # GET /users/1/edit
   def edit
     add_crumb @user.name, user_path
     #If a candidate tries to visit this, send him or her back to categories
-    redirect_to root_url unless user_admin
+    redirect_to root_url if user.role.candidate?
   end
 
   # POST /users
@@ -44,20 +51,11 @@ class UsersController < ApplicationController
 
     if @user.save
       redirect_to users_path, notice: 'User was successfully created.'
-      #Read the categories from the csv file
-      categories=SmarterCSV.process 'categories.csv'
-      categories.each do |c|
+      #Read the categories from the database
+      sections=@user.department.department_sections
+      sections.each do |section|
         #Create the categories for the candidate
-        @user.categories.create name: c[:categories]
-      end
-      set_options
-      roles=DefaultRole.all
-      @roles=Array.new
-      counter = 0
-      roles.each do |r|
-        if r[:owner]==@user.role
-          @user.owned_roles.create role: r[:role], user: @user
-        end
+        @user.categories.create name: section.department.name
       end
       Welcome.candidate_mail(recipient: @user).deliver
     else
@@ -92,28 +90,11 @@ class UsersController < ApplicationController
       @user=User.find params[:id]
     end
     def set_options
-      counter =0
-      @roles=Array.new
-      #Get roles from the model
-      roles=DefaultRole.all
-      roles.each do |r|
-        #If the current user doesn't own a role, don't show it.
-#        if r[:owner]==user_role 
-          @roles[counter]=r[:role]
-          counter += 1
-#        end
-      end
-      counter =0
-      @departments=Array.new
-      departments=Department.all
-      departments.each do |d|
-        #Allows superuser to select department
-        @departments[counter]=d.name
-        counter += 1
-      end
+      @roles=Role.all
+      @departments=Department.all
     end
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit :netid, :name, :role, :department
+      params.require(:user).permit :netid, :name, :role_id, :department_id
     end
 end

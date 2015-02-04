@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131075201) do
+ActiveRecord::Schema.define(version: 20150203202530) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -40,12 +40,6 @@ ActiveRecord::Schema.define(version: 20150131075201) do
   end
 
   add_index "converts", ["category_id"], name: "index_converts_on_category_id"
-
-  create_table "default_roles", force: :cascade do |t|
-    t.string   "role"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "department_sections", force: :cascade do |t|
     t.integer  "department_id"
@@ -89,6 +83,13 @@ ActiveRecord::Schema.define(version: 20150131075201) do
 
   add_index "fullcalendar_engine_events", ["event_series_id"], name: "index_fullcalendar_engine_events_on_event_series_id"
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string   "name"
     t.string   "level"
@@ -112,12 +113,13 @@ ActiveRecord::Schema.define(version: 20150131075201) do
   create_table "users", force: :cascade do |t|
     t.string   "netid"
     t.string   "name"
-    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
+    t.integer  "role_id"
   end
 
   add_index "users", ["department_id"], name: "index_users_on_department_id"
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end
