@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203202530) do
+ActiveRecord::Schema.define(version: 20150211023909) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -37,9 +37,11 @@ ActiveRecord::Schema.define(version: 20150203202530) do
     t.string   "download_content_type"
     t.integer  "download_file_size"
     t.datetime "download_updated_at"
+    t.integer  "upload_id"
   end
 
   add_index "converts", ["category_id"], name: "index_converts_on_category_id"
+  add_index "converts", ["upload_id"], name: "index_converts_on_upload_id"
 
   create_table "department_sections", force: :cascade do |t|
     t.integer  "department_id"

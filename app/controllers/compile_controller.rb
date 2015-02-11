@@ -1,19 +1,12 @@
 class CompileController < ApplicationController
   def index
-    add_crumb 'Dossier Preview', convert_path
+    add_crumb 'Dossier Preview', compile_path
   end
 
   def begin
     @user=current_user
     @counter = 0
-    @user.Categories.each do |category|
-      category.Converts.each do |convert|
-        #Purge all the old entries
-        convert.destroy
-      end
-      # For the progress bar
-      @counter += category.Uploads.length
-    end
+    @user.categories.each { |c| @counter += c.uploads.length }
   end
                   
     
@@ -27,7 +20,7 @@ class CompileController < ApplicationController
       if upload
         @upload=upload.upload_file_name
         @uploadindex += 1
-        category.converts.create download: convert(upload).download_link
+        category.converts.create download: convert(upload), upload: upload unless upload.convert
       else
         @uploadindex = 0
         @catindex += 1
@@ -39,14 +32,14 @@ class CompileController < ApplicationController
 
   def compile
     @user=current_user
-    @categories=@user.Categories.all
+    @categories=@user.categories.all
     #Generates the PDF File
     Prawn::Document.generate "public/#{@user.netid}.pdf", {page_size: 'A4', skip_page_creation: true} do |pdf|
       #This tracks the page number
       counter = 1
       #Run through each category
       @categories.each do |category|
-        @converts = category.Converts.all
+        @converts = category.converts.all
         #Loop through all the converted files in each category
         @converts.each do |pdf_file|
           #Checks if file exists to avoid exception if it doesn't for some reason
@@ -60,7 +53,7 @@ class CompileController < ApplicationController
               #Adds marker for each section
               unless sectionindex
                 pdf.outline.update do
-                  section category.name, destination: counter, closed: true #do
+                  section category.name, destination: counter, closed: true
                   sectionindex=1
                 end #END Category add
               end #END category add check
@@ -90,7 +83,7 @@ class CompileController < ApplicationController
       sleep 1
     end
     @step = conversion.status["step"]
-    conversion
+    conversion.download_link + "/" + conversion.status["output"]["filename"]
   end
 
 end

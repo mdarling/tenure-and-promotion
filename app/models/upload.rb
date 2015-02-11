@@ -1,5 +1,6 @@
 class Upload < ActiveRecord::Base
   belongs_to :category
+  has_one :convert, dependent: :destroy
   has_attached_file :upload
   #Don't check the attachment type, it could be anything!
   do_not_validate_attachment_file_type :upload
