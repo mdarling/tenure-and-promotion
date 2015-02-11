@@ -20,7 +20,8 @@ class CompileController < ApplicationController
       if upload
         @upload=upload.upload_file_name
         @uploadindex += 1
-        category.converts.create download: convert(upload), upload: upload unless upload.convert
+        upload.convert ? download=nil : download = convert(upload)
+        category.converts.create download: download, upload: upload if download 
       else
         @uploadindex = 0
         @catindex += 1
@@ -83,7 +84,11 @@ class CompileController < ApplicationController
       sleep 1
     end
     @step = conversion.status["step"]
-    conversion.download_link + "/" + conversion.status["output"]["filename"]
+    if @step=="finished"
+      conversion.download_link + "/" + conversion.status["output"]["filename"]
+    else
+      nil
+    end
   end
 
 end

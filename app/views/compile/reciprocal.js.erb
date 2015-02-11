@@ -5,6 +5,9 @@
     $('.bar').css({ "width": percentComplete + "%" });
     $('.bar').html(percentComplete.toFixed(2) + "%");
   <% end %>
+  <% if @step %>
+    <%= @step %>++;
+  <% end %>
   $('#compile').html("Category: <%= @category %><br>File: <%= @upload %><br>Status: <%= @step %>");
   $.ajax("/compile/<%= @catindex %>/<%= @uploadindex %>");
 <% else %>

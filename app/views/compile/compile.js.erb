@@ -1,2 +1,11 @@
-$('#begin').html('<h2>All done!</h2>' + error + ' errors<br>' + finished + ' complete<br><%= link_to "Download", "http://#{local_ip}/#{session[:cas_user]}.pdf", :class => "btn btn-info" %>');
+beginhtml=('<h2>All done!</h2>');
+if (error > 0) {
+  beginhtml += (error + ' errors<br>');
+}
+
+if (finished > 0) {
+  beginhtml += (finished + ' complete<br>');
+}
+beginhtml += '<%= link_to "Download", "http://#{local_ip}/#{session[:cas_user]}.pdf", class: "btn btn-info" %>';
+$('#begin').html(beginhtml);
 $('.progress').hide();
