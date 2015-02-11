@@ -7,8 +7,11 @@
 
 <p>
   <strong>Level:</strong>
-  <%= @role.level %>
+  <%= @role.level.humanize %>
 </p>
-
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<p>
+  <%= link_to 'Edit', edit_role_path(@role), class: 'btn btn-warning' %>
+</p>
+<p>
+  <%= link_to 'Done', roles_path, class: 'btn btn-success' %>
+</p>

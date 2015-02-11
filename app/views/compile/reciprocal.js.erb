@@ -6,9 +6,6 @@
     $('.bar').html(percentComplete.toFixed(2) + "%");
   <% end %>
   $('#compile').html("Category: <%= @category %><br>File: <%= @upload %><br>Status: <%= @step %>");
-  <% if @step %>
-    <%= @step %>++;
-  <% end %>
   $.ajax("/compile/<%= @catindex %>/<%= @uploadindex %>");
 <% else %>
   $('#begin').html('<h2>Assembling and indexing...</h2><%= image_tag "compile.gif" %>');

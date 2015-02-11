@@ -18,26 +18,16 @@ class CompileController < ApplicationController
                   
     
   def reciprocal
-    user=current_user
     @catindex=params[:category].to_i
     @uploadindex=params[:upload].to_i
-    category=user.categories[@catindex]
+    category=current_user.categories[@catindex]
     if category
       @category=category.name
       upload=category.uploads[@uploadindex]
       if upload
         @upload=upload.upload_file_name
-        conversion = Cloudconvert::Conversion.new
-        conversion.convert "ps", "pdf", "http://#{local_ip}" + upload.upload.url
-        @step = conversion.status["step"]
-        until (@step =~ /error|finished/)
-          @step = conversion.status["step"]
-          puts @step
-          sleep 1
-        end
         @uploadindex += 1
-        puts conversion.download_link
-        category.converts.create download: conversion.download_link
+        category.converts.create download: convert(upload).download_link
       else
         @uploadindex = 0
         @catindex += 1
@@ -51,7 +41,7 @@ class CompileController < ApplicationController
     @user=current_user
     @categories=@user.Categories.all
     #Generates the PDF File
-    Prawn::Document.generate "public/#{@user.netid}.pdf", {:page_size => 'A4', :skip_page_creation => true} do |pdf|
+    Prawn::Document.generate "public/#{@user.netid}.pdf", {page_size: 'A4', skip_page_creation: true} do |pdf|
       #This tracks the page number
       counter = 1
       #Run through each category
@@ -70,24 +60,37 @@ class CompileController < ApplicationController
               #Adds marker for each section
               unless sectionindex
                 pdf.outline.update do
-                  section "#{category.name}", destination: counter, closed: true #do
+                  section category.name, destination: counter, closed: true #do
                   sectionindex=1
                 end #END Category add
               end #END category add check
               unless outline #Checks if it's the first page in each document to add a section
-                pdf.outline.add_subsection_to "#{category.name}" do
+                pdf.outline.add_subsection_to category.name do
                   #Creates a section for each new document
-                  pdf.outline.page destination: counter, title: "#{pdf_file.download_file_name.split(".pdf").shift}" #do
+                  pdf.outline.page destination: counter, title: pdf_file.download_file_name.chomp(".pdf")
                   outline = true
-              end #END First page check/section add
-              #Creates a marker to each page
-              #page :destination => counter, :title => "Page #{i}"
-            end #END Outline Update per page
-            counter +=1
+                end #END First page check/section add
+                #Creates a marker to each page
+                #page :destination => counter, :title => "Page #{i}"
+              end #END Outline Update per page
+              counter +=1
             end #END Make each page
           end #END if File exists
         end #END each converted document
       end #END each category
     end #END PDF
   end
+
+  private
+
+  def convert upload
+    conversion = Cloudconvert::Conversion.new
+    conversion.convert "ps", "pdf", "http://#{local_ip}" + upload.upload.url
+    until conversion.status["step"] =~ /error|finished/
+      sleep 1
+    end
+    @step = conversion.status["step"]
+    conversion
+  end
+
 end

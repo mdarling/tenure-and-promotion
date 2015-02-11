@@ -68,3 +68,6 @@ gem 'pry-rails'
 
 # Because Rails insists on generating slim views
 gem 'slim'
+
+# For file upload icons
+gem 'rails-file-icons'

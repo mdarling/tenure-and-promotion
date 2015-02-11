@@ -1,6 +1,4 @@
   <tr id = "department_section_<%= department_section.id %>">
   <td><%= department_section.section.name %></td>
-  <td><%= link_to 'Show', department_section %></td>
-  <td><%= link_to 'Edit', edit_department_section_path(department_section) %></td>
-  <td><%= link_to 'Destroy', department_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= link_to raw('<em class="fa fa-trash-o"></em> Remove'), department_section, method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge alert-danger' %></td>
   </tr>

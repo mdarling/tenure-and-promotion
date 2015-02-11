@@ -2,7 +2,7 @@
 <div class="list-group">
   <% @categories.each_with_index do |category,index| %>
     <%  unless current_user.role =~ /andida/ && category.name =~ /College|Department|Dean|External/ %>
-      <%= link_to raw("<h4>#{category.name}</h4>"), category, class:"list-group-item list-group-item-warning text-center" %>
+      <%= link_to raw("<h4>#{category.name}</h4>"), category, class:"list-group-item list-group-item-danger active text-center" %>
       &nbsp; 
     <% end %>
   <% end %>

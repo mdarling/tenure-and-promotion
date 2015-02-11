@@ -130,8 +130,8 @@ ActiveRecord::Base.transaction do
   ].each { |s| Section.create name: s[0], level: s[1], pdf: s[2] }
   
   # Dossier Section to Department Connections
-  Department.all.product Section.all do |ds|
-    DepartmentSection.create department: ds.first, section: ds.last
+  Department.all.product Section.all do |department,section|
+    DepartmentSection.create department: department, section: section
   end
   
   [ # Initial users

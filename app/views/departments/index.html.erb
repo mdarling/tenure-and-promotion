@@ -16,9 +16,9 @@
       <tr>
         <td><%= department.name %></td>
         <td><%= department.college.name %></td>
-        <td><%= link_to 'Show', department %></td>
-        <td><%= link_to 'Edit', edit_department_path(department) %></td>
-        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Dossier Sections', department_path(department), class: 'badge' %></td>
+        <td><%= link_to 'Edit', edit_department_path(department), class: 'badge alert-warning' %></td>
+        <td><%= link_to raw('<em class="fa fa-trash-o"></em> Delete'), department, method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge alert-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Department', new_department_path %>
+<%= link_to 'New Department', new_department_path, class: 'btn btn-primary' %>

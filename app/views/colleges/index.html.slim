@@ -12,10 +12,9 @@ table class=["table table-striped"]
     - @colleges.each do |college|
       tr
         td = college.name
-        td = link_to 'Show', college
-        td = link_to 'Edit', edit_college_path(college)
-        td = link_to 'Destroy', college, data: {:confirm => 'Are you sure?'}, :method => :delete
-
+        td = link_to 'Edit', edit_college_path(college), class: 'badge alert-warning'
+        td = link_to raw('<em class="fa fa-trash-o"></em> Destroy'), college, data: {:confirm => 'Are you sure?'},
+        :method => :delete, class: 'badge alert-danger'
 br
 
 = link_to 'New College', new_college_path, class: 'btn btn-primary'

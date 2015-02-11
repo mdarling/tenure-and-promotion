@@ -12,7 +12,8 @@ class Upload < ActiveRecord::Base
       "size" => read_attribute(:upload_file_size),
       "url" => upload.url(:original),
       "delete_url" => category_upload_path(category_id,self),
-      "delete_type" => "DELETE"
+      "delete_type" => "DELETE",
+      "thumbnail_url" => "/assets/" + Icon.for_filename(upload_file_name)
     }
   end
 end

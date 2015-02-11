@@ -21,9 +21,12 @@ class DepartmentsController < ApplicationController
 
   # POST /departments
   def create
-    @department = Department.new(department_params)
+    @department = Department.new department_params
 
     if @department.save
+      Section.all.each do |section|
+        DepartmentSection.create department: @department, section: section
+      end
       redirect_to @department, notice: 'Department was successfully created.'
     else
       render :new
@@ -32,7 +35,7 @@ class DepartmentsController < ApplicationController
 
   # PATCH/PUT /departments/1
   def update
-    if @department.update(department_params)
+    if @department.update department_params
       redirect_to @department, notice: 'Department was successfully updated.'
     else
       render :edit
@@ -48,11 +51,11 @@ class DepartmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_department
-      @department = Department.find(params[:id])
+      @department = Department.find params[:id]
     end
 
     # Only allow a trusted parameter "white list" through.
     def department_params
-      params.require(:department).permit(:name, :college_id)
+      params.require(:department).permit :name, :college_id
     end
 end
