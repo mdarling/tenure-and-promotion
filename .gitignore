@@ -16,5 +16,8 @@
 /log/*.log
 /tmp
 
-#Ignore CloudConvert key
+# Ignore CloudConvert key
 /config/initializers/cloudconvert.rb
+
+# Ignore PDF Files in public
+/public/*.pdf
