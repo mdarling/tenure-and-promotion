@@ -26,7 +26,7 @@ TenureAndPromotion::Application.routes.draw do
     resources :uploads
   end
   #Converts belong straight to users, so no nesting.
-  resources :converts
+  # resources :converts
   get '/docs', to: 'doc#index'
   #Routes for AJAX compilation
   get '/compile/:category/:upload', to: 'compile#reciprocal'
