@@ -8,13 +8,15 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
+ * require_self
  *= require jquery.fileupload-ui
  *= require bootstrap_and_overrides
+ *= require bootstrap-material-design
  *= require select2
  *= require select2-bootstrap
  *= require_tree .
-  *= require fullcalendar_engine/application
+ *= require fullcalendar_engine/application
+ *= require_self
 */
 /** The Magic * *= require fullcalendar_engine/application
 */
@@ -148,4 +150,7 @@
 }
 .btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
   border-left: 10px solid #269abc;
+}
+.navbar-unm {
+  background-color: #C10037;
 }

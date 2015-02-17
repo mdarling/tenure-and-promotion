@@ -25,6 +25,7 @@ gem 'paperclip'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 gem 'select2-rails'
+gem 'bootstrap-material-design'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby'

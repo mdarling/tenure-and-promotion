@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
+  add_crumb 'Default Dossier Sections', '/sections'
 
   # GET /sections
   def index

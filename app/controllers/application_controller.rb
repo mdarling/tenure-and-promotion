@@ -2,19 +2,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   #Require CAS to log in.
   before_filter :cas_filter
-  before_action :mycrumbs
+  before_action :mycrumbs, :agreement
   #These methods can be used in views too!
   helper_method :current_user, :user_role, :user_admin, :colors
 
   #Default Crumbs
   def mycrumbs
-    user_admin ? crumbhome = users_path : crumbhome = categories_path
-    add_crumb '<i class="fa fa-home"></i>Home'.html_safe, crumbhome
+    add_crumb '<i class="fa fa-home"></i>Home'.html_safe, root_path 
   end
 
   #Put RubyCAS filter in a class, in case it needs to be escaped
   def cas_filter
     RubyCAS::Filter.filter self
+  end
+
+  #Redirect to license page if you haven't already been there
+  def agreement
+    redirect_to license_path unless session[:agreement]
+    session[:agreement]=true
   end
 
   #Take the Net ID and find the ActiveRecord object that is made for it

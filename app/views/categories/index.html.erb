@@ -1,11 +1,15 @@
 <h2>Dossier Sections</h2>
-<div class="list-group">
+<table class="table table-striped table-hover warning">
+  <tbody>
   <% @categories.each_with_index do |category,index| %>
     <%  unless current_user.role =~ /andida/ && category.name =~ /College|Department|Dean|External/ %>
-      <%= link_to raw("<h4>#{category.name}</h4>"), category, class:"list-group-item list-group-item-danger active text-center" %>
-      &nbsp; 
+      <tr>
+      <td><%= link_to category.name, category, class: 'display: block;' %></td>
+      <td><span class="badge"><%= category.uploads.length %></span></td>
+      </tr>
     <% end %>
   <% end %>
-</div>
+  </tbody>
+</table>
 <%= link_to 'Preview Your Dossier', '/compile', class: 'btn btn-primary' %>
 <br><br>

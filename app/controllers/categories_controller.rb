@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  add_crumb 'Dossier', '/sections'
   # GET /categories
   def index
     @user=current_user
     #Categories each belong to a user
-    @categories = @user.categories.all
+    @categories = @user.categories.select { |category| @user.level >= category.level } 
   end
 
   # GET /categories/1
@@ -63,4 +64,5 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit :name, :user_id
     end
+    
 end

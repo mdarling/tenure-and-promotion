@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   has_many :categories, dependent: :destroy
   # A net ID may only be registered once
   validates :netid, presence: true, uniqueness: true
+
+  def level
+    role[:level]
+  end
 end

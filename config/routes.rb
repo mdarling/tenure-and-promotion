@@ -1,5 +1,7 @@
 TenureAndPromotion::Application.routes.draw do
 
+  get 'home/index'
+
   resources :roles
 
   resources :departments
@@ -15,7 +17,9 @@ TenureAndPromotion::Application.routes.draw do
 
   mount FullcalendarEngine::Engine => "/calendar"
   #This provides all the default roles. Editable by Tech User.  #Point the root to the warning page for now
-  root to: 'testmode#index'
+  root 'home#index'
+  #License Agreement
+  get '/license', to: 'testmode#index'
   #Logout
   get '/logout', to: 'testmode#logout'
   #Hardcode contact info into the application

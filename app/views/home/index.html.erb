@@ -1,0 +1,10 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Links</div>
+  <div class="panel-body">
+    <ul class="nav nav-pills nav-stacked">
+      <% @links.each do |link| %>
+        <li><%= link_to link.first,link.last, class: 'list-group-item-heading' %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

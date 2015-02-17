@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_options, only: [:new, :edit, :index, :create]
+  add_crumb "Faculty", '/users' 
   # GET /users
   def index
     # If the person is not in the system, send them back to the license.
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   def edit
     add_crumb @user.name, user_path
     #If a candidate tries to visit this, send him or her back to categories
-    redirect_to root_url if user.role.candidate?
+    redirect_to root_url if current_user.role.candidate?
   end
 
   # POST /users
@@ -67,13 +68,13 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     add_crumb @user.name, user_path
-    if user_admin
+    #if user_admin
       if @user.update user_params
         redirect_to @user, notice: 'User was successfully updated.'
       else
         render :edit
       end
-    end
+    #end
   end
 
   # DELETE /users/1
