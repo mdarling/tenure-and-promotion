@@ -4,7 +4,8 @@ class HomeController < ApplicationController
       { provost: [["Roles",roles_path],
                  ["Colleges",colleges_path],
                  ["Departments",departments_path],
-                 ["Calendar",cal_path]],
+                 ["Calendar",cal_path],
+                 ["Recusals",recusals_path]],
         department: [["Faculty",users_path]],
         candidate: [["Your Dossier",categories_path]] }
     @links=[]

@@ -2,13 +2,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @recusal.user %>
+  <%= @recusal.user.name %>
 </p>
 
 <p>
   <strong>Candidate:</strong>
-  <%= @recusal.candidate %>
+  <%= @recusal.candidate.name %>
 </p>
-
-<%= link_to 'Edit', edit_recusal_path(@recusal) %> |
-<%= link_to 'Back', recusals_path %>
+<br>
+<%= link_to 'Done', recusals_path, class: 'btn btn-success' %>

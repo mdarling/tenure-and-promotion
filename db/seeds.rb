@@ -133,6 +133,13 @@ ActiveRecord::Base.transaction do
   Department.all.product Section.all do |department,section|
     DepartmentSection.create department: department, section: section
   end
+
+  # Exceptions
+  Section.create name: "Statement of Librarianship", level: "Candidate", pdf: true
+  library = Department.find_by_name "College of University Libraries & Learning Sciences"
+  library.department_sections.find_by_section_id(Section.find_by_name("Teaching Record").id).destroy
+  library.department_sections.find_by_section_id(Section.find_by_name("Teaching Statement").id).destroy
+  DepartmentSection.create department: library, section: Section.find_by_name("Statement of Librarianship")
   
   [ # Initial users
     # name,netid,role,department

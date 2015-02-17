@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@user) do |f| %>
+<%= bootstrap_form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize @user.errors.count, "error" %> prohibited this user from being saved:</h2>
@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-    <%= f.text_field :netid %> <%#, :readonly => true %>
+    <%= f.text_field :netid %>
     <%= f.text_field :name %>
     <%= f.select :role_id, options_from_collection_for_select(Role.all, :id, :name) %>
     <%= f.select :department_id, option_groups_from_collection_for_select(College.all, :departments, :name, :id, :name) %>
