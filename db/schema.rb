@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211023909) do
+ActiveRecord::Schema.define(version: 20150217212532) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 20150211023909) do
   end
 
   add_index "fullcalendar_engine_events", ["event_series_id"], name: "index_fullcalendar_engine_events_on_event_series_id"
+
+  create_table "recusals", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "candidate_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "recusals", ["candidate_id"], name: "index_recusals_on_candidate_id"
+  add_index "recusals", ["user_id"], name: "index_recusals_on_user_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

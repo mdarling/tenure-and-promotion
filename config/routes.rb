@@ -1,5 +1,7 @@
 TenureAndPromotion::Application.routes.draw do
 
+  resources :recusals
+
   get 'home/index'
 
   resources :roles
