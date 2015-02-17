@@ -143,12 +143,20 @@ ActiveRecord::Base.transaction do
   
   [ # Initial users
     # name,netid,role,department
-    ["Ricardo Piro-Rael","fdisk122","Tech User","Electrical & Computer Engineering"]
+    ["Ricardo Piro-Rael","fdisk122","Tech User","Electrical & Computer Engineering"],
+    ["Greg Heileman","heileman","Tech User","Electrical & Computer Engineering"],
+    ["Jennifer Rose Love","jenlov22","Provost Admin","Civil Engineering"],
+    ["Karen Gardner","krgard11","College Admin","Economics"],
+    ["Theresa Ramos","tramos","Provost's Committe Faculty","Neurology"],
+    ["Kathleen Garcia","garciak","College Admin","College of University Libraries & Learning Sciences"],
+    ["Carol Parker","cparker","Senior Vice Provost","School of Law"]
   ].each { |u| User.create name: u[0], netid: u[1], role: Role.find_by_name(u[2]), department: Department.find_by_name(u[3]) }
   
   # Initial users' sections
-  User.all.product Section.all do |ud|
-    ud.first.categories.create name: ud.last.name
+  User.all.each do |user|
+    user.department.department_sections.each do |section|
+      user.categories.create name: section.section.name
+    end
   end
 
 end
