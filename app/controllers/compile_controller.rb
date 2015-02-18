@@ -20,7 +20,7 @@ class CompileController < ApplicationController
       if upload
         @upload=upload.upload_file_name
         @uploadindex += 1
-        upload.convert ? download=false : download = convert(upload)
+        upload.convert ? download = false : download = convert(upload)
         category.converts.create download: download, upload: upload if download 
       else
         @uploadindex = 0
@@ -32,11 +32,14 @@ class CompileController < ApplicationController
   end
 
   def compile
-    Prawn::Document.generate "public/#{current_user.netid}.pdf", {page_size: 'A4', skip_page_creation: true} do |pdf|
+    categories = current_user.categories.select { |category| current_user.level >= category.level }
+    dossier=Tempfile.new 'pdf'
+    Prawn::Document.generate dossier, { page_size: 'A4', skip_page_creation: true } do |pdf|
       #This tracks the page number
       @counter = 1
-      current_user.categories.each { |category| add_to_pdf pdf,category if category.uploads.any? }
+      categories.each { |category| add_to_pdf pdf,category if category.uploads.any? }
     end
+    current_user.update dossier: to_pdf(File.read dossier.path)
   end
 
   private
@@ -76,6 +79,14 @@ class CompileController < ApplicationController
         @counter +=1
       end #END Make each page
     end #END if File exists
+  end
+
+  def to_pdf dossier
+    file = StringIO.new dossier #mimic a real upload file
+    file.class.class_eval { attr_accessor :original_filename, :content_type } #add attr's that paperclip needs
+    file.original_filename = "dossier.pdf"
+    file.content_type = "application/pdf"
+    file
   end
 
 end
