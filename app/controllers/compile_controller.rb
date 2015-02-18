@@ -33,20 +33,21 @@ class CompileController < ApplicationController
 
   def compile
     categories = current_user.categories.select { |category| current_user.level >= category.level }
-    dossier=Tempfile.new 'pdf'
-    Prawn::Document.generate dossier, { page_size: 'A4', skip_page_creation: true } do |pdf|
+    #dossier=Tempfile.new 'pdf'
+    dossier = Prawn::Document.new page_size: 'A4', skip_page_creation: true do |pdf|
       #This tracks the page number
       @counter = 1
       categories.each { |category| add_to_pdf pdf,category if category.uploads.any? }
     end
-    current_user.update dossier: to_pdf(File.read dossier.path)
+    current_user.update dossier: to_pdf(dossier.render)
   end
 
   private
 
   def convert upload
     conversion = Cloudconvert::Conversion.new
-    conversion.convert "ps", "pdf", "http://#{local_ip}" + upload.upload.url
+    intype = upload.upload.url.split(".").last
+    conversion.convert intype, "pdf", "http://#{local_ip}" + upload.upload.url
     until conversion.status["step"] =~ /error|finished/
       sleep 1
     end
