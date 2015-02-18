@@ -119,14 +119,13 @@ ActiveRecord::Base.transaction do
     ["Teaching Record","Candidate",true],
     ["Summary of Student Evaluations","Candidate",true],
     ["Course Materials","Candidate",true],
+    ["Supplemental Materials","Candidate",false],
+    ["Annual Reviews","Department",false],
     ["External Reviews","Department",true],
     ["Department Vote and Comments","Department",true],
     ["Letter from Department Chair","Department",true],
     ["College Committee Vote and Comments","College",true],
-    ["Letter from Department Chair","Department",true],
-    ["College Committee Vote and Comments","College",true],
-    ["Letter from Dean","College",true],
-    ["Supplemental Materials","Candidate",false]
+    ["Letter from Dean","College",true]
   ].each { |s| Section.create name: s[0], level: s[1], pdf: s[2] }
   
   # Dossier Section to Department Connections
@@ -137,19 +136,17 @@ ActiveRecord::Base.transaction do
   # Exceptions
   Section.create name: "Statement of Librarianship", level: "Candidate", pdf: true
   library = Department.find_by_name "College of University Libraries & Learning Sciences"
-  library.department_sections.find_by_section_id(Section.find_by_name("Teaching Record").id).destroy
-  library.department_sections.find_by_section_id(Section.find_by_name("Teaching Statement").id).destroy
   DepartmentSection.create department: library, section: Section.find_by_name("Statement of Librarianship")
   
   [ # Initial users
     # name,netid,role,department
     ["Ricardo Piro-Rael","fdisk122","Tech User","Electrical & Computer Engineering"],
-    ["Greg Heileman","heileman","Tech User","Electrical & Computer Engineering"],
-    ["Jennifer Rose Love","jenlov22","Provost Admin","Civil Engineering"],
-    ["Karen Gardner","krgard11","College Admin","Economics"],
-    ["Theresa Ramos","tramos","Provost's Committe Faculty","Neurology"],
-    ["Kathleen Garcia","garciak","College Admin","College of University Libraries & Learning Sciences"],
-    ["Carol Parker","cparker","Senior Vice Provost","School of Law"]
+    ["Greg Heileman","heileman","Tech User","Electrical & Computer Engineering"]
+#    ["Jennifer Rose Love","jenlov22","Provost's Admin","Civil Engineering"],
+#    ["Karen Gardner","krgard11","College Admin","Economics"],
+#    ["Theresa Ramos","tramos","Provost's Committee Faculty","Neurology"],
+#    ["Kathleen Garcia","garciak","College Admin","College of University Libraries & Learning Sciences"],
+#    ["Carol Parker","cparker","Senior Vice Provost","School of Law"]
   ].each { |u| User.create name: u[0], netid: u[1], role: Role.find_by_name(u[2]), department: Department.find_by_name(u[3]) }
   
   # Initial users' sections

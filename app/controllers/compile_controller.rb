@@ -32,20 +32,11 @@ class CompileController < ApplicationController
   end
 
   def compile
-    user=current_user
-    @categories=user.categories.all
-    #Generates the PDF File
-    Prawn::Document.generate "public/#{user.netid}.pdf", {page_size: 'A4', skip_page_creation: true} do |pdf|
+    Prawn::Document.generate "public/#{current_user.netid}.pdf", {page_size: 'A4', skip_page_creation: true} do |pdf|
       #This tracks the page number
       @counter = 1
-      #Run through each category
-      @categories.each do |category|
-        #Loop through all the converted files in each category
-        category.converts.each do |pdf_file|
-          concat pdf,pdf_file,category.name
-        end #END each converted document
-      end #END each category
-    end #END PDF
+      current_user.categories.each { |category| add_to_pdf pdf,category if category.uploads.any? }
+    end
   end
 
   private
@@ -64,18 +55,22 @@ class CompileController < ApplicationController
     end
   end
 
-  def concat pdf,pdf_file,category
-    if File.exists? "./public#{pdf_file.download}"
+  def add_to_pdf pdf,category
+    pdf.outline.update { section category.name, destination: @counter}
+    category.converts.each { |file| concat pdf,file,category.name }
+  end
+
+  def concat pdf,file,category
+    if File.exists? "./public#{file.download}"
       #Uses Prawn templates to make the new page
-      pdf_file_pages = Prawn::Document.new(template: "./public#{pdf_file.download}").page_count
-      pdf.outline.update { section category, destination: @counter, closed: true }
-      (1..pdf_file_pages).each do |page|
-        pdf.start_new_page template: "./public#{pdf_file.download}", template_page: page
+      file_pages = Prawn::Document.new(template: "./public#{file.download}").page_count
+      (1..file_pages).each do |page|
+        pdf.start_new_page template: "./public#{file.download}", template_page: page
         #Adds marker for each section
         if page==1 #Checks if it's the first page in each document to add a section
           pdf.outline.add_subsection_to category do
             #Creates a section for each new document
-            pdf.outline.page destination: @counter, title: pdf_file.download_file_name.chomp(".pdf")
+            pdf.outline.page destination: @counter, title: file.download_file_name.chomp(".pdf")
           end #END First page check/section add
         end #END Outline Update per page
         @counter +=1
