@@ -1,4 +1,4 @@
-<%= link_to 'Create New Candidate', new_user_path, class: "btn btn-lg btn-primary" %>
+<%= link_to 'Add a Faculty Member', new_user_path, class: "btn btn-lg btn-primary" %>
 <% @users.group_by(&:role).each do |role, users| %>
 
   <h1><%= role.name %></h1>
@@ -21,8 +21,8 @@
         <td><%= user.department.name %></td>
         <td><%= link_to 'Edit', edit_user_path(user), class: "badge" %></td>
         <td><%= link_to raw('<em class="fa fa-trash-o"></em> Delete'), user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge" %></td>
-        <% if File.exists?("public/#{user.netid}.pdf") %>
-          <td><%= link_to 'Dossier', "http://129.24.24.150/#{user.netid}.pdf", class: "badge" %></td>
+        <% if user.dossier? %>
+          <td><%= link_to 'Dossier', user.dossier.url, class: "badge" %></td>
         <% else %>
           <td><span class="badge alert-warning" data-toggle="tooltip" data-placement="top" title="Not Available">Dossier</span></td>
         <% end %>

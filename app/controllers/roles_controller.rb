@@ -1,5 +1,6 @@
 class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
+  add_crumb 'Roles', '/roles'
 
   # GET /roles
   def index

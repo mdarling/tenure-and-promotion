@@ -61,12 +61,11 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <%= yield %>
-        </div>
-        <div>
-          <ul class="breadcrumb">
+          <ol class="breadcrumb">
             <li><%= render_crumbs separator: "</li><li>" %></li>
-          </ul>
+          </ol>
+
+          <%= yield %>
         </div>
       </div><!--/row-->
       <footer>
