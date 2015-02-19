@@ -1,24 +1,25 @@
 class CompileController < ApplicationController
+  before_action :set_user
   def index
     add_crumb 'Dossier Preview', compile_path
   end
 
   def begin
-    @user=current_user
     @counter = 0
-    @user.categories.each { |c| @counter += c.uploads.length }
+    appropriate(@user.categories).each { |c| @counter += c.uploads.length }
   end
                   
     
   def reciprocal
-    @catindex=params[:category].to_i
-    @uploadindex=params[:upload].to_i
-    category=current_user.categories[@catindex]
+    @catindex = params[:category].to_i
+    @uploadindex = params[:upload].to_i
+    categories = appropriate @user.categories
+    category = categories[@catindex]
     if category
-      @category=category.name
-      upload=category.uploads[@uploadindex]
+      @category = category.name
+      upload = category.uploads[@uploadindex]
       if upload
-        @upload=upload.upload_file_name
+        @upload = upload.upload_file_name
         @uploadindex += 1
         upload.convert ? download = false : download = convert(upload)
         category.converts.create download: download, upload: upload if download 
@@ -32,17 +33,24 @@ class CompileController < ApplicationController
   end
 
   def compile
-    categories = current_user.categories.select { |category| current_user.level >= category.level }
     #dossier=Tempfile.new 'pdf'
     dossier = Prawn::Document.new page_size: 'A4', skip_page_creation: true do |pdf|
       #This tracks the page number
       @counter = 1
-      categories.each { |category| add_to_pdf pdf,category if category.uploads.any? }
+      appropriate(@user.categories).each { |category| add_to_pdf pdf,category if category.uploads.any? }
     end
-    current_user.update dossier: to_pdf(dossier.render)
+    @user.update dossier: to_pdf(dossier.render)
   end
 
   private
+
+  def set_user
+    @user=context_user
+  end
+
+  def appropriate categories
+    categories.select { |category| current_user.level >= category.level && Section.find_by_name(category.name).pdf }
+  end
 
   def convert upload
     conversion = Cloudconvert::Conversion.new

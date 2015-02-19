@@ -1,4 +1,4 @@
-<h2>Dossier Sections</h2>
+<h2>Dossier Sections for <%= @user.name %></h2>
 <table class="table table-striped table-hover warning">
   <tbody>
   <% @categories.each do |category| %>
@@ -11,5 +11,5 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'Preview Your Dossier', '/compile', class: 'btn btn-primary' %>
+<%= link_to 'Preview Dossier', '/compile', class: 'btn btn-primary' %>
 <br><br>

@@ -1,7 +1,7 @@
 <div id="compile"></div>
 
 <div id="begin" class="text-center">
-  <h1>Click Begin to start preparing your Dossier! May take a few minutes</h1>
+  <h1>Click Begin to start preparing dossier. May take a few minutes</h1>
   <%= form_tag("/compile/begin", method: "get", remote: true) do %>
     <%= submit_tag "Begin", class: "btn btn-large btn-warning" %>
   <% end %>

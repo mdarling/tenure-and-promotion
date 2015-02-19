@@ -3,9 +3,9 @@ class CategoriesController < ApplicationController
   add_crumb 'Dossier', '/sections'
   # GET /categories
   def index
-    @user=current_user
+    @user=context_user
     #Categories each belong to a user
-    @categories = @user.categories.select { |category| @user.level >= category.level } 
+    @categories = @user.categories.select { |category| @user.level == category.level } 
   end
 
   # GET /categories/1
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     add_crumb 'New Section', new_category_path
-    @user=current_user
+    @user=context_user
     @category = @user.categories.new
   end
 
@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   def create
-    @user=current_user
+    @user=context_user
     @category = @user.categories.new category_params
 
     if @category.save
@@ -56,13 +56,17 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @user=current_user
+      set_user
       @category = @user.categories.find params[:id]
     end
 
     # Only allow a trusted parameter "white list" through.
     def category_params
       params.require(:category).permit :name, :user_id
+    end
+
+    def set_user
+      @user = context_user
     end
     
 end

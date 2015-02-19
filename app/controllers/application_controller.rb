@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :cas_filter
   before_action :mycrumbs, :agreement
   #These methods can be used in views too!
-  helper_method :current_user, :user_role, :user_admin, :colors
+  helper_method :current_user, :user_role, :user_admin, :colors, :context_user
 
   #Default Crumbs
   def mycrumbs
@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
   #Take the Net ID and find the ActiveRecord object that is made for it
   def current_user
     User.find_by_netid session[:cas_user] if User.find_by_netid session[:cas_user]
+  end
+
+  def context_user
+    User.find_by_netid(session[:context_user]) || current_user
   end
 
   #An easy way to get the user's role

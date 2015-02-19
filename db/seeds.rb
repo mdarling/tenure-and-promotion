@@ -120,7 +120,7 @@ ActiveRecord::Base.transaction do
     ["Summary of Student Evaluations","Candidate",true],
     ["Course Materials","Candidate",true],
     ["Supplemental Materials","Candidate",false],
-    ["Annual Reviews","Department",false],
+    ["Annual Reviews","Department", true],
     ["External Reviews","Department",true],
     ["Department Vote and Comments","Department",true],
     ["Letter from Department Chair","Department",true],
