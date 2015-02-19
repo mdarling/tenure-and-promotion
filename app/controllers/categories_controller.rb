@@ -1,9 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
+  before_filter :check_context
   add_crumb 'Dossier', '/sections'
   # GET /categories
   def index
-    @user=context_user
     #Categories each belong to a user
     @categories = @user.categories.select { |category| @user.level == category.level } 
   end
@@ -16,7 +17,6 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     add_crumb 'New Section', new_category_path
-    @user=context_user
     @category = @user.categories.new
   end
 
@@ -27,7 +27,6 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   def create
-    @user=context_user
     @category = @user.categories.new category_params
 
     if @category.save
@@ -53,6 +52,12 @@ class CategoriesController < ApplicationController
     redirect_to categories_url, notice: 'Category was successfully destroyed.'
   end
 
+  def phase_complete
+    @user.update phase: @user[:phase] + 1
+    session[:context_user] = nil
+    redirect_to root_path, notice: 'Thank you! The next phase of review may now begin.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
@@ -68,5 +73,5 @@ class CategoriesController < ApplicationController
     def set_user
       @user = context_user
     end
-    
+ 
 end

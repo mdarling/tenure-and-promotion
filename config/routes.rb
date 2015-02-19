@@ -4,6 +4,10 @@ TenureAndPromotion::Application.routes.draw do
 
   get 'home/index'
 
+  get 'context/:user_id', to: 'users#contextualize'
+
+  get 'submit', to: 'categories#phase_complete'
+
   resources :roles
 
   resources :departments

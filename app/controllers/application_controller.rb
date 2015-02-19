@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :cas_filter
   before_action :mycrumbs, :agreement
   #These methods can be used in views too!
-  helper_method :current_user, :user_role, :user_admin, :colors, :context_user
+  helper_method :current_user, :user_role, :user_admin, :context_user
 
   #Default Crumbs
   def mycrumbs
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def context_user
-    User.find_by_netid(session[:context_user]) || current_user
+    session[:context_user] ? User.find(session[:context_user]) : current_user
   end
 
   #An easy way to get the user's role
@@ -41,12 +41,11 @@ class ApplicationController < ActionController::Base
     user_role.in?  ["Department Admin","College Admin","Tech User"] if user_role
   end
 
-  def colors index
-    # Use mod 4 for ones that use info:
-    # list-group#{colors i%4}
-    # Use mod 4 + 1 for ones that use primary:
-    # btn-#{colors i%4+1}
-    ["info","success","warning","danger","primary"][index]
+  def check_context
+    unless context_user.phase == current_user.role.level
+      redirect_to root_path
+      flash[:error] = 'This dossier is currently in a different review phase.'
+    end
   end
 
 end

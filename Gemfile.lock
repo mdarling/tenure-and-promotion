@@ -47,7 +47,7 @@ GEM
       tzinfo (~> 1.1)
     afm (0.2.2)
     arel (6.0.0)
-    autoprefixer-rails (5.1.5)
+    autoprefixer-rails (5.1.6)
       execjs
       json
     bootstrap-material-design (0.1.4)

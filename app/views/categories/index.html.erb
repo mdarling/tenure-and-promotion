@@ -11,5 +11,6 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'Preview Dossier', '/compile', class: 'btn btn-primary' %>
+<%= link_to 'Preview Dossier', compile_path, class: 'btn btn-primary' %>
 <br><br>
+<%= link_to 'Submit Dossier', submit_path, class: 'btn btn-danger', data: { confirm: 'Are you sure? You will not be able to add anything else to your dossier' } %> 

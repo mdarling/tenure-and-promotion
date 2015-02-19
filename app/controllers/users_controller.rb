@@ -85,17 +85,34 @@ class UsersController < ApplicationController
     end
   end
 
+  def contextualize
+    user = User.find params[:user_id]
+    if current_user.role.department? && user.department == current_user.department or
+       current_user.role.college? && user.college == current_user.college or
+       current_user.role.provost? and
+       current_user.role.level == user.phase
+      session[:context_user] = user
+      redirect_to categories_path, notice: "Working in context of #{user.name}"
+    else
+      redirect_to users_path
+      flash[:error] = 'This user is not available'
+    end
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user=User.find params[:id]
-    end
-    def set_options
-      @roles=Role.all
-      @departments=Department.all
-    end
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit :netid, :name, :role_id, :department_id
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user=User.find params[:id]
+  end
+
+  def set_options
+    @roles=Role.all
+    @departments=Department.all
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit :netid, :name, :role_id, :department_id
+  end
+
 end
