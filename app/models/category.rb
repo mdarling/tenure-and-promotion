@@ -8,4 +8,9 @@ class Category < ActiveRecord::Base
   def level
     Role.levels[(Section.find_by_name name).level.downcase]
   end
+
+  def pdf?
+    Section.find_by_name(name).pdf
+  end
+
 end
