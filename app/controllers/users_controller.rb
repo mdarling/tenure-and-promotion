@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       sections=@user.department.department_sections
       sections.each do |section|
         #Create the categories for the candidate
-        @user.categories.create name: section.department.name
+        @user.categories.create name: section.name
       end
       Welcome.candidate_mail(recipient: @user).deliver
     else
