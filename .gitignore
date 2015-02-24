@@ -16,8 +16,11 @@
 /log/*.log
 /tmp
 
-# Ignore CloudConvert key
-/config/initializers/cloudconvert.rb
+# Ignore .env
+/.env 
 
 # Ignore PDF Files in public
 /public/*.pdf
+
+# Ignore swp
+*.swp

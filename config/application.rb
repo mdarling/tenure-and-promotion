@@ -8,7 +8,10 @@ Bundler.require(*Rails.groups)
 
 module TenureAndPromotion
   class Application < Rails::Application
-    config.rubycas.cas_base_url = 'https://login.unm.edu/cas'
+    # Redirect to Fake CAS if one isn't specified
+    config.rubycas.cas_base_url = ENV["CAS_BASE"] || "https://cas-unm.rhcloud.com/"
+    # If there is no ENV["CAS_SERVICE"], RubyCAS will guess the local URL
+    config.rubycas.service_url = ENV["CAS_SERVICE"] if ENV["CAS_SERVICE"]
     config.autoload_paths += %W(#{config.root}/lib)
     #config.rubycas.cas_base_url = 'https://cas-unm.rhcloud.com'
     # Settings in config/environments/* take precedence over those specified here.
@@ -26,10 +29,10 @@ module TenureAndPromotion
        :address => "smtp.mandrillapp.com",
        :port => "587",
        :enable_starttls_auto => true,
-       :user_name => "fdisk@fdisk.co",
-       :password => "X0ihFVMYdA_K4xgw32Q21Q",
-       :authentication => 'login',
-       :domain => 'unm.edu',
+       :user_name => ENV["MANDRILL_NAME"],
+       :password => ENV["MANDRILL_KEY"],
+       :authentication => "login",
+       :domain => ENV["MANDRILL_DOMAIN"]
      }
   end
 end
