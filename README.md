@@ -20,5 +20,6 @@ After creating the `.env` file:
 ``` bash
 $ RAILS_ENV=production rake db:schema:load
 $ RAILS_ENV=production rake db:seed
+$ RAILS_ENV=production rake assets:precompile
 $ foreman start
 ```
