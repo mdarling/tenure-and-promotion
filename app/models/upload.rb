@@ -14,7 +14,7 @@ class Upload < ActiveRecord::Base
       "url" => upload.url(:original),
       "delete_url" => category_upload_path(category_id,self),
       "delete_type" => "DELETE",
-      "thumbnail_url" => "/assets/" + Icon.for_filename(upload_file_name)
+      "thumbnail_url" => ActionController::Base.helpers.image_url(Icon.for_filename upload_file_name) 
     }
   end
 end
