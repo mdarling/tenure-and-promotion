@@ -72,3 +72,6 @@ gem 'slim'
 
 # For file upload icons
 gem 'rails-file-icons'
+
+# For larger cookies
+gem 'activerecord-session_store'
