@@ -1,5 +1,5 @@
 <%= link_to 'Add a Faculty Member', new_user_path, class: "btn btn-lg btn-primary" %>
-<% @users.group_by(&:role).each do |role, users| %>
+<% @users && @users.group_by(&:role).each do |role, users| %>
 
   <h1><%= role.name %></h1>
   <table class="table table-striped">

@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   def check_context
     unless context_user.phase == current_user.role.level
       redirect_to root_path
-      flash[:error] = 'This dossier is currently in a different review phase.'
+      flash[:error] = "This dossier is currently at the #{context_user.phase} review phase."
     end
   end
 

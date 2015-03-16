@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     elsif role.college?
       # List Users within college
       @users=User.all.select { |u| department.college==u.department.college }
-    elsif role.provost?
+    elsif role.provost?  || role.tech?
       # List all Users
       @users=User.all
     end

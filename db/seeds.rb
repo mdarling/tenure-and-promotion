@@ -27,7 +27,7 @@ ActiveRecord::Base.transaction do
     ["Provost's Committee Faculty",3],
     ["Provost's Admin",3],
     ["Senior Vice Provost",3],
-    ["Tech User",3]
+    ["Tech User",4]
   ].each  { |r| Role.create name: r.first, level: r.last }
   
   
