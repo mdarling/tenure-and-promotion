@@ -13,6 +13,8 @@ class HomeController < ApplicationController
       provost:    [["Recusals",recusals_path],
                    ["Add Reviewers", users_path],
                    ["Faculty Candidates", users_path]],
+      college:    [["Add Reviewers", users_path],
+                   ["Faculty Candidates", users_path]],
       department: [["Faculty Candidates",users_path]],
       candidate:  [["Your Dossier",categories_path]] }[role.to_sym]
   end
