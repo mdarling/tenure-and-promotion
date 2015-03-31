@@ -6,20 +6,21 @@ class UsersController < ApplicationController
   def index
     # If the person is not in the system, send them back to the license.
     redirect_to root_path unless current_user
-    department=current_user.department
-    role=current_user.role
+    department = current_user.department
+    role = current_user.role
+    users = User.all.select { |u| u.role[:level] <= role[:level] }
     if role.candidate?
       # Candidates go to categories
       redirect_to categories_path
     elsif role.department?
       # List Users within department
-      @users=User.all.select { |u| department==u.department }
+      @users = users.select { |u| department == u.department }
     elsif role.college?
       # List Users within college
-      @users=User.all.select { |u| department.college==u.department.college }
+      @users = users.select { |u| department.college == u.department.college }
     elsif role.provost?  || role.tech?
       # List all Users
-      @users=User.all
+      @users = User.all
     end
   end
 

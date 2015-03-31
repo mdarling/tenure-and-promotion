@@ -2,13 +2,15 @@
 <table class="table table-striped table-hover warning">
   <tbody>
   <% @categories.each do |category| %>
-    <%  unless current_user.role =~ /andida/ && category.name =~ /College|Department|Dean|External/ %>
-      <tr>
+    <tr>
       <td><%= link_to category.name, category, class: 'display: block;' %></td>
       <td><span class="badge"><%= category.uploads.length %></span></td>
-      </tr>
-    <% end %>
+    </tr>
   <% end %>
+    <tr>
+      <td><strong>Total:</strong></td>
+      <td><span class="badge"><%= @total %></span></td>
+    </tr>
   </tbody>
 </table>
 <%= link_to 'Preview Dossier', compile_path, class: 'btn btn-primary' %>

@@ -6,7 +6,8 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     #Categories each belong to a user
-    @categories = @user.categories.select { |category| @user.level == category.level } 
+    @categories = @user.categories.select { |category| current_user.role[:level] == category.level } 
+    @total = @categories.map{ |c| c.uploads.length}.reduce :+
   end
 
   # GET /categories/1
