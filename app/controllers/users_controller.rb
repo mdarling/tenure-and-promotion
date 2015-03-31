@@ -18,8 +18,11 @@ class UsersController < ApplicationController
     elsif role.college?
       # List Users within college
       @users = users.select { |u| department.college == u.department.college }
-    elsif role.provost?  || role.tech?
+    elsif role.provost?
       # List all Users
+      redirect_to colleges_path unless params[:college]
+      @users = User.select { |u| u.college.id == params[:college].to_i }
+    elsif role.tech?
       @users = User.all
     end
   end

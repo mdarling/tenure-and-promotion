@@ -14,4 +14,9 @@ class User < ActiveRecord::Base
   def level
     role[:level]
   end
+
+  def level= new_level
+    update role: Role.find_by_level(new_level)
+  end
+
 end

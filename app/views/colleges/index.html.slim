@@ -1,4 +1,4 @@
-h1 Listing colleges
+h1 Select College 
 
 table class=["table table-striped"]
   thead
@@ -11,9 +11,10 @@ table class=["table table-striped"]
   tbody
     - @colleges.each do |college|
       tr
-        td = college.name
-        td = link_to 'Edit', edit_college_path(college), class: 'badge alert-warning'
-        td = link_to raw('<em class="fa fa-trash-o"></em> Destroy'), college, data: {:confirm => 'Are you sure?'},
+        td = link_to college.name, users_path(college: college.id)
+        - if current_user.role.tech?
+          td = link_to 'Edit', edit_college_path(college), class: 'badge alert-warning'
+          td = link_to raw('<em class="fa fa-trash-o"></em> Destroy'), college, data: {:confirm => 'Are you sure?'},
         :method => :delete, class: 'badge alert-danger'
 br
 
