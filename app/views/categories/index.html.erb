@@ -15,4 +15,15 @@
 </table>
 <%= link_to 'Preview Dossier', compile_path, class: 'btn btn-primary' %>
 <br><br>
-<%= link_to 'Submit Dossier', submit_path, class: 'btn btn-danger', data: { confirm: 'Are you sure? You will not be able to add anything else to your dossier' } %> 
+<%= link_to 'Submit Final Dossier', submit_path, class: 'btn btn-success', data: { confirm: 'By selecting, Yes, I acknowledge that my dossier is complete and ready for review. Any additional changes must be made through an administrator.' } %> 
+<script>
+$(function () { $.fn.twitter_bootstrap_confirmbox.defaults = {
+    fade: false,
+    title: null, // if title equals null window.top.location.origin is used
+    cancel: "No",
+    cancel_class: "btn cancel",
+    proceed: "Yes",
+    proceed_class: "btn proceed btn-primary"
+} });
+</script>
+

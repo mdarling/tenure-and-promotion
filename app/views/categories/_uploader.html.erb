@@ -4,7 +4,11 @@
     <div class="span7">
       <!-- The fileinput-button span is used to style the file input field as button -->
       <%= f.file_field :upload, class: 'hide'  %>
-      <a class="btn btn-success" id="green_button"><em class="fa fa-folder"> </em> Browse for files...</a>
+      <a class="btn btn-success" id="green_button"><em class="fa fa-folder"> </em> Add files...</a>
+      <button type="submit" class="btn btn-primary start">
+        <i class="fa fa-upload"></i>
+        <span>Save All</span>
+      </button>
     </div>
   <script type="text/javascript">
     $('#green_button').bind("click" , function () {

@@ -21,10 +21,12 @@
         <td><%= user.department.name %></td>
         <td><%= link_to 'Edit', edit_user_path(user), class: "badge" %></td>
         <td><%= link_to raw('<em class="fa fa-trash-o"></em> Delete'), user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge" %></td>
-        <% if user.phase == current_user.role.level && user.dossier? %>
-          <td><%= link_to 'Dossier', "/context/#{user.id}", class: "badge" %></td>
-        <% else %>
-          <td><span class="badge alert-warning" data-toggle="tooltip" data-placement="top" title="Not Available">Dossier</span></td>
+        <% if user.role.candidate? %>
+          <% if user.phase == current_user.role.level %>
+            <td><%= link_to 'Dossier', "/context/#{user.id}", class: "badge" %></td>
+          <% else %>
+            <td><span class="badge alert-warning" data-toggle="tooltip" data-placement="top" title="Dossier is at the <%= user.phase %> level">Dossier</span></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>

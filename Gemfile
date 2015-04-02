@@ -24,6 +24,7 @@ gem 'paperclip'
 # Bootstrap Views
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
+gem 'twitter-bootstrap-rails-confirm'
 gem 'select2-rails'
 gem 'bootstrap-material-design'
 

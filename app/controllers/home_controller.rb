@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    redirect_to categories_path if current_user.role.candidate? && current_user.candidate?
     @links = links current_user.role.level
   end
 

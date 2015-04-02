@@ -114,10 +114,10 @@ ActiveRecord::Base.transaction do
   
   [ # Dossier Sections
     ["Curriculum Vitae","Candidate",true],
-    ["Teaching Statement","Candidate",true],
+    ["Teaching Statement or Portfolio","Candidate",true],
     ["Research Statement","Candidate",true],
     ["Teaching Record","Candidate",true],
-    ["Summary of Student Evaluations","Candidate",true],
+    ["Service Statement","Candidate",true],
     ["Course Materials","Candidate",true],
     ["Supplemental Materials","Candidate",false],
     ["Annual Reviews","Department", true],
@@ -125,7 +125,9 @@ ActiveRecord::Base.transaction do
     ["Department Vote and Comments","Department",true],
     ["Letter from Department Chair","Department",true],
     ["College Committee Vote and Comments","College",true],
-    ["Letter from Dean","College",true]
+    ["Letter from Dean","College",true],
+    ["Senior Vice Provost's Letter","Provost",true],
+    ["Provost Decision","Provost",true]
   ].each { |s| Section.create name: s[0], level: s[1], pdf: s[2] }
   
   # Dossier Section to Department Connections
@@ -140,13 +142,18 @@ ActiveRecord::Base.transaction do
   
   [ # Initial users
     # name,netid,role,department
-    ["Ricardo Piro-Rael","fdisk122","Tech User","Electrical & Computer Engineering"],
-    ["Greg Heileman","heileman","Tech User","Electrical & Computer Engineering"]
+#    ["Ricardo Piro-Rael","fdisk122","Tech User","Electrical & Computer Engineering"],
+#    ["Greg Heileman","heileman","Tech User","Electrical & Computer Engineering"]
 #    ["Jennifer Rose Love","jenlov22","Provost's Admin","Civil Engineering"],
 #    ["Karen Gardner","krgard11","College Admin","Economics"],
 #    ["Theresa Ramos","tramos","Provost's Committee Faculty","Neurology"],
 #    ["Kathleen Garcia","garciak","College Admin","College of University Libraries & Learning Sciences"],
 #    ["Carol Parker","cparker","Senior Vice Provost","School of Law"]
+    # Initial users during testing phase
+    ["Candidate","candidate","Tenure and Promotion Candidate","English"],
+    ["Department Admin","departmentadmin","Department Admin","English"],
+    ["College Admin","collegeadmin","College Admin","English"],
+    ["Provost's Admin","provostadmin","Provost's Admin","English"]
   ].each { |u| User.create name: u[0], netid: u[1], role: Role.find_by_name(u[2]), department: Department.find_by_name(u[3]) }
   
   # Initial users' sections

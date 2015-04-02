@@ -42,7 +42,6 @@ class UploadsController < ApplicationController
   # POST /uploads
   # POST /uploads.json
   def create
-    @user = current_user
     @category = @user.categories.find params[:category_id]
     @upload = @category.uploads.new upload_params
 
@@ -65,7 +64,6 @@ class UploadsController < ApplicationController
   # PUT /uploads/1
   # PUT /uploads/1.json
   def update
-    @user = current_user
     @category = @user.categories.find params[:category_id]
     @upload = @category.uploads.find params[:id]
 
@@ -98,7 +96,7 @@ class UploadsController < ApplicationController
   end
 
   def set_category
-    @user = current_user
+    @user = context_user 
     @category=@user.categories.find params[:category_id]
   end
 end

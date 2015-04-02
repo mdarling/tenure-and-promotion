@@ -26,12 +26,12 @@
         </td>
         <td>
             {% if (file.delete_url) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                <button class="badge alert-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                     <i class="fa fa-trash-o"></i>
                     <span>Delete</span>
                 </button>
             {% } else { %}
-                <button class="btn btn-danger cancel">
+                <button class="badge alert-danger cancel">
                     <i class="fa fa-trash-o"></i>
                     <span>Delete</span>
                 </button>

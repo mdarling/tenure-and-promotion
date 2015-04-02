@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require twitter/bootstrap/rails/confirm
 //= require bootstrap-material-design
 //= require jquery-fileupload
 //= require_tree .
