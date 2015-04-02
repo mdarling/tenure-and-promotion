@@ -18,6 +18,7 @@
 
 # Ignore .env
 /.env 
+*.env
 
 # Ignore PDF Files in public
 /public/*.pdf
