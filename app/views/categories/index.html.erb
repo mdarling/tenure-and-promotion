@@ -1,4 +1,8 @@
 <h2>Dossier Sections for <%= @user.name %></h2>
+Click on each section name below to add files to that dossier section.
+When you are ready to see your dossier, click "Preview Dossier" below.
+If you are satisfied with your dossier, click "Submit Final Dossier" to send
+your dossier to the department level for review.
 <table class="table table-striped table-hover warning">
   <tbody>
   <% @categories.each do |category| %>
@@ -13,13 +17,14 @@
     </tr>
   </tbody>
 </table>
+<p>If you exit the application, saved items remain in your dossier.</p>
 <%= link_to 'Preview Dossier', compile_path, class: 'btn btn-primary' %>
 <br><br>
 <%= link_to 'Submit Final Dossier', submit_path, class: 'btn btn-success', data: { confirm: 'By selecting, Yes, I acknowledge that my dossier is complete and ready for review. Any additional changes must be made through an administrator.' } %> 
 <script>
 $(function () { $.fn.twitter_bootstrap_confirmbox.defaults = {
     fade: false,
-    title: null, // if title equals null window.top.location.origin is used
+    title: "Submit Final Dossier", // if title equals null window.top.location.origin is used
     cancel: "No",
     cancel_class: "btn cancel",
     proceed: "Yes",

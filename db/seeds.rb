@@ -124,10 +124,13 @@ ActiveRecord::Base.transaction do
     ["External Reviews","Department",true],
     ["Department Vote and Comments","Department",true],
     ["Letter from Department Chair","Department",true],
+    ["Amended Documents (Department)","Department",true],
     ["College Committee Vote and Comments","College",true],
     ["Letter from Dean","College",true],
+    ["Amended Documents (College)","College",true],
     ["Senior Vice Provost's Letter","Provost",true],
-    ["Provost Decision","Provost",true]
+    ["Provost Decision","Provost",true],
+    ["Amended Documents (Provost)","Provost",true]
   ].each { |s| Section.create name: s[0], level: s[1], pdf: s[2] }
   
   # Dossier Section to Department Connections
