@@ -1,0 +1,66 @@
+@unm-red: #C10037;
+@unm-light-gray: #A4A3A7;
+@unm-dark-gray: #5E5D60;
+
+//These are in pairs
+@unm-cheese: #F4A137; //1a
+@unm-orange: #E97D1F; //2a
+
+@unm-butter: #DAA733; //1b
+@unm-tangerine: #BD5C1A; //2b
+
+@unm-brown: #C09B68;  //1c
+@unm-blue: #00356A; //2c
+
+@unm-green: #A0B222; //3a
+@unm-purple: #620C69; //4a
+
+@unm-dark-green: #777D12; //3b
+@unm-cyan: #007A86; //4b
+
+@unm-bright-orange: #D8581F; //3c
+@unm-magenta: #9B004A; //4c
+
+@navbar-default-bg: @unm-red; 
+@navbar-default-link-color: #FFF;
+@brand-danger: @unm-red;
+
+@badge-bg: @unm-dark-gray;
+
+h1 {
+font-size: 2em !important;
+}
+
+.btn-danger:not(.btn-link):not(.btn-flat) {
+  background-color: @brand-danger;
+}
+
+.btn-success:not(.btn-link):not(.btn-flat) {
+  background-color: @unm-dark-green;
+}
+
+.btn-primary:not(.btn-link):not(.btn-flat) {
+  background-color: @unm-cyan;
+}
+
+.btn-warning:not(.btn-link):not(.btn-flat) {
+  background-color: @unm-orange;
+}
+
+
+.navbar.navbar {
+  background-color: @navbar-default-bg;
+}
+
+.panel-primary > .panel-heading {
+  background-color: @unm-cyan;
+}
+
+.badge {
+  background-color: @badge-bg;
+}
+
+.alert-warning {
+  background-color: @unm-orange;
+}
+
