@@ -14,6 +14,13 @@
     <%= f.text_field :name %>
     <%= f.select :role_id, options_from_collection_for_select(Role.all, :id, :name) %>
     <%= f.select :department_id, option_groups_from_collection_for_select(College.all, :departments, :name, :id, :name) %>
-    <%= f.primary "Save Candidate" %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.primary "Save Candidate" %>
+      </div>
+      <div class="col-md-4 col-md-offset-1">
+        <%= link_to raw('<i class="fa fa-ban"></i>  Cancel'), users_path, class: 'btn btn-warning' %>
+      </div>
+    </div>
 <% end %>
 <br>
