@@ -1,20 +1,11 @@
  <%= form_for [@category, Upload.new], html: { multipart: true, id: "fileupload"  } do |f| %>
   <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-  <div class="row fileupload-buttonbar">
+  <div class="row fileupload-buttonbar col-md-9">
     <div class="span7">
       <!-- The fileinput-button span is used to style the file input field as button -->
       <%= f.file_field :upload, class: 'hide'  %>
-      <a class="btn btn-success" id="green_button"><em class="fa fa-folder"> </em> Add files...</a>
-      <button type="submit" class="btn btn-primary start">
-        <i class="fa fa-upload"></i>
-        <span>Save All</span>
-      </button>
+      <button type="submit" class="btn btn-primary start hide" id="save_all">
     </div>
-  <script type="text/javascript">
-    $('#green_button').bind("click" , function () {
-      $('#upload_upload').click();
-      });
-  </script>
     <div class="span5">
       <!-- The global progress bar -->
       <div class="progress progress-success progress-striped active fade">
@@ -24,13 +15,37 @@
   </div>
   <!-- The loading indicator is shown during image processing -->
   <div class="fileupload-loading"></div>
-  <br>
   <!-- The table listing the files available for upload/download -->
-<div class="well">Drag and drop files and folders here. <i class="fa fa-file"></i></div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="well well-success" id="green_button"><h4><i class="fa fa-folder"></i> Click to add files...</h4></div>
+    </div>
+    <div class="col-md-1 text-center">
+      <h4>OR</h4>
+    </div>
+    <div class="col-md-4">
+      <div class="well"><h4><i class="fa fa-file"></i> Drag and drop files.</h4></div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 col-md-offset-9">
+        <button class="btn btn-primary" id="blue_button"><i class="fa fa-upload"></i> Save All</button>
+     </div>
+   </div>
+  </div>
   <table class="table table-bordered table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
   </table>
 <% end %>
 <script>
+$('#green_button').bind("click" , function () {
+  $('#upload_upload').click();
+});
+
+$('#blue_button').bind("click" , function (e) {
+  e.preventDefault();
+  $('#save_all').click();
+});
+
+
 var fileUploadErrors = {
 maxFileSize: 'File is too big',
 minFileSize: 'File is too small',
