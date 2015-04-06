@@ -16,19 +16,19 @@ ActiveRecord::Base.transaction do
     # 1 for department
     # 2 for college
     # 3 for provost (all university)
-    # name,level
-    ["Tenure and Promotion Candidate",0],
-    ["Mid-Probationary Candidate",0],
-    ["Full Professor Candidate",0],
-    ["Department Admin",1],
-    ["Department Faculty",1],
-    ["College Commitee Faculty",2],
-    ["College Admin",2],
-    ["Provost's Committee Faculty",3],
-    ["Provost's Admin",3],
-    ["Senior Vice Provost",3],
-    ["Tech User",4]
-  ].each  { |r| Role.create name: r.first, level: r.last }
+    # name,                        level
+    ["Tenure and Promotion Candidate", 0],
+    ["Mid-Probationary Candidate",     0],
+    ["Full Professor Candidate",       0],
+    ["Department Admin",               1],
+    ["Department Faculty",             1],
+    ["College Commitee Faculty",       2],
+    ["College Admin",                  2],
+    ["Provost's Committee Faculty",    3],
+    ["Provost's Admin",                3],
+    ["Senior Vice Provost",            3],
+    ["Tech User",                      4]
+  ].each { |r| Role.create name: r.first, level: r.last }
   
   
   [ # Colleges
@@ -113,24 +113,25 @@ ActiveRecord::Base.transaction do
   ].each { |d| Department.create college: College.find_by_name(d.first),name: d.last }
   
   [ # Dossier Sections
-    ["Curriculum Vitae","Candidate",true],
-    ["Teaching Statement or Portfolio","Candidate",true],
-    ["Research Statement","Candidate",true],
-    ["Teaching Record","Candidate",true],
-    ["Service Statement","Candidate",true],
-    ["Course Materials","Candidate",true],
-    ["Supplemental Materials","Candidate",false],
-    ["Annual Reviews","Department", true],
-    ["External Reviews","Department",true],
-    ["Department Vote and Comments","Department",true],
-    ["Letter from Department Chair","Department",true],
-    ["Amended Documents (Department)","Department",true],
-    ["College Committee Vote and Comments","College",true],
-    ["Letter from Dean","College",true],
-    ["Amended Documents (College)","College",true],
-    ["Senior Vice Provost's Letter","Provost",true],
-    ["Provost Decision","Provost",true],
-    ["Amended Documents (Provost)","Provost",true]
+    # name,                                    level,    in pdf?
+    ["Curriculum Vitae",                    "Candidate",  true ],
+    ["Teaching Statement or Portfolio",     "Candidate",  true ],
+    ["Research Statement",                  "Candidate",  true ],
+    ["Teaching Record",                     "Candidate",  true ],
+    ["Service Statement",                   "Candidate",  true ],
+    ["Course Materials",                    "Candidate",  true ],
+    ["Supplemental Materials",              "Candidate",  false],
+    ["Annual Reviews",                      "Department", true ],
+    ["External Reviews",                    "Department", true ],
+    ["Department Vote and Comments",        "Department", true ],
+    ["Letter from Department Chair",        "Department", true ],
+    ["Amended Documents (Department)",      "Department", true ],
+    ["College Committee Vote and Comments", "College",    true ],
+    ["Letter from Dean",                    "College",    true ],
+    ["Amended Documents (College)",         "College",    true ],
+    ["Senior Vice Provost's Letter",        "Provost",    true ],
+    ["Provost Decision",                    "Provost",    true ],
+    ["Amended Documents (Provost)",         "Provost",    true ]
   ].each { |s| Section.create name: s[0], level: s[1], pdf: s[2] }
   
   # Dossier Section to Department Connections
